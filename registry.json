@@ -1,0 +1,32 @@
+{
+  "name": "laviecn",
+  "homepage": "http://localhost:3000",
+  "items": [
+    {
+      "name": "zone-select",
+      "type": "registry:component",
+      "registryDependencies": [
+        "button",
+        "label",
+        "command",
+        "popover"
+      ],
+      "files": [
+        {
+          "path": "registry/components/zone-select.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "zone-select-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/zone-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    }
+  ]
+}
