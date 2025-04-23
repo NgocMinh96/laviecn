@@ -29,7 +29,7 @@ export function ZoneSelectDemo() {
         setSelectedDistrict(""); // Reset district when province changes
         setSelectedWard(""); // Reset ward when province changes
       }}
-      className="w-[200px]"
+      className="w-[210px]"
     />
     <ZoneSelect 
       zone={filteredDistricts} 
@@ -41,7 +41,7 @@ export function ZoneSelectDemo() {
         setSelectedDistrict(value);
         setSelectedWard(""); // Reset ward when district changes
       }}
-      className="w-[200px]"
+      className="w-[210px]"
     />
     <ZoneSelect 
       zone={filteredWards} 
@@ -50,7 +50,7 @@ export function ZoneSelectDemo() {
       value={selectedWard}
       disabled={!selectedDistrict}
       onSelect={setSelectedWard}
-      className="w-[200px]"
+      className="w-[210px]"
     />
   </div>)
 }
