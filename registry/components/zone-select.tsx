@@ -65,7 +65,7 @@ export default function ZoneSelect({zone, label, placeholder = "Select zone", va
             <span className={cn("truncate", !internalValue && "text-muted-foreground")}>
               {internalValue
                 ? zone?.find((item: ZoneItem) => item.id === internalValue)
-                    ?.name
+                    ?.full_name
                 : placeholder}
             </span>
             <ChevronDownIcon

@@ -21,8 +21,8 @@ export function ZoneSelectDemo() {
   return (<div className="flex flex-col gap-4">
     <ZoneSelect 
       zone={provinces} 
-      label="Province" 
-      placeholder="Select province" 
+      label="Tỉnh/Thành phố" 
+      placeholder="Chọn tỉnh thành" 
       value={selectedProvince}
       onSelect={(value) => {
         setSelectedProvince(value);
@@ -33,8 +33,8 @@ export function ZoneSelectDemo() {
     />
     <ZoneSelect 
       zone={filteredDistricts} 
-      label="District" 
-      placeholder="Select district" 
+      label="Quận/Huyện" 
+      placeholder="Chọn quận huyện" 
       value={selectedDistrict}
       disabled={!selectedProvince}
       onSelect={(value) => {
@@ -45,8 +45,8 @@ export function ZoneSelectDemo() {
     />
     <ZoneSelect 
       zone={filteredWards} 
-      label="Ward" 
-      placeholder="Select ward" 
+      label="Phường/Xã" 
+      placeholder="Chọn phường xã" 
       value={selectedWard}
       disabled={!selectedDistrict}
       onSelect={setSelectedWard}
