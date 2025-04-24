@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sotienthanhchu",
+  "type": "registry:lib",
+  "files": [
+    {
+      "path": "registry/utils/sotienthanhchu.ts",
+      "content": "const ChuSo = [\" không\", \" một\", \" hai\", \" ba\", \" bốn\", \" năm\", \" sáu\", \" bảy\", \" tám\", \" chín\"];\r\nconst Tien = [\"\", \" nghìn\", \" triệu\", \" tỷ\", \" nghìn tỷ\", \" triệu tỷ\"];\r\n\r\nfunction DocSo3ChuSo(baso: number): string {\r\n  const tram = Math.floor(baso / 100);\r\n  const chuc = Math.floor((baso % 100) / 10);\r\n  const donvi = baso % 10;\r\n  let KetQua = \"\";\r\n\r\n  if (tram === 0 && chuc === 0 && donvi === 0) return \"\";\r\n\r\n  if (tram !== 0) {\r\n    KetQua += ChuSo[tram] + \" trăm\";\r\n    if (chuc === 0 && donvi !== 0) KetQua += \" linh\";\r\n  }\r\n\r\n  if (chuc !== 0 && chuc !== 1) {\r\n    KetQua += ChuSo[chuc] + \" mươi\";\r\n  } else if (chuc === 1) {\r\n    KetQua += \" mười\";\r\n  }\r\n\r\n  switch (donvi) {\r\n    case 1:\r\n      KetQua += (chuc !== 0 && chuc !== 1) ? \" mốt\" : ChuSo[donvi];\r\n      break;\r\n    case 5:\r\n      KetQua += (chuc === 0) ? ChuSo[donvi] : \" lăm\";\r\n      break;\r\n    default:\r\n      if (donvi !== 0) KetQua += ChuSo[donvi];\r\n      break;\r\n  }\r\n\r\n  return KetQua;\r\n}\r\n\r\nexport function SoTienThanhChu(SoTien: number | string): string {\r\n  const cleanSoTien = SoTien.toString().replaceAll(',', '');\r\n  const so = parseFloat(cleanSoTien);\r\n\r\n  if (isNaN(so)) {\r\n    return \"\";\r\n  }\r\n\r\n  if (so < 0) return \"Số tiền âm!\";\r\n  if (so === 0) return \"Không đồng.\";\r\n  if (so > 8999999999999999) return \"Số quá lớn!\";\r\n\r\n  const ViTri: number[] = [];\r\n  ViTri[5] = Math.floor(so / 1e15);\r\n  ViTri[4] = Math.floor((so % 1e15) / 1e12);\r\n  ViTri[3] = Math.floor((so % 1e12) / 1e9);\r\n  ViTri[2] = Math.floor((so % 1e9) / 1e6);\r\n  ViTri[1] = Math.floor((so % 1e6) / 1e3);\r\n  ViTri[0] = Math.floor(so % 1e3);\r\n\r\n  let KetQua = \"\";\r\n  const lan = ViTri.findLastIndex(val => val > 0);\r\n\r\n  for (let i = lan; i >= 0; i--) {\r\n    const tmp = DocSo3ChuSo(ViTri[i]);\r\n    KetQua += tmp;\r\n    if (ViTri[i] > 0) KetQua += Tien[i];\r\n    if (i > 0 && tmp.length > 0) KetQua += \",\";\r\n  }\r\n\r\n  if (KetQua.endsWith(',')) {\r\n    KetQua = KetQua.slice(0, -1);\r\n  }\r\n\r\n  KetQua = KetQua.trim();\r\n  return KetQua.charAt(0).toUpperCase() + KetQua.slice(1) + \" đồng.\";\r\n}",
+      "type": "registry:lib",
+      "target": "utils/sotienthanhchu.ts"
+    }
+  ]
+}

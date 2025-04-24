@@ -27,6 +27,27 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "sotienthanhchu-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/sotienthanhchu-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sotienthanhchu",
+      "type": "registry:lib",
+      "files": [
+        {
+          "path": "registry/utils/sotienthanhchu.ts",
+          "type": "registry:lib",
+          "target": "utils/sotienthanhchu.ts"
+        }
+      ]
     }
   ]
 }

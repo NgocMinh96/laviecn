@@ -8,6 +8,7 @@
     "index",
     "---Components---",
     "components/zone-select",
-    "---Utils---"
+    "---Utils---",
+    "utils/sotienthanhchu"
   ]
 }

@@ -40,4 +40,38 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "sotienthanhchu-demo": {
+    name: "sotienthanhchu-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/examples/sotienthanhchu-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/examples/sotienthanhchu-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "sotienthanhchu": {
+    name: "sotienthanhchu",
+    description: "",
+    type: "registry:lib",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/utils/sotienthanhchu.ts",
+      type: "registry:lib",
+      target: "utils/sotienthanhchu.ts"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/utils/sotienthanhchu.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   }

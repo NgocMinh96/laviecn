@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sotienthanhchu-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "registry/examples/sotienthanhchu-demo.tsx",
+      "content": "import { Input } from \"@/components/ui/input\";\r\nimport { SoTienThanhChu } from \"../utils/sotienthanhchu\";\r\nimport { useState } from \"react\";\r\n\r\nexport function SoTienThanhChuDemo() {\r\n  const [value, setValue] = useState<number | string>(\"\");\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-2 w-full\">\r\n      <Input \r\n        value={value ?? \"\"} \r\n        onChange={(e) => setValue(e.target.value)}\r\n        placeholder=\"Nhập số tiền\"\r\n        className=\"w-[200px]\"\r\n      />\r\n      <span className=\"text-sm\">Số tiền bằng chữ: {SoTienThanhChu(value)}</span>\r\n    </div>\r\n  )\r\n\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

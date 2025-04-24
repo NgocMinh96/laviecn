@@ -7,6 +7,7 @@ import { z } from "zod"
 
 import { examples } from "../registry/registry-examples.mts"
 import { components } from "../registry/registry-components.mts"
+import { libs } from "../registry/registry-libs.mts"
 
 const DEPRECATED_ITEMS = ["toast"]
 console.log("Examples:", examples);
@@ -17,6 +18,7 @@ const registry = {
     [
       ...components,
       ...examples,
+      ...libs,
     ]
       .filter((item) => {
         return !DEPRECATED_ITEMS.includes(item.name)
