@@ -9,7 +9,10 @@
     "registry:build": "shadcn build",
     "build:registry": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts",
     "postinstall": "fumadocs-mdx",
-    "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx}\""
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "prettier": "prettier --check \"./**/*.{js,jsx,ts,tsx}\"",
+    "prettier:fix": "prettier --write \"./**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
