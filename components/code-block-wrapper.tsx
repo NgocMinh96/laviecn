@@ -3,12 +3,10 @@
 /**
  * @see https://github.com/shadcn-ui/ui/blob/main/apps/www/components/code-block-wrapper.tsx
  */
-
-import * as React from "react"
-
 import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
+import * as React from "react"
 
 interface CodeBlockProps extends React.ComponentPropsWithoutRef<typeof Collapsible> {
   expandButtonTitle?: string

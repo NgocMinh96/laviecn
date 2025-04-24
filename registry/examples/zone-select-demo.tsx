@@ -1,9 +1,8 @@
+import { districts } from "@/data/districts"
+import { provinces } from "@/data/provinces"
+import { wards } from "@/data/wards"
 import { useState } from "react"
 import ZoneSelect from "../components/zone-select"
-
-import { provinces } from "@/data/provinces"
-import { districts } from "@/data/districts"
-import { wards } from "@/data/wards"
 
 export function ZoneSelectDemo() {
   const [selectedProvince, setSelectedProvince] = useState<string>("")

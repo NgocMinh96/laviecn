@@ -2,11 +2,11 @@ import { rehypeComponent } from "@/lib/rehype-component"
 import { getHighlighter } from "@shikijs/compat"
 import { rehypeCode, remarkGfm } from "fumadocs-core/mdx-plugins"
 import { fileGenerator, remarkDocGen, remarkInstall } from "fumadocs-docgen"
-import { defineDocs, defineConfig } from "fumadocs-mdx/config"
+import { defineConfig, defineDocs } from "fumadocs-mdx/config"
+import rehypePrettyCode from "rehype-pretty-code"
+import rehypeSlug from "rehype-slug"
 import { codeImport } from "remark-code-import"
 import remarkMath from "remark-math"
-import rehypeSlug from "rehype-slug"
-import rehypePrettyCode from "rehype-pretty-code"
 
 // Options: https://fumadocs.vercel.app/docs/mdx/collections#define-docs
 export const docs = defineDocs({

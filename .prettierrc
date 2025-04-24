@@ -1,11 +1,14 @@
 {
+  "endOfLine": "lf",
+  "semi": false,
+  "singleQuote": false,
   "tabWidth": 2,
   "printWidth": 100,
-  "singleQuote": false,
   "trailingComma": "es5",
-  "semi": false,
-  "endOfLine": "lf",
   "tailwindStylesheet": "./app/globals.css",
-  "plugins": ["prettier-plugin-tailwindcss"],
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
   "tailwindFunctions": ["cva", "clsx"]
 }

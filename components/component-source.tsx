@@ -3,11 +3,9 @@
 /**
  * @see https://github.com/shadcn-ui/ui/blob/main/apps/www/components/component-source.tsx
  */
-
-import type * as React from "react"
-
 import { CodeBlockWrapper } from "@/components/code-block-wrapper"
 import { cn } from "@/lib/utils"
+import type * as React from "react"
 
 interface ComponentSourceProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string

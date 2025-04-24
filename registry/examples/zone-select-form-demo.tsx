@@ -1,8 +1,3 @@
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import ZoneSelect from "../components/zone-select"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -12,10 +7,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-
-import { provinces } from "@/data/provinces"
 import { districts } from "@/data/districts"
+import { provinces } from "@/data/provinces"
 import { wards } from "@/data/wards"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import ZoneSelect from "../components/zone-select"
 
 const formSchema = z.object({
   province_id: z.string().min(1, "Please select a province"),
