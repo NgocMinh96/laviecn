@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import ZoneSelect from "../components/zone-select";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import ZoneSelect from "../components/zone-select"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -11,23 +11,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/form"
 
-import {provinces} from "@/data/provinces"
-import {districts} from "@/data/districts"
-import {wards} from "@/data/wards"
+import { provinces } from "@/data/provinces"
+import { districts } from "@/data/districts"
+import { wards } from "@/data/wards"
 
 const formSchema = z.object({
   province_id: z.string().min(1, "Please select a province"),
   district_id: z.string().min(1, "Please select a district"),
   ward_id: z.string().min(1, "Please select a ward"),
-});
+})
 
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof formSchema>
 
 export function ZoneSelectDemo() {
-  const [selectedProvince, setSelectedProvince] = useState<string>("");
-  const [selectedDistrict, setSelectedDistrict] = useState<string>("");
+  const [selectedProvince, setSelectedProvince] = useState<string>("")
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("")
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -36,18 +36,16 @@ export function ZoneSelectDemo() {
       district_id: "",
       ward_id: "",
     },
-  });
+  })
 
   const filteredDistricts = districts.filter(
     (district) => district.province_id === selectedProvince
-  );
+  )
 
-  const filteredWards = wards.filter(
-    (ward) => ward.district_id === selectedDistrict
-  );
+  const filteredWards = wards.filter((ward) => ward.district_id === selectedDistrict)
 
   function onSubmit(data: FormValues) {
-    console.log("Form submitted:", data);
+    console.log("Form submitted:", data)
     // Handle form submission here
   }
 
@@ -66,11 +64,11 @@ export function ZoneSelectDemo() {
                   placeholder="Select province"
                   value={field.value}
                   onSelect={(value) => {
-                    field.onChange(value);
-                    setSelectedProvince(value);
-                    setSelectedDistrict("");
-                    form.setValue("district_id", "");
-                    form.setValue("ward_id", "");
+                    field.onChange(value)
+                    setSelectedProvince(value)
+                    setSelectedDistrict("")
+                    form.setValue("district_id", "")
+                    form.setValue("ward_id", "")
                   }}
                   className="w-[200px]"
                 />
@@ -93,9 +91,9 @@ export function ZoneSelectDemo() {
                   value={field.value}
                   disabled={!selectedProvince}
                   onSelect={(value) => {
-                    field.onChange(value);
-                    setSelectedDistrict(value);
-                    form.setValue("ward_id", "");
+                    field.onChange(value)
+                    setSelectedDistrict(value)
+                    form.setValue("ward_id", "")
                   }}
                   className="w-[200px]"
                 />
@@ -118,7 +116,7 @@ export function ZoneSelectDemo() {
                   value={field.value}
                   disabled={!selectedDistrict}
                   onSelect={(value) => {
-                    field.onChange(value);
+                    field.onChange(value)
                   }}
                   className="w-[200px]"
                 />
@@ -133,5 +131,5 @@ export function ZoneSelectDemo() {
         </Button>
       </form>
     </Form>
-  );
+  )
 }

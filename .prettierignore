@@ -1,0 +1,9 @@
+build/*
+dist/*
+public/*
+out/*
+.next/*
+node_modules/*
+__registry__/*
+
+package-lock.json

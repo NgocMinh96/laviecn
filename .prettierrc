@@ -3,7 +3,9 @@
   "printWidth": 100,
   "singleQuote": false,
   "trailingComma": "es5",
-  "tailwindStylesheet": "./src/app/globals.css",
+  "semi": false,
+  "endOfLine": "lf",
+  "tailwindStylesheet": "./app/globals.css",
   "plugins": ["prettier-plugin-tailwindcss"],
   "tailwindFunctions": ["cva", "clsx"]
 }

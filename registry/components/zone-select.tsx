@@ -14,19 +14,15 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import { Label } from "@/components/ui/label"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 export interface ZoneItem {
-  id: string;
-  name: string;
-  name_slug: string;
-  full_name: string;
-  province_id?: string;
-  district_id?: string;
+  id: string
+  name: string
+  name_slug: string
+  full_name: string
+  province_id?: string
+  district_id?: string
 }
 
 interface ZoneSelectProps {
@@ -39,15 +35,23 @@ interface ZoneSelectProps {
   className?: string
 }
 
-export default function ZoneSelect({zone, label, placeholder = "Select zone", value: externalValue, onSelect, disabled, className}: ZoneSelectProps) {
+export default function ZoneSelect({
+  zone,
+  label,
+  placeholder = "Select zone",
+  value: externalValue,
+  onSelect,
+  disabled,
+  className,
+}: ZoneSelectProps) {
   const id = useId()
   const [open, setOpen] = useState<boolean>(false)
   const [internalValue, setInternalValue] = useState<string>(externalValue || "")
 
   // Sync internal value with external value
   useEffect(() => {
-    setInternalValue(externalValue || "");
-  }, [externalValue]);
+    setInternalValue(externalValue || "")
+  }, [externalValue])
 
   return (
     <div className={cn("*:not-first:mt-2", className)}>
@@ -59,13 +63,12 @@ export default function ZoneSelect({zone, label, placeholder = "Select zone", va
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
+            className="bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-none outline-offset-0 focus-visible:outline-[3px]"
             disabled={disabled}
           >
             <span className={cn("truncate", !internalValue && "text-muted-foreground")}>
               {internalValue
-                ? zone?.find((item: ZoneItem) => item.id === internalValue)
-                    ?.full_name
+                ? zone?.find((item: ZoneItem) => item.id === internalValue)?.full_name
                 : placeholder}
             </span>
             <ChevronDownIcon
@@ -89,17 +92,15 @@ export default function ZoneSelect({zone, label, placeholder = "Select zone", va
                     key={item.id}
                     value={item.name_slug}
                     onSelect={(currentValue) => {
-                      const selectedItem = zone.find(item => item.name_slug === currentValue);
-                      const newValue = selectedItem ? selectedItem.id : "";
-                      setInternalValue(newValue);
-                      onSelect?.(newValue);
-                      setOpen(false);
+                      const selectedItem = zone.find((item) => item.name_slug === currentValue)
+                      const newValue = selectedItem ? selectedItem.id : ""
+                      setInternalValue(newValue)
+                      onSelect?.(newValue)
+                      setOpen(false)
                     }}
                   >
                     {item.full_name}
-                    {internalValue === item.id && (
-                      <CheckIcon size={16} className="ml-auto" />
-                    )}
+                    {internalValue === item.id && <CheckIcon size={16} className="ml-auto" />}
                   </CommandItem>
                 ))}
               </CommandGroup>

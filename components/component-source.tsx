@@ -1,23 +1,19 @@
-"use client";
+"use client"
 
 /**
  * @see https://github.com/shadcn-ui/ui/blob/main/apps/www/components/component-source.tsx
  */
 
-import type * as React from "react";
+import type * as React from "react"
 
-import { CodeBlockWrapper } from "@/components/code-block-wrapper";
-import { cn } from "@/lib/utils";
+import { CodeBlockWrapper } from "@/components/code-block-wrapper"
+import { cn } from "@/lib/utils"
 
 interface ComponentSourceProps extends React.HTMLAttributes<HTMLDivElement> {
-  src: string;
+  src: string
 }
 
-export function ComponentSource({
-  children,
-  className,
-  ...props
-}: ComponentSourceProps) {
+export function ComponentSource({ children, className, ...props }: ComponentSourceProps) {
   return (
     <CodeBlockWrapper
       expandButtonTitle="Expand"
@@ -26,5 +22,5 @@ export function ComponentSource({
     >
       {children}
     </CodeBlockWrapper>
-  );
+  )
 }

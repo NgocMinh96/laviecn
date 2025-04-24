@@ -1,56 +1,56 @@
-import { useState } from "react";
-import ZoneSelect from "../components/zone-select";
+import { useState } from "react"
+import ZoneSelect from "../components/zone-select"
 
-import {provinces} from "@/data/provinces"
-import {districts} from "@/data/districts"
-import {wards} from "@/data/wards"
+import { provinces } from "@/data/provinces"
+import { districts } from "@/data/districts"
+import { wards } from "@/data/wards"
 
 export function ZoneSelectDemo() {
-  const [selectedProvince, setSelectedProvince] = useState<string>("");
-  const [selectedDistrict, setSelectedDistrict] = useState<string>("");
-  const [selectedWard, setSelectedWard] = useState<string>("");
+  const [selectedProvince, setSelectedProvince] = useState<string>("")
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("")
+  const [selectedWard, setSelectedWard] = useState<string>("")
 
   const filteredDistricts = districts.filter(
     (district) => district.province_id === selectedProvince
-  );
+  )
 
-  const filteredWards = wards.filter(
-    (ward) => ward.district_id === selectedDistrict
-  );
+  const filteredWards = wards.filter((ward) => ward.district_id === selectedDistrict)
 
-  return (<div className="flex flex-col gap-4">
-    <ZoneSelect 
-      zone={provinces} 
-      label="Tỉnh/Thành phố" 
-      placeholder="Chọn tỉnh thành" 
-      value={selectedProvince}
-      onSelect={(value) => {
-        setSelectedProvince(value);
-        setSelectedDistrict(""); // Reset district when province changes
-        setSelectedWard(""); // Reset ward when province changes
-      }}
-      className="w-[210px]"
-    />
-    <ZoneSelect 
-      zone={filteredDistricts} 
-      label="Quận/Huyện" 
-      placeholder="Chọn quận huyện" 
-      value={selectedDistrict}
-      disabled={!selectedProvince}
-      onSelect={(value) => {
-        setSelectedDistrict(value);
-        setSelectedWard(""); // Reset ward when district changes
-      }}
-      className="w-[210px]"
-    />
-    <ZoneSelect 
-      zone={filteredWards} 
-      label="Phường/Xã" 
-      placeholder="Chọn phường xã" 
-      value={selectedWard}
-      disabled={!selectedDistrict}
-      onSelect={setSelectedWard}
-      className="w-[210px]"
-    />
-  </div>)
+  return (
+    <div className="flex flex-col gap-4">
+      <ZoneSelect
+        zone={provinces}
+        label="Tỉnh/Thành phố"
+        placeholder="Chọn tỉnh thành"
+        value={selectedProvince}
+        onSelect={(value) => {
+          setSelectedProvince(value)
+          setSelectedDistrict("") // Reset district when province changes
+          setSelectedWard("") // Reset ward when province changes
+        }}
+        className="w-[210px]"
+      />
+      <ZoneSelect
+        zone={filteredDistricts}
+        label="Quận/Huyện"
+        placeholder="Chọn quận huyện"
+        value={selectedDistrict}
+        disabled={!selectedProvince}
+        onSelect={(value) => {
+          setSelectedDistrict(value)
+          setSelectedWard("") // Reset ward when district changes
+        }}
+        className="w-[210px]"
+      />
+      <ZoneSelect
+        zone={filteredWards}
+        label="Phường/Xã"
+        placeholder="Chọn phường xã"
+        value={selectedWard}
+        disabled={!selectedDistrict}
+        onSelect={setSelectedWard}
+        className="w-[210px]"
+      />
+    </div>
+  )
 }

@@ -1,17 +1,17 @@
-import { rehypeComponent } from '@/lib/rehype-component';
-import { getHighlighter } from "@shikijs/compat";
-import { rehypeCode, remarkGfm } from 'fumadocs-core/mdx-plugins';
-import { fileGenerator, remarkDocGen, remarkInstall } from 'fumadocs-docgen';
-import { defineDocs, defineConfig } from 'fumadocs-mdx/config';
-import { codeImport } from "remark-code-import";
-import remarkMath from 'remark-math';
-import rehypeSlug from "rehype-slug";
-import rehypePrettyCode from "rehype-pretty-code";
+import { rehypeComponent } from "@/lib/rehype-component"
+import { getHighlighter } from "@shikijs/compat"
+import { rehypeCode, remarkGfm } from "fumadocs-core/mdx-plugins"
+import { fileGenerator, remarkDocGen, remarkInstall } from "fumadocs-docgen"
+import { defineDocs, defineConfig } from "fumadocs-mdx/config"
+import { codeImport } from "remark-code-import"
+import remarkMath from "remark-math"
+import rehypeSlug from "rehype-slug"
+import rehypePrettyCode from "rehype-pretty-code"
 
 // Options: https://fumadocs.vercel.app/docs/mdx/collections#define-docs
 export const docs = defineDocs({
-  dir: 'content/docs',
-});
+  dir: "content/docs",
+})
 
 export default defineConfig({
   mdxOptions: {
@@ -30,7 +30,7 @@ export default defineConfig({
             getHighlighter({
               themes: ["one-dark-pro", "one-light"],
             }),
-        }
+        },
       ],
     ],
     remarkPlugins: [
@@ -41,4 +41,4 @@ export default defineConfig({
       [remarkDocGen, { generators: [fileGenerator()] }],
     ],
   },
-});
+})
