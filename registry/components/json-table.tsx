@@ -100,7 +100,7 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
         </TableHeader>
       </Table>
 
-      <ScrollArea className="h-[248px]">
+      <ScrollArea className="h-[245.5px]">
         <Table>
           <TableBody>
             {data.map((item, rowIndex) => (
