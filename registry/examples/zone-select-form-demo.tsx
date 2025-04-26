@@ -1,75 +1,79 @@
+"use client"
+
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+
 import { districts } from "@/data/districts"
 import { provinces } from "@/data/provinces"
 import { wards } from "@/data/wards"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 import ZoneSelect from "../components/zone-select"
+import { useFilterZone } from "../hooks/useFilterZone"
 
-const formSchema = z.object({
-  province_id: z.string().min(1, "Please select a province"),
-  district_id: z.string().min(1, "Please select a district"),
-  ward_id: z.string().min(1, "Please select a ward"),
+const zoneFormSchema = z.object({
+  province: z.string().nonempty("Vui lòng chọn tỉnh/thành phố"),
+  district: z.string().nonempty("Vui lòng chọn quận/huyện"),
+  ward: z.string().nonempty("Vui lòng chọn phường/xã"),
 })
 
-type FormValues = z.infer<typeof formSchema>
+type ZoneFormValues = z.infer<typeof zoneFormSchema>
 
 export function ZoneSelectDemo() {
-  const [selectedProvince, setSelectedProvince] = useState<string>("")
-  const [selectedDistrict, setSelectedDistrict] = useState<string>("")
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ZoneFormValues>({
+    resolver: zodResolver(zoneFormSchema),
     defaultValues: {
-      province_id: "",
-      district_id: "",
-      ward_id: "",
+      province: "",
+      district: "",
+      ward: "",
     },
   })
 
-  const filteredDistricts = districts.filter(
-    (district) => district.province_id === selectedProvince
-  )
+  const {
+    filteredProvinces,
+    filteredDistricts,
+    filteredWards,
+    selectedProvince,
+    selectedDistrict,
+    handleSelectProvince,
+    handleSelectDistrict,
+    handleSelectWard,
+  } = useFilterZone({
+    provinces,
+    districts,
+    wards,
+  })
 
-  const filteredWards = wards.filter((ward) => ward.district_id === selectedDistrict)
-
-  function onSubmit(data: FormValues) {
-    console.log("Form submitted:", data)
-    // Handle form submission here
+  async function onSubmit(data: ZoneFormValues) {
+    try {
+      const result = await new Promise((resolve) => {
+        setTimeout(() => resolve(data), 1000) // Simulate async operation
+      })
+      console.log("Form data:", result)
+    } catch (error) {
+      console.error("Error submitting form:", error)
+    }
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4 w-[210px]">
         <FormField
           control={form.control}
-          name="province_id"
+          name="province"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Province</FormLabel>
+              <FormLabel>Tỉnh/Thành phố</FormLabel>
               <FormControl>
                 <ZoneSelect
-                  zone={provinces}
-                  placeholder="Select province"
+                  zone={filteredProvinces}
+                  placeholder="Chọn tỉnh thành"
                   value={field.value}
                   onSelect={(value) => {
                     field.onChange(value)
-                    setSelectedProvince(value)
-                    setSelectedDistrict("")
-                    form.setValue("district_id", "")
-                    form.setValue("ward_id", "")
+                    handleSelectProvince(value)
                   }}
-                  className="w-[200px]"
                 />
               </FormControl>
               <FormMessage />
@@ -79,22 +83,20 @@ export function ZoneSelectDemo() {
 
         <FormField
           control={form.control}
-          name="district_id"
+          name="district"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>District</FormLabel>
+              <FormLabel>Quận/Huyện</FormLabel>
               <FormControl>
                 <ZoneSelect
                   zone={filteredDistricts}
-                  placeholder="Select district"
+                  placeholder="Chọn quận huyện"
                   value={field.value}
                   disabled={!selectedProvince}
                   onSelect={(value) => {
                     field.onChange(value)
-                    setSelectedDistrict(value)
-                    form.setValue("ward_id", "")
+                    handleSelectDistrict(value)
                   }}
-                  className="w-[200px]"
                 />
               </FormControl>
               <FormMessage />
@@ -104,20 +106,20 @@ export function ZoneSelectDemo() {
 
         <FormField
           control={form.control}
-          name="ward_id"
+          name="ward"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Ward</FormLabel>
+              <FormLabel>Phường/Xã</FormLabel>
               <FormControl>
                 <ZoneSelect
                   zone={filteredWards}
-                  placeholder="Select ward"
+                  placeholder="Chọn phường xã"
                   value={field.value}
                   disabled={!selectedDistrict}
                   onSelect={(value) => {
                     field.onChange(value)
+                    handleSelectWard(value)
                   }}
-                  className="w-[200px]"
                 />
               </FormControl>
               <FormMessage />
@@ -125,9 +127,7 @@ export function ZoneSelectDemo() {
           )}
         />
 
-        <Button type="submit" className="w-[200px]">
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   )
