@@ -9,7 +9,8 @@
         "button",
         "label",
         "command",
-        "popover"
+        "popover",
+        "https://laviecn.vercel.app/r/useFilerZone.json"
       ],
       "files": [
         {
@@ -45,6 +46,16 @@
         {
           "path": "registry/examples/json-table-demo.tsx",
           "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "useFilterZone",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "registry/hooks/useFilterZone.ts",
+          "type": "registry:hook"
         }
       ]
     },

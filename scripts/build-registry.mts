@@ -4,25 +4,20 @@ import path from "path"
 import rimraf from "rimraf"
 import { registryItemSchema, type Registry } from "shadcn/registry"
 import { z } from "zod"
-
-import { examples } from "../registry/registry-examples.mts"
 import { components } from "../registry/registry-components.mts"
+import { examples } from "../registry/registry-examples.mts"
+import { hooks } from "../registry/registry-hooks.mts"
 import { libs } from "../registry/registry-libs.mts"
 
 const DEPRECATED_ITEMS = ["toast"]
-console.log("Examples:", examples);
+
 const registry = {
   name: "laviecn",
   homepage: "http://localhost:3000",
   items: z.array(registryItemSchema).parse(
-    [
-      ...components,
-      ...examples,
-      ...libs,
-    ]
-      .filter((item) => {
-        return !DEPRECATED_ITEMS.includes(item.name)
-      })
+    [...components, ...examples, ...hooks, ...libs].filter((item) => {
+      return !DEPRECATED_ITEMS.includes(item.name)
+    })
   ),
 } satisfies Registry
 
@@ -36,16 +31,12 @@ import * as React from "react"
 
 export const Index: Record<string, any> = {`
   for (const item of registry.items) {
-    const resolveFiles = item.files?.map(
-      (file) => `registry/${file.path}`
-    )
+    const resolveFiles = item.files?.map((file) => `registry/${file.path}`)
     if (!resolveFiles) {
       continue
     }
 
-    const componentPath = item.files?.[0]?.path
-      ? `@/registry/${item.files[0].path}`
-      : ""
+    const componentPath = item.files?.[0]?.path ? `@/registry/${item.files[0].path}` : ""
 
     index += `
   "${item.name}": {
@@ -114,9 +105,7 @@ async function buildRegistryJsonFile() {
 
 async function buildRegistry() {
   return new Promise((resolve, reject) => {
-    const process = exec(
-      `npm run registry:build`
-    )
+    const process = exec(`npm run registry:build`)
 
     process.on("exit", (code) => {
       if (code === 0) {
