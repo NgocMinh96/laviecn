@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Table,
   TableBody,
@@ -28,8 +29,6 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
   const [rowModesModel, setRowModesModel] = useState<Record<number, "view" | "edit">>({})
   const [focusedCell, setFocusedCell] = useState<{ rowIndex: number; key: string } | null>(null)
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
-
-  console.log(data)
 
   const handleStartEditing = (rowIndex: number, key?: string) => {
     setRowModesModel((prev) => ({ ...prev, [rowIndex]: "edit" }))
@@ -80,7 +79,7 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
   }, [focusedCell])
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border overflow-hidden">
       <Table>
         <TableHeader>
           <TableRow>
@@ -88,105 +87,117 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
               <TableHead
                 key={index}
                 style={{ width: column.width }}
-                className={cn(column.width ? `w-[${column.width}px]` : "")}
+                className={cn(
+                  "sticky top-0 z-10 bg-background",
+                  column.width ? `w-[${column.width}px]` : ""
+                )}
               >
                 {column.headerName}
               </TableHead>
             ))}
-            <TableHead>Actions</TableHead>
+            <TableHead className="sticky top-0 z-10 bg-background">Actions</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          {data.map((item, rowIndex) => (
-            <TableRow
-              key={rowIndex}
-              className={cn({ "bg-muted": rowModesModel[rowIndex] === "edit" })}
-              onDoubleClick={(e) => {
-                const key = (e.target as HTMLElement).getAttribute("data-key")
-                handleStartEditing(rowIndex, key || columns[0].field)
-              }}
-            >
-              {columns.map((column, columnIndex) => {
-                const key = column.field
-                const isFocused = focusedCell?.rowIndex === rowIndex && focusedCell?.key === key
-                const inputKey = `${rowIndex}-${key}`
-                return (
-                  <TableCell
-                    key={columnIndex}
-                    style={{ width: column.width }}
-                    className={cn("p-0", {
-                      "border-1 border-blue-500": isFocused,
-                      [`w-[${column.width}px]`]: column.width,
-                    })}
-                  >
-                    {rowModesModel[rowIndex] === "edit" ? (
-                      <Input
-                        ref={(el) => {
-                          inputRefs.current[inputKey] = el
-                        }}
-                        value={item[key] || ""}
-                        onChange={(e) => handleInputChange(rowIndex, key, e.target.value)}
-                        onFocus={() => handleFocus(rowIndex, key)}
-                        onBlur={handleBlur}
-                        data-key={key}
-                        className="h-full bg-transparent! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
-                      />
-                    ) : (
-                      <div className="px-4 py-2" data-key={key}>
-                        {item[key]}
-                      </div>
-                    )}
-                  </TableCell>
-                )
-              })}
-              <TableCell className="p-0">
-                <div className="flex items-center gap-2 px-4 py-2">
-                  {rowModesModel[rowIndex] === "edit" ? (
-                    <>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleSaveEditing(rowIndex, data[rowIndex])}
-                        className="text-green-500 hover:text-green-700"
-                      >
-                        <Check className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleCancelEditing(rowIndex)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleStartEditing(rowIndex)}
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleDeleteRow(rowIndex)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </>
-                  )}
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
       </Table>
-      <div className="p-4">
-        <Button onClick={handleAddRow}>Add New Row</Button>
+
+      <ScrollArea className="h-[248px]">
+        <Table>
+          <TableBody>
+            {data.map((item, rowIndex) => (
+              <TableRow
+                key={rowIndex}
+                className={cn({ "bg-muted": rowModesModel[rowIndex] === "edit" })}
+                onDoubleClick={(e) => {
+                  const key = (e.target as HTMLElement).getAttribute("data-key")
+                  handleStartEditing(rowIndex, key || columns[0].field)
+                }}
+              >
+                {columns.map((column, columnIndex) => {
+                  const key = column.field
+                  const isFocused = focusedCell?.rowIndex === rowIndex && focusedCell?.key === key
+                  const inputKey = `${rowIndex}-${key}`
+
+                  return (
+                    <TableCell
+                      key={columnIndex}
+                      style={{ width: column.width }}
+                      className={cn("p-0", {
+                        "border-1 border-blue-500": isFocused,
+                        [`w-[${column.width}px]`]: column.width,
+                      })}
+                    >
+                      {rowModesModel[rowIndex] === "edit" ? (
+                        <Input
+                          ref={(el) => {
+                            inputRefs.current[inputKey] = el
+                          }}
+                          value={item[key] || ""}
+                          onChange={(e) => handleInputChange(rowIndex, key, e.target.value)}
+                          onFocus={() => handleFocus(rowIndex, key)}
+                          onBlur={handleBlur}
+                          data-key={key}
+                          className="h-full bg-transparent! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                        />
+                      ) : (
+                        <div className="px-4 py-2" data-key={key}>
+                          {item[key]}
+                        </div>
+                      )}
+                    </TableCell>
+                  )
+                })}
+                <TableCell className="p-0">
+                  <div className="flex items-center gap-2 px-4 py-2">
+                    {rowModesModel[rowIndex] === "edit" ? (
+                      <>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleSaveEditing(rowIndex, data[rowIndex])}
+                          className="text-green-500 hover:text-green-700"
+                        >
+                          <Check className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleCancelEditing(rowIndex)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleStartEditing(rowIndex)}
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDeleteRow(rowIndex)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </ScrollArea>
+
+      <div className="p-2">
+        <Button size="sm" onClick={handleAddRow}>
+          Add New Row
+        </Button>
       </div>
     </div>
   )
