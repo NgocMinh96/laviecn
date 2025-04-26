@@ -16,7 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import ZoneSelect from "../components/zone-select"
-import { useFilterZone } from "../hooks/useFilterZone"
+import { useFilterZone } from "../hooks/use-filter-zone"
 
 const zoneFormSchema = z.object({
   province: z.string().nonempty("Vui lòng chọn tỉnh/thành phố"),

@@ -10,7 +10,7 @@
         "label",
         "command",
         "popover",
-        "https://laviecn.vercel.app/r/useFilterZone.json"
+        "https://laviecn.vercel.app/r/use-filter-zone.json"
       ],
       "files": [
         {
@@ -50,11 +50,11 @@
       ]
     },
     {
-      "name": "useFilterZone",
+      "name": "use-filter-fone",
       "type": "registry:hook",
       "files": [
         {
-          "path": "registry/hooks/useFilterZone.ts",
+          "path": "registry/hooks/use-filter-zone.ts",
           "type": "registry:hook"
         }
       ]

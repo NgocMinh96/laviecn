@@ -10,7 +10,7 @@ export const Index: Record<string, any> = {
     name: "zone-select",
     description: "",
     type: "registry:component",
-    registryDependencies: ["button","label","command","popover","https://laviecn.vercel.app/r/useFilterZone.json"],
+    registryDependencies: ["button","label","command","popover","https://laviecn.vercel.app/r/use-filter-zone.json"],
     files: [{
       path: "registry/components/zone-select.tsx",
       type: "registry:component",
@@ -74,18 +74,18 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "useFilterZone": {
-    name: "useFilterZone",
+  "use-filter-fone": {
+    name: "use-filter-fone",
     description: "",
     type: "registry:hook",
     registryDependencies: undefined,
     files: [{
-      path: "registry/hooks/useFilterZone.ts",
+      path: "registry/hooks/use-filter-zone.ts",
       type: "registry:hook",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/hooks/useFilterZone.ts")
+      const mod = await import("@/registry/hooks/use-filter-zone.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

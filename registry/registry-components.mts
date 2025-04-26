@@ -9,7 +9,7 @@ export const components: Registry["items"] = [
       "label",
       "command",
       "popover",
-      "https://laviecn.vercel.app/r/useFilterZone.json"
+      "https://laviecn.vercel.app/r/use-filter-zone.json"
     ],
     files: [
       {

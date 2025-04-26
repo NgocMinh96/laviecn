@@ -2,7 +2,7 @@ import { districts } from "@/data/districts"
 import { provinces } from "@/data/provinces"
 import { wards } from "@/data/wards"
 import ZoneSelect from "../components/zone-select"
-import { useFilterZone } from "../hooks/useFilterZone"
+import { useFilterZone } from "../hooks/use-filter-zone"
 
 export function ZoneSelectDemo() {
   const {
