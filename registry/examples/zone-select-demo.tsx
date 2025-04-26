@@ -1,32 +1,34 @@
 import { districts } from "@/data/districts"
 import { provinces } from "@/data/provinces"
 import { wards } from "@/data/wards"
-import { useState } from "react"
 import ZoneSelect from "../components/zone-select"
+import { useFilterZone } from "../hooks/useFilterZone"
 
 export function ZoneSelectDemo() {
-  const [selectedProvince, setSelectedProvince] = useState<string>("")
-  const [selectedDistrict, setSelectedDistrict] = useState<string>("")
-  const [selectedWard, setSelectedWard] = useState<string>("")
-
-  const filteredDistricts = districts.filter(
-    (district) => district.province_id === selectedProvince
-  )
-
-  const filteredWards = wards.filter((ward) => ward.district_id === selectedDistrict)
+  const {
+    filteredProvinces,
+    filteredDistricts,
+    filteredWards,
+    selectedProvince,
+    selectedDistrict,
+    selectedWard,
+    handleSelectProvince,
+    handleSelectDistrict,
+    handleSelectWard,
+  } = useFilterZone({
+    provinces,
+    districts,
+    wards,
+  })
 
   return (
     <div className="flex flex-col gap-4">
       <ZoneSelect
-        zone={provinces}
+        zone={filteredProvinces}
         label="Tỉnh/Thành phố"
         placeholder="Chọn tỉnh thành"
         value={selectedProvince}
-        onSelect={(value) => {
-          setSelectedProvince(value)
-          setSelectedDistrict("") // Reset district when province changes
-          setSelectedWard("") // Reset ward when province changes
-        }}
+        onSelect={handleSelectProvince}
         className="w-[210px]"
       />
       <ZoneSelect
@@ -35,10 +37,7 @@ export function ZoneSelectDemo() {
         placeholder="Chọn quận huyện"
         value={selectedDistrict}
         disabled={!selectedProvince}
-        onSelect={(value) => {
-          setSelectedDistrict(value)
-          setSelectedWard("") // Reset ward when district changes
-        }}
+        onSelect={handleSelectDistrict}
         className="w-[210px]"
       />
       <ZoneSelect
@@ -47,7 +46,7 @@ export function ZoneSelectDemo() {
         placeholder="Chọn phường xã"
         value={selectedWard}
         disabled={!selectedDistrict}
-        onSelect={setSelectedWard}
+        onSelect={handleSelectWard}
         className="w-[210px]"
       />
     </div>
