@@ -39,6 +39,16 @@
       ]
     },
     {
+      "name": "json-table-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/json-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "sotienthanhchu",
       "type": "registry:lib",
       "files": [

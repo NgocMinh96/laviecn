@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "registry/examples/sotienthanhchu-demo.tsx",
-      "content": "import { Input } from \"@/components/ui/input\";\r\nimport { SoTienThanhChu } from \"../utils/sotienthanhchu\";\r\nimport { useState } from \"react\";\r\n\r\nexport function SoTienThanhChuDemo() {\r\n  const [value, setValue] = useState<number | string>(\"\");\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-2 w-full\">\r\n      <Input \r\n        value={value ?? \"\"} \r\n        onChange={(e) => setValue(e.target.value)}\r\n        placeholder=\"Nhập số tiền\"\r\n        className=\"w-[200px]\"\r\n      />\r\n      <span className=\"text-sm\">Số tiền bằng chữ: {SoTienThanhChu(value)}</span>\r\n    </div>\r\n  )\r\n\r\n}\r\n",
+      "content": "import { Input } from \"@/components/ui/input\"\nimport { useState } from \"react\"\nimport { SoTienThanhChu } from \"../utils/sotienthanhchu\"\n\nexport function SoTienThanhChuDemo() {\n  const [value, setValue] = useState<number | string>(\"\")\n\n  return (\n    <div className=\"flex w-full flex-col gap-2\">\n      <Input\n        value={value ?? \"\"}\n        onChange={(e) => setValue(e.target.value)}\n        placeholder=\"Nhập số tiền\"\n        className=\"w-[200px]\"\n      />\n      <span className=\"text-sm\">Số tiền bằng chữ: {SoTienThanhChu(value)}</span>\n    </div>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

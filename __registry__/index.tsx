@@ -57,6 +57,23 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "json-table-demo": {
+    name: "json-table-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/examples/json-table-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/examples/json-table-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "sotienthanhchu": {
     name: "sotienthanhchu",
     description: "",

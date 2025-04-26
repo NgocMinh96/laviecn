@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "json-table-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "registry/examples/json-table-demo.tsx",
+      "content": "",
+      "type": "registry:example"
+    }
+  ]
+}

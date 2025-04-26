@@ -8,6 +8,7 @@
     "index",
     "---Components---",
     "components/zone-select",
+    "components/json-table",
     "---Utils---",
     "utils/sotienthanhchu"
   ]

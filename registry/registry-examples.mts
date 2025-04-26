@@ -1,4 +1,4 @@
-import { type Registry } from "shadcn/registry";
+import { type Registry } from "shadcn/registry"
 
 export const examples: Registry["items"] = [
   {
@@ -21,4 +21,14 @@ export const examples: Registry["items"] = [
       },
     ],
   },
-];
+  {
+    name: "json-table-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/json-table-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+]
