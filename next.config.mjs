@@ -7,7 +7,7 @@ const config = {
   reactStrictMode: true,
   redirects() {
     return [
-      { source: "/", destination: "/docs", permanent: true },
+      { source: "/", destination: "/docs", permanent: false },
     ].filter(Boolean);
   }
 };
