@@ -21,7 +21,6 @@ export const components: Registry["items"] = [
   {
     name: "scroll-to-top",
     type: "registry:component",
-    registryDependencies: ["motion"],
     files: [
       {
         path: "components/scroll-to-top.tsx",

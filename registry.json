@@ -22,9 +22,6 @@
     {
       "name": "scroll-to-top",
       "type": "registry:component",
-      "registryDependencies": [
-        "motion"
-      ],
       "files": [
         {
           "path": "registry/components/scroll-to-top.tsx",

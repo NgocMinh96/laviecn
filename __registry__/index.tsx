@@ -27,7 +27,7 @@ export const Index: Record<string, any> = {
     name: "scroll-to-top",
     description: "",
     type: "registry:component",
-    registryDependencies: ["motion"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/components/scroll-to-top.tsx",
       type: "registry:component",

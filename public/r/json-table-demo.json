@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "registry/examples/json-table-demo.tsx",
-      "content": "import { JsonTable } from \"../components/json-table\"\r\n\r\nconst data = [\r\n  {\r\n    uuid: \"d8f5b223-e332-4f88-a768-41b2b7815f5a\",\r\n    name: \"John Doe\",\r\n    age: 30,\r\n  },\r\n]\r\n\r\nconst columns = [\r\n  { field: \"name\", headerName: \"Name\", width: 150 },\r\n  { field: \"age\", headerName: \"Age\", width: 90 },\r\n]\r\n\r\nexport function JsonTableDemo() {\r\n  return <JsonTable columns={columns} data={data} />\r\n}\r\n",
+      "content": "import { JsonTable } from \"../components/json-table\"\n\nconst data = [\n  {\n    uuid: \"d8f5b223-e332-4f88-a768-41b2b7815f5a\",\n    name: \"John Doe\",\n    age: 30,\n  },\n]\n\nconst columns = [\n  { field: \"name\", headerName: \"Name\", width: 150 },\n  { field: \"age\", headerName: \"Age\", width: 90 },\n]\n\nexport function JsonTableDemo() {\n  return <JsonTable columns={columns} data={data} />\n}\n",
       "type": "registry:example"
     }
   ]
