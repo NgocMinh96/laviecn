@@ -2,6 +2,10 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "scroll-to-top",
   "type": "registry:component",
+  "registryDependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "registry/components/scroll-to-top.tsx",
