@@ -4,9 +4,7 @@ import { ChevronUp } from "lucide-react"
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
 
-type ScrollToTopProps = {
-  size?: number
-}
+type ScrollToTopProps = { size?: number }
 
 const baseColor = "115, 115, 115"
 const bgColor = `rgb(${baseColor}, 0.1)`
@@ -15,15 +13,21 @@ const progressColor = `rgb(${baseColor}, 1)`
 
 export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
   const [isVisible, setIsVisible] = useState(false)
-  const [offset, setOffset] = useState(1)
+  const [offset, setOffset] = useState(0)
+
+  const stroke = 4
+  const center = size / 2
+  const r = center - stroke / 2
+  const circumference = 2 * Math.PI * r
+  const iconSize = size * 0.4
+  const iconTranslate = size * 0.3
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop
+      const scrollTop = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
-
-      const progress = docHeight > 0 ? scrollTop / docHeight : 0
-      setOffset(1 - progress)
+      const progress = Math.min(scrollTop / docHeight, 1)
+      setOffset(progress >= 0.999 ? 0 : circumference * (1 - progress))
       setIsVisible(scrollTop > 100)
     }
 
@@ -35,53 +39,38 @@ export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("load", handleScroll)
     }
-  }, [])
+  }, [circumference])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
-  const stroke = 4
-  const cx = Math.round(size / 2)
-  const cy = Math.round(size / 2)
-  const r = Math.round(size * 0.5 - stroke / 2)
-  const iconSize = Math.round(size * 0.4)
-  const iconTranslate = Math.round(size * 0.3)
+  const svgStyle = "fixed bottom-4 right-4 z-50 cursor-pointer transition-opacity duration-300"
+  const visibleStyle = isVisible
+    ? "opacity-100 pointer-events-auto"
+    : "opacity-0 pointer-events-none"
 
   return (
     <svg
-      id="progress-indicator"
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
       onClick={scrollToTop}
-      className={`fixed bottom-4 right-4 z-50 cursor-pointer transition-opacity duration-300 ${isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+      className={`${svgStyle} ${visibleStyle}`}
       aria-label="Scroll to top"
     >
       <circle
-        cx={cx}
-        cy={cy}
+        cx={center}
+        cy={center}
         r={r}
-        pathLength="1"
-        transform={`rotate(-90 ${cx} ${cy})`}
-        style={{
-          fill: bgColor,
-          stroke: trackColor,
-          strokeWidth: 2,
-        }}
+        transform={`rotate(-90 ${center} ${center})`}
+        style={{ fill: bgColor, stroke: trackColor, strokeWidth: 2 }}
       />
       <motion.circle
-        cx={cx}
-        cy={cy}
+        cx={center}
+        cy={center}
         r={r}
-        pathLength="1"
-        transform={`rotate(-90 ${cx} ${cy})`}
-        style={{
-          fill: "none",
-          stroke: progressColor,
-          strokeWidth: 2,
-        }}
-        strokeDasharray="1"
+        transform={`rotate(-90 ${center} ${center})`}
+        style={{ fill: "none", stroke: progressColor, strokeWidth: 2 }}
+        strokeDasharray={circumference}
         strokeDashoffset={offset}
       />
       <g transform={`translate(${iconTranslate}, ${iconTranslate})`}>
