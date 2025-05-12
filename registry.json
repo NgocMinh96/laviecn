@@ -22,8 +22,8 @@
     {
       "name": "scroll-to-top",
       "type": "registry:component",
-      "registryDependencies": [
-        "framer-motion",
+      "dependencies": [
+        "motion",
         "lucide-react"
       ],
       "files": [
