@@ -20,11 +20,34 @@
       ]
     },
     {
+      "name": "scroll-to-top",
+      "type": "registry:component",
+      "registryDependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/scroll-to-top.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "zone-select-demo",
       "type": "registry:example",
       "files": [
         {
           "path": "registry/examples/zone-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-to-top-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/scroll-to-top-demo.tsx",
           "type": "registry:example"
         }
       ]

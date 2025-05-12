@@ -9,11 +9,22 @@ export const components: Registry["items"] = [
       "label",
       "command",
       "popover",
-      "https://laviecn.vercel.app/r/use-filter-zone.json"
+      "https://laviecn.vercel.app/r/use-filter-zone.json",
     ],
     files: [
       {
         path: "components/zone-select.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "scroll-to-top",
+    type: "registry:component",
+    registryDependencies: ["motion"],
+    files: [
+      {
+        path: "components/scroll-to-top.tsx",
         type: "registry:component",
       },
     ],

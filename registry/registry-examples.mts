@@ -12,6 +12,16 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "scroll-to-top-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/scroll-to-top-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "sotienthanhchu-demo",
     type: "registry:example",
     files: [

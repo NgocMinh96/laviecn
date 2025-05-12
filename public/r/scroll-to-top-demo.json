@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-to-top-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "registry/examples/scroll-to-top-demo.tsx",
+      "content": "import ScrollToTop from \"../components/scroll-to-top\"\r\n\r\nexport function ScrollToTopDemo() {\r\n  return <ScrollToTop />\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}
