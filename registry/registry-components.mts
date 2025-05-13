@@ -23,11 +23,6 @@ export const components: Registry["items"] = [
     type: "registry:component",
     dependencies: ["motion", "lucide-react"],
     cssVars: {
-      theme: {
-        "scroll-top": "var(--scroll-top)",
-        "scroll-top-bg": "rgb(var(--scroll-top-color)",
-        "scroll-top-track": "rgb(var(--scroll-top-color)",
-      },
       light: {
         "scroll-top": "oklch(0.55 0.01 286)",
         "scroll-top-bg": "oklch(0.55 0.01 286 / 10%)",
