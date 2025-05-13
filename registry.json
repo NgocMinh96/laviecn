@@ -31,7 +31,21 @@
           "path": "registry/components/scroll-to-top.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "cssVars": {
+        "theme": {
+          "scroll-top-color": "115, 115, 115",
+          "scroll-top-progress": "rgb(var(--scroll-top-color))",
+          "scroll-top-bg": "rgb(var(--scroll-top-color), 0.1)",
+          "scroll-top-track": "rgb(var(--scroll-top-color), 0.2)"
+        },
+        "dark": {
+          "scroll-top-color": "228, 228, 231",
+          "scroll-top-progress": "rgb(var(--scroll-top-color))",
+          "scroll-top-bg": "rgb(var(--scroll-top-color), 0.1)",
+          "scroll-top-track": "rgb(var(--scroll-top-color), 0.2)"
+        }
+      }
     },
     {
       "name": "zone-select-demo",

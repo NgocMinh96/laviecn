@@ -6,11 +6,6 @@ import { useEffect, useState } from "react"
 
 type ScrollToTopProps = { size?: number }
 
-const baseColor = "115, 115, 115"
-const bgColor = `rgb(${baseColor}, 0.1)`
-const trackColor = `rgb(${baseColor}, 0.2)`
-const progressColor = `rgb(${baseColor}, 1)`
-
 export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [offset, setOffset] = useState(0)
@@ -62,19 +57,19 @@ export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
         cy={center}
         r={r}
         transform={`rotate(-90 ${center} ${center})`}
-        style={{ fill: bgColor, stroke: trackColor, strokeWidth: 2 }}
+        style={{ fill: "var(--scroll-top-bg)", stroke: "var(--scroll-top-track)", strokeWidth: 2 }}
       />
       <motion.circle
         cx={center}
         cy={center}
         r={r}
         transform={`rotate(-90 ${center} ${center})`}
-        style={{ fill: "none", stroke: progressColor, strokeWidth: 2 }}
+        style={{ fill: "none", stroke: "var(--scroll-top-progress)", strokeWidth: 2 }}
         strokeDasharray={circumference}
         strokeDashoffset={offset}
       />
       <g transform={`translate(${iconTranslate}, ${iconTranslate})`}>
-        <ChevronUp size={iconSize} color={progressColor} strokeWidth={3} />
+        <ChevronUp size={iconSize} color="var(--scroll-top-progress)" strokeWidth={3} />
       </g>
     </svg>
   )
