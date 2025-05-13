@@ -64,12 +64,12 @@ export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
         cy={center}
         r={r}
         transform={`rotate(-90 ${center} ${center})`}
-        style={{ fill: "none", stroke: "var(--scroll-top-progress)", strokeWidth: 2 }}
+        style={{ fill: "none", stroke: "var(--scroll-top)", strokeWidth: 2 }}
         strokeDasharray={circumference}
         strokeDashoffset={offset}
       />
       <g transform={`translate(${iconTranslate}, ${iconTranslate})`}>
-        <ChevronUp size={iconSize} color="var(--scroll-top-progress)" strokeWidth={3} />
+        <ChevronUp size={iconSize} color="var(--scroll-top)" strokeWidth={3} />
       </g>
     </svg>
   )

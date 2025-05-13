@@ -24,16 +24,19 @@ export const components: Registry["items"] = [
     dependencies: ["motion", "lucide-react"],
     cssVars: {
       theme: {
-        "scroll-top-color": "var(--scroll-top-color)",
-        "scroll-top-progress": "rgb(var(--scroll-top-color))",
-        "scroll-top-bg": "rgb(var(--scroll-top-color), 0.1)",
-        "scroll-top-track": "rgb(var(--scroll-top-color), 0.2)",
+        "scroll-top": "var(--scroll-top)",
+        "scroll-top-bg": "rgb(var(--scroll-top-color)",
+        "scroll-top-track": "rgb(var(--scroll-top-color)",
       },
       light: {
-        "scroll-top-color": "115, 115, 115",
+        "scroll-top": "oklch(0.55 0.01 286)",
+        "scroll-top-bg": "oklch(0.55 0.01 286 / 10%)",
+        "scroll-top-track": "oklch(0.55 0.01 286 / 20%)",
       },
       dark: {
-        "scroll-top-color": "228, 228, 231",
+        "scroll-top": "oklch(0.92 0 286)",
+        "scroll-top-bg": "oklch(0.92 0 286 / 10%)",
+        "scroll-top-track": "oklch(0.92 0 286 / 20%)",
       },
     },
     files: [
