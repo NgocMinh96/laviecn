@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "registry/examples/scroll-to-top-demo.tsx",
-      "content": "import ScrollToTop from \"../components/scroll-to-top\"\n\nexport function ScrollToTopDemo() {\n  return (\n    <>\n      <div className=\"flex items-center justify-center h-screen\">\n        <span className=\"text-3xl font-bold\">scroll to see the button at bottom right </span>\n      </div>\n      <ScrollToTop />\n    </>\n  )\n}\n",
+      "content": "import ScrollToTop from \"../components/scroll-to-top\"\n\nexport function ScrollToTopDemo() {\n  return (\n    <>\n      <span className=\"text-3xl font-bold\">scroll to see the button at bottom right</span>\n      <ScrollToTop />\n    </>\n  )\n}\n",
       "type": "registry:example"
     }
   ]
