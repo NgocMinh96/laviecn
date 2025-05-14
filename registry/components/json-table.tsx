@@ -25,55 +25,99 @@ type JsonTableProps = {
 }
 
 export function JsonTable({ columns, data: initialData }: JsonTableProps) {
-  const [data, setData] = useState(initialData)
-  const [rowModesModel, setRowModesModel] = useState<Record<number, "view" | "edit">>({})
-  const [focusedCell, setFocusedCell] = useState<{ rowIndex: number; key: string } | null>(null)
+  const [data, setData] = useState(() =>
+    initialData.map((item) => ({
+      ...item,
+      uuid: item.uuid || crypto.randomUUID(),
+    }))
+  )
+
+  const [rowModesModel, setRowModesModel] = useState<Record<string, "view" | "edit">>({})
+  const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
+  const [originalData, setOriginalData] = useState<Record<string, Record<string, string>>>({})
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
 
-  const handleStartEditing = (rowIndex: number, key?: string) => {
-    setRowModesModel((prev) => ({ ...prev, [rowIndex]: "edit" }))
+  const handleStartEditing = (uuid: string, key?: string) => {
+    setRowModesModel((prev) => ({ ...prev, [uuid]: "edit" }))
+    const row = data.find((row) => row.uuid === uuid)
+    if (row && !originalData[uuid]) {
+      setOriginalData((prev) => ({ ...prev, [uuid]: { ...row } }))
+    }
     if (key) {
-      setFocusedCell({ rowIndex, key })
+      setFocusedCell({ uuid, key })
     }
   }
 
-  const handleCancelEditing = (rowIndex: number) => {
-    setRowModesModel((prev) => ({ ...prev, [rowIndex]: "view" }))
+  const handleCancelEditing = (uuid: string) => {
+    const isNewRow = data.find((row) => row.uuid === uuid)?.__isNew
+
+    if (isNewRow) {
+      setData((prev) => prev.filter((row) => row.uuid !== uuid))
+    } else {
+      setData((prev) => prev.map((row) => (row.uuid === uuid ? originalData[uuid] || row : row)))
+      setRowModesModel((prev) => ({ ...prev, [uuid]: "view" }))
+    }
+
+    setOriginalData((prev) => {
+      const newData = { ...prev }
+      delete newData[uuid]
+      return newData
+    })
+
     setFocusedCell(null)
   }
 
-  const handleSaveEditing = (rowIndex: number, updatedValues: Record<string, string>) => {
-    setData((prevData) =>
-      prevData.map((row, index) => (index === rowIndex ? { ...row, ...updatedValues } : row))
+  const handleSaveEditing = (uuid: string, updatedValues: Record<string, string>) => {
+    const cleaned = { ...updatedValues }
+    delete cleaned.__isNew
+
+    // Cập nhật lại dữ liệu sau khi lưu và xoá `__isNew` nếu có
+    setData((prev) =>
+      prev.map((row) => (row.uuid === uuid ? { ...row, ...cleaned, __isNew: undefined } : row))
     )
-    handleCancelEditing(rowIndex)
+
+    setRowModesModel((prev) => ({ ...prev, [uuid]: "view" }))
+
+    setOriginalData((prev) => {
+      const newData = { ...prev }
+      delete newData[uuid]
+      return newData
+    })
+
+    setFocusedCell(null)
   }
 
-  const handleDeleteRow = (rowIndex: number) => {
-    setData((prevData) => prevData.filter((_, index) => index !== rowIndex))
+  const handleDeleteRow = (uuid: string) => {
+    setData((prev) => prev.filter((row) => row.uuid !== uuid))
+    setOriginalData((prev) => {
+      const newData = { ...prev }
+      delete newData[uuid]
+      return newData
+    })
   }
 
   const handleAddRow = () => {
+    const uuid = crypto.randomUUID()
     const emptyRow = columns.reduce((acc, column) => ({ ...acc, [column.field]: "" }), {
-      uuid: crypto.randomUUID(),
+      uuid,
+      __isNew: true,
     } as Record<string, string>)
-    setData((prevData) => [...prevData, emptyRow])
-    setRowModesModel((prev) => ({ ...prev, [data.length]: "edit" }))
+
+    setData((prev) => [...prev, emptyRow])
+    setRowModesModel((prev) => ({ ...prev, [uuid]: "edit" }))
   }
 
-  const handleInputChange = (rowIndex: number, key: string, value: string) => {
-    setData((prevData) =>
-      prevData.map((row, index) => (index === rowIndex ? { ...row, [key]: value } : row))
-    )
+  const handleInputChange = (uuid: string, key: string, value: string) => {
+    setData((prev) => prev.map((row) => (row.uuid === uuid ? { ...row, [key]: value } : row)))
   }
 
-  const handleFocus = (rowIndex: number, key: string) => setFocusedCell({ rowIndex, key })
+  const handleFocus = (uuid: string, key: string) => setFocusedCell({ uuid, key })
   const handleBlur = () => setFocusedCell(null)
 
   useEffect(() => {
     if (focusedCell) {
-      const { rowIndex, key } = focusedCell
-      const inputKey = `${rowIndex}-${key}`
+      const { uuid, key } = focusedCell
+      const inputKey = `${uuid}-${key}`
       inputRefs.current[inputKey]?.focus()
     }
   }, [focusedCell])
@@ -103,93 +147,98 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
       <ScrollArea className="h-[245.5px]">
         <Table>
           <TableBody>
-            {data.map((item, rowIndex) => (
-              <TableRow
-                key={rowIndex}
-                className={cn({ "bg-muted": rowModesModel[rowIndex] === "edit" })}
-                onDoubleClick={(e) => {
-                  const key = (e.target as HTMLElement).getAttribute("data-key")
-                  handleStartEditing(rowIndex, key || columns[0].field)
-                }}
-              >
-                {columns.map((column, columnIndex) => {
-                  const key = column.field
-                  const isFocused = focusedCell?.rowIndex === rowIndex && focusedCell?.key === key
-                  const inputKey = `${rowIndex}-${key}`
+            {data.map((item) => {
+              const uuid = item.uuid
+              const isEditing = rowModesModel[uuid] === "edit"
 
-                  return (
-                    <TableCell
-                      key={columnIndex}
-                      style={{ width: column.width }}
-                      className={cn("p-0", {
-                        "border-1 border-blue-500": isFocused,
-                        [`w-[${column.width}px]`]: column.width,
-                      })}
-                    >
-                      {rowModesModel[rowIndex] === "edit" ? (
-                        <Input
-                          ref={(el) => {
-                            inputRefs.current[inputKey] = el
-                          }}
-                          value={item[key] || ""}
-                          onChange={(e) => handleInputChange(rowIndex, key, e.target.value)}
-                          onFocus={() => handleFocus(rowIndex, key)}
-                          onBlur={handleBlur}
-                          data-key={key}
-                          className="h-full bg-transparent! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
-                        />
+              return (
+                <TableRow
+                  key={uuid}
+                  className={cn({ "bg-muted": isEditing })}
+                  onDoubleClick={(e) => {
+                    const key = (e.target as HTMLElement).getAttribute("data-key")
+                    handleStartEditing(uuid, key || columns[0].field)
+                  }}
+                >
+                  {columns.map((column, columnIndex) => {
+                    const key = column.field
+                    const isFocused = focusedCell?.uuid === uuid && focusedCell?.key === key
+                    const inputKey = `${uuid}-${key}`
+
+                    return (
+                      <TableCell
+                        key={columnIndex}
+                        style={{ width: column.width }}
+                        className={cn("p-0", {
+                          "border-1 border-blue-500": isFocused,
+                          [`w-[${column.width}px]`]: column.width,
+                        })}
+                      >
+                        {isEditing ? (
+                          <Input
+                            ref={(el) => {
+                              inputRefs.current[inputKey] = el
+                            }}
+                            value={item[key] || ""}
+                            onChange={(e) => handleInputChange(uuid, key, e.target.value)}
+                            onFocus={() => handleFocus(uuid, key)}
+                            onBlur={handleBlur}
+                            data-key={key}
+                            className="h-full bg-transparent! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                          />
+                        ) : (
+                          <div className="px-4 py-2" data-key={key}>
+                            {item[key]}
+                          </div>
+                        )}
+                      </TableCell>
+                    )
+                  })}
+                  <TableCell className="p-0">
+                    <div className="flex items-center gap-2 px-4 py-2">
+                      {isEditing ? (
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleSaveEditing(uuid, item)}
+                            className="text-green-500 hover:text-green-700"
+                          >
+                            <Check className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleCancelEditing(uuid)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </>
                       ) : (
-                        <div className="px-4 py-2" data-key={key}>
-                          {item[key]}
-                        </div>
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleStartEditing(uuid)}
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDeleteRow(uuid)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </>
                       )}
-                    </TableCell>
-                  )
-                })}
-                <TableCell className="p-0">
-                  <div className="flex items-center gap-2 px-4 py-2">
-                    {rowModesModel[rowIndex] === "edit" ? (
-                      <>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleSaveEditing(rowIndex, data[rowIndex])}
-                          className="text-green-500 hover:text-green-700"
-                        >
-                          <Check className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleCancelEditing(rowIndex)}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleStartEditing(rowIndex)}
-                        >
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleDeleteRow(rowIndex)}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
           </TableBody>
         </Table>
       </ScrollArea>
