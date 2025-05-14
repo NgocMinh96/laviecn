@@ -23,7 +23,7 @@ type Row = Record<string, string | boolean> & { uuid: string; __isNew?: boolean 
 
 type JsonTableProps = {
   columns: Column[]
-  data: Row[] // Updated from `any[]` to `Row[]`
+  data: Row[]
 }
 
 export function JsonTable({ columns, data: initialData }: JsonTableProps) {
@@ -111,11 +111,10 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
   }
 
   const handleInputChange = (uuid: string, key: keyof Row, value: string) => {
-    // Updated to use keyof Row
     setData((prev) => prev.map((row) => (row.uuid === uuid ? { ...row, [key]: value } : row)))
   }
 
-  const handleFocus = (uuid: string, key: keyof Row) => setFocusedCell({ uuid, key }) // Updated to use keyof Row
+  const handleFocus = (uuid: string, key: keyof Row) => setFocusedCell({ uuid, key })
   const handleBlur = () => setFocusedCell(null)
 
   useEffect(() => {
@@ -186,8 +185,8 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
                             value={String(item[key as keyof typeof item] || "")}
                             onChange={(e) =>
                               handleInputChange(uuid, key as keyof Row, e.target.value)
-                            } // Cast to keyof Row
-                            onFocus={() => handleFocus(uuid, key as keyof Row)} // Cast to keyof Row
+                            }
+                            onFocus={() => handleFocus(uuid, key as keyof Row)}
                             onBlur={handleBlur}
                             data-key={key}
                             className="h-full bg-transparent! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
