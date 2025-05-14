@@ -35,8 +35,6 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
     }))
   )
 
-  console.log("JsonTableData:", data)
-
   const [rowModesModel, setRowModesModel] = useState<Record<string, "view" | "edit">>({})
   const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
   const [originalData, setOriginalData] = useState<Record<string, Row>>({})
@@ -123,27 +121,34 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
     }
   }, [focusedCell])
 
+  const actionsColumnWidth = 60
+
   return (
     <div className="rounded-md border overflow-hidden">
-      <Table>
+      <Table className="">
         <TableHeader>
           <TableRow>
             {columns.map((column, index) => (
               <TableHead
                 key={index}
-                style={{ width: column.width }}
+                style={column.width ? { width: column.width } : undefined}
                 className={cn("sticky top-0 z-10 bg-background")}
               >
-                {column.headerName}
+                <span className="pl-2">{column.headerName}</span>
               </TableHead>
             ))}
-            <TableHead className="sticky top-0 z-10 bg-background">Actions</TableHead>
+            <TableHead
+              style={{ width: actionsColumnWidth }}
+              className="sticky top-0 z-10 bg-background text-center"
+            >
+              Actions
+            </TableHead>
           </TableRow>
         </TableHeader>
       </Table>
 
       <ScrollArea className="h-[243.5px]">
-        <Table>
+        <Table className="">
           <TableBody>
             {data.map((item) => {
               const uuid = item.uuid
@@ -171,13 +176,14 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                     return (
                       <TableCell
                         key={columnIndex}
-                        style={{ width: column.width }}
+                        style={column.width ? { width: column.width } : undefined}
                         className={cn("p-0", {
                           "border-1 border-blue-500": isFocused,
                         })}
                       >
                         {isEditing ? (
                           <Input
+                            data-key={key}
                             ref={(el) => {
                               inputRefs.current[inputKey] = el
                             }}
@@ -187,19 +193,23 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             }
                             onFocus={() => handleFocus(uuid, key as keyof Row)}
                             onBlur={handleBlur}
-                            data-key={key}
-                            className="h-full bg-muted! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                            className="h-full bg-muted! shadow-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                            style={column.width ? { width: column.width } : undefined}
                           />
                         ) : (
-                          <div className="px-4 py-2" data-key={key}>
+                          <div
+                            className="px-4 py-2"
+                            data-key={key}
+                            style={column.width ? { width: column.width } : undefined}
+                          >
                             {item[key as keyof typeof item] || ""}
                           </div>
                         )}
                       </TableCell>
                     )
                   })}
-                  <TableCell className="p-0">
-                    <div className="flex items-center gap-2 px-4 py-2">
+                  <TableCell style={{ width: actionsColumnWidth }}>
+                    <div className="flex justify-center gap-2">
                       {isEditing ? (
                         <>
                           <Button

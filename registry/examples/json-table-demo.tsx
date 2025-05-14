@@ -10,9 +10,9 @@ const data = [
 ]
 
 const columns = [
-  { field: "name", headerName: "Name", width: 150 },
-  { field: "age", headerName: "Age", width: 90 },
-  { field: "phone", headerName: "Phone", width: 90 },
+  { field: "name", headerName: "Name", width: 120 },
+  { field: "age", headerName: "Age", width: 80 },
+  { field: "phone", headerName: "Phone", width: 140 },
 ]
 
 export function JsonTableDemo() {
