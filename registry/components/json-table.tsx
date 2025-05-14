@@ -24,9 +24,10 @@ type Row = Record<string, string | boolean> & { uuid: string; __isNew?: boolean 
 type JsonTableProps = {
   columns: Column[]
   data: Row[]
+  onSubmit?: (data: Row[]) => void
 }
 
-export function JsonTable({ columns, data: initialData }: JsonTableProps) {
+export function JsonTable({ columns, data: initialData, onSubmit }: JsonTableProps) {
   const [data, setData] = useState(() =>
     initialData.map((item) => ({
       ...item,
@@ -241,9 +242,12 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
         </Table>
       </ScrollArea>
 
-      <div className="p-2">
-        <Button size="sm" onClick={handleAddRow}>
+      <div className="p-2 flex gap-2 justify-between">
+        <Button size="sm" variant="outline" onClick={handleAddRow}>
           Add New Row
+        </Button>
+        <Button size="sm" onClick={() => onSubmit?.(data)}>
+          Save
         </Button>
       </div>
     </div>

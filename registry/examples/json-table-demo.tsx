@@ -16,5 +16,15 @@ const columns = [
 ]
 
 export function JsonTableDemo() {
-  return <JsonTable columns={columns} data={data} />
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (data: any) => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      console.info("DATA", data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return <JsonTable columns={columns} data={data} onSubmit={handleSubmit} />
 }
