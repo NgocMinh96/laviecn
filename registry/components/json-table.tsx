@@ -34,22 +34,32 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
     }))
   )
 
-  console.log(data)
+  console.log("JsonTableData:", data)
 
   const [rowModesModel, setRowModesModel] = useState<Record<string, "view" | "edit">>({})
   const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
   const [originalData, setOriginalData] = useState<Record<string, Row>>({})
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
 
+  const storeOriginalRow = (uuid: string, row: Row) => {
+    if (!originalData[uuid]) {
+      setOriginalData((prev) => ({ ...prev, [uuid]: { ...row } }))
+    }
+  }
+
+  const removeOriginalRow = (uuid: string) => {
+    setOriginalData((prev) => {
+      const newData = { ...prev }
+      delete newData[uuid]
+      return newData
+    })
+  }
+
   const handleStartEditing = (uuid: string, key?: string) => {
     setRowModesModel((prev) => ({ ...prev, [uuid]: "edit" }))
     const row = data.find((row) => row.uuid === uuid)
-    if (row && !originalData[uuid]) {
-      setOriginalData((prev) => ({ ...prev, [uuid]: { ...row } }))
-    }
-    if (key) {
-      setFocusedCell({ uuid, key })
-    }
+    if (row) storeOriginalRow(uuid, row)
+    if (key) setFocusedCell({ uuid, key })
   }
 
   const handleCancelEditing = (uuid: string) => {
@@ -62,41 +72,28 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
       setRowModesModel((prev) => ({ ...prev, [uuid]: "view" }))
     }
 
-    setOriginalData((prev) => {
-      const newData = { ...prev }
-      delete newData[uuid]
-      return newData
-    })
-
+    removeOriginalRow(uuid)
     setFocusedCell(null)
   }
 
   const handleSaveEditing = (uuid: string, updatedValues: Row) => {
-    const cleaned = { ...updatedValues }
-    delete cleaned.__isNew
-
     setData((prev) =>
-      prev.map((row) => (row.uuid === uuid ? { ...row, ...cleaned, __isNew: false } : row))
+      prev.map((row) => {
+        if (row.uuid !== uuid) return row
+        const updated = { ...row, ...updatedValues }
+        delete updated.__isNew
+        return updated
+      })
     )
 
     setRowModesModel((prev) => ({ ...prev, [uuid]: "view" }))
-
-    setOriginalData((prev) => {
-      const newData = { ...prev }
-      delete newData[uuid]
-      return newData
-    })
-
+    removeOriginalRow(uuid)
     setFocusedCell(null)
   }
 
   const handleDeleteRow = (uuid: string) => {
     setData((prev) => prev.filter((row) => row.uuid !== uuid))
-    setOriginalData((prev) => {
-      const newData = { ...prev }
-      delete newData[uuid]
-      return newData
-    })
+    removeOriginalRow(uuid)
   }
 
   const handleAddRow = () => {
@@ -134,10 +131,7 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
               <TableHead
                 key={index}
                 style={{ width: column.width }}
-                className={cn(
-                  "sticky top-0 z-10 bg-background",
-                  column.width ? `w-[${column.width}px]` : ""
-                )}
+                className={cn("sticky top-0 z-10 bg-background")}
               >
                 {column.headerName}
               </TableHead>
@@ -174,7 +168,6 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
                         style={{ width: column.width }}
                         className={cn("p-0", {
                           "border-1 border-blue-500": isFocused,
-                          [`w-[${column.width}px]`]: column.width,
                         })}
                       >
                         {isEditing ? (
@@ -189,7 +182,7 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
                             onFocus={() => handleFocus(uuid, key as keyof Row)}
                             onBlur={handleBlur}
                             data-key={key}
-                            className="h-full bg-transparent! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                            className="h-full bg-transparent shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
                           />
                         ) : (
                           <div className="px-4 py-2" data-key={key}>
