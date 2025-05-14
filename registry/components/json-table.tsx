@@ -142,7 +142,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
         </TableHeader>
       </Table>
 
-      <ScrollArea className="h-[245.5px]">
+      <ScrollArea className="h-[243.5px]">
         <Table>
           <TableBody>
             {data.map((item) => {
@@ -152,7 +152,12 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
               return (
                 <TableRow
                   key={uuid}
-                  className={cn({ "bg-muted": isEditing })}
+                  className={cn(
+                    { "bg-muted hover:bg-muted": isEditing },
+                    {
+                      "!border-b": item.__isNew || data[data.length - 1].uuid === uuid,
+                    }
+                  )}
                   onDoubleClick={(e) => {
                     const key = (e.target as HTMLElement).getAttribute("data-key")
                     handleStartEditing(uuid, key || columns[0].field)
@@ -183,7 +188,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             onFocus={() => handleFocus(uuid, key as keyof Row)}
                             onBlur={handleBlur}
                             data-key={key}
-                            className="h-full bg-transparent shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                            className="h-full bg-muted! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
                           />
                         ) : (
                           <div className="px-4 py-2" data-key={key}>
@@ -203,7 +208,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             onClick={() => handleSaveEditing(uuid, item)}
                             className="text-green-500 hover:text-green-700"
                           >
-                            <Check className="h-4 w-4" />
+                            <Check className="size-4" />
                           </Button>
                           <Button
                             variant="ghost"
@@ -211,7 +216,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             onClick={() => handleCancelEditing(uuid)}
                             className="text-red-500 hover:text-red-700"
                           >
-                            <X className="h-4 w-4" />
+                            <X className="size-4" />
                           </Button>
                         </>
                       ) : (
@@ -220,8 +225,9 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             variant="ghost"
                             size="sm"
                             onClick={() => handleStartEditing(uuid)}
+                            className="text-yellow-500 hover:text-yellow-700"
                           >
-                            <Pencil className="h-4 w-4" />
+                            <Pencil className="size-4" />
                           </Button>
                           <Button
                             variant="ghost"
@@ -229,7 +235,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             onClick={() => handleDeleteRow(uuid)}
                             className="text-red-500 hover:text-red-700"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="size-4" />
                           </Button>
                         </>
                       )}
@@ -242,7 +248,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
         </Table>
       </ScrollArea>
 
-      <div className="p-2 flex gap-2 justify-between">
+      <div className="p-2 flex gap-2 justify-between border-t">
         <Button size="sm" variant="outline" onClick={handleAddRow}>
           Add New Row
         </Button>
