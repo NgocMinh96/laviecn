@@ -19,9 +19,11 @@ type Column = {
   width?: number
 }
 
+type Row = Record<string, string | boolean> & { uuid: string; __isNew?: boolean }
+
 type JsonTableProps = {
   columns: Column[]
-  data: any[]
+  data: Row[] // Updated from `any[]` to `Row[]`
 }
 
 export function JsonTable({ columns, data: initialData }: JsonTableProps) {
@@ -32,9 +34,11 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
     }))
   )
 
+  console.log(data)
+
   const [rowModesModel, setRowModesModel] = useState<Record<string, "view" | "edit">>({})
   const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
-  const [originalData, setOriginalData] = useState<Record<string, Record<string, string>>>({})
+  const [originalData, setOriginalData] = useState<Record<string, Row>>({})
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
 
   const handleStartEditing = (uuid: string, key?: string) => {
@@ -67,13 +71,12 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
     setFocusedCell(null)
   }
 
-  const handleSaveEditing = (uuid: string, updatedValues: Record<string, string>) => {
+  const handleSaveEditing = (uuid: string, updatedValues: Row) => {
     const cleaned = { ...updatedValues }
     delete cleaned.__isNew
 
-    // Cập nhật lại dữ liệu sau khi lưu và xoá `__isNew` nếu có
     setData((prev) =>
-      prev.map((row) => (row.uuid === uuid ? { ...row, ...cleaned, __isNew: undefined } : row))
+      prev.map((row) => (row.uuid === uuid ? { ...row, ...cleaned, __isNew: false } : row))
     )
 
     setRowModesModel((prev) => ({ ...prev, [uuid]: "view" }))
@@ -101,17 +104,18 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
     const emptyRow = columns.reduce((acc, column) => ({ ...acc, [column.field]: "" }), {
       uuid,
       __isNew: true,
-    } as Record<string, string>)
+    } as Row)
 
     setData((prev) => [...prev, emptyRow])
     setRowModesModel((prev) => ({ ...prev, [uuid]: "edit" }))
   }
 
-  const handleInputChange = (uuid: string, key: string, value: string) => {
+  const handleInputChange = (uuid: string, key: keyof Row, value: string) => {
+    // Updated to use keyof Row
     setData((prev) => prev.map((row) => (row.uuid === uuid ? { ...row, [key]: value } : row)))
   }
 
-  const handleFocus = (uuid: string, key: string) => setFocusedCell({ uuid, key })
+  const handleFocus = (uuid: string, key: keyof Row) => setFocusedCell({ uuid, key }) // Updated to use keyof Row
   const handleBlur = () => setFocusedCell(null)
 
   useEffect(() => {
@@ -179,16 +183,18 @@ export function JsonTable({ columns, data: initialData }: JsonTableProps) {
                             ref={(el) => {
                               inputRefs.current[inputKey] = el
                             }}
-                            value={item[key] || ""}
-                            onChange={(e) => handleInputChange(uuid, key, e.target.value)}
-                            onFocus={() => handleFocus(uuid, key)}
+                            value={String(item[key as keyof typeof item] || "")}
+                            onChange={(e) =>
+                              handleInputChange(uuid, key as keyof Row, e.target.value)
+                            } // Cast to keyof Row
+                            onFocus={() => handleFocus(uuid, key as keyof Row)} // Cast to keyof Row
                             onBlur={handleBlur}
                             data-key={key}
                             className="h-full bg-transparent! shadow-none w-full border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
                           />
                         ) : (
                           <div className="px-4 py-2" data-key={key}>
-                            {item[key]}
+                            {item[key as keyof typeof item] || ""}
                           </div>
                         )}
                       </TableCell>
