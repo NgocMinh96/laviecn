@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
-import { Check, Pencil, Trash2, X } from "lucide-react"
+import { Plus, Trash2 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 type Column = {
@@ -19,7 +19,7 @@ type Column = {
   width?: number
 }
 
-type Row = Record<string, string | boolean> & { uuid: string; __isNew?: boolean }
+type Row = Record<string, string | boolean> & { uuid: string }
 
 type JsonTableProps = {
   columns: Column[]
@@ -29,89 +29,46 @@ type JsonTableProps = {
 
 export function JsonTable({ columns, data: initialData, onSubmit }: JsonTableProps) {
   const [data, setData] = useState(() =>
-    initialData.map((item) => ({
-      ...item,
-      uuid: item.uuid || crypto.randomUUID(),
-    }))
+    initialData.map((item) => ({ ...item, uuid: item.uuid || crypto.randomUUID() }))
   )
-
-  const [rowModesModel, setRowModesModel] = useState<Record<string, "view" | "edit">>({})
-  const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
-  const [originalData, setOriginalData] = useState<Record<string, Row>>({})
+  const [isEditingTable, setIsEditingTable] = useState(false)
+  const [originalData, setOriginalData] = useState<Row[]>([])
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
+  const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
 
-  const storeOriginalRow = (uuid: string, row: Row) => {
-    if (!originalData[uuid]) {
-      setOriginalData((prev) => ({ ...prev, [uuid]: { ...row } }))
-    }
-  }
-
-  const removeOriginalRow = (uuid: string) => {
-    setOriginalData((prev) => {
-      const newData = { ...prev }
-      delete newData[uuid]
-      return newData
-    })
-  }
-
-  const handleStartEditing = (uuid: string, key?: string) => {
-    setRowModesModel((prev) => ({ ...prev, [uuid]: "edit" }))
-    const row = data.find((row) => row.uuid === uuid)
-    if (row) storeOriginalRow(uuid, row)
-    if (key) setFocusedCell({ uuid, key })
-  }
-
-  const handleCancelEditing = (uuid: string) => {
-    const isNewRow = data.find((row) => row.uuid === uuid)?.__isNew
-
-    if (isNewRow) {
-      setData((prev) => prev.filter((row) => row.uuid !== uuid))
+  const handleToggleEdit = () => {
+    if (isEditingTable) {
+      onSubmit?.(data)
+      setOriginalData([])
     } else {
-      setData((prev) => prev.map((row) => (row.uuid === uuid ? originalData[uuid] || row : row)))
-      setRowModesModel((prev) => ({ ...prev, [uuid]: "view" }))
+      setOriginalData(data.map((row) => ({ ...row })))
     }
-
-    removeOriginalRow(uuid)
-    setFocusedCell(null)
+    setIsEditingTable((prev) => !prev)
   }
 
-  const handleSaveEditing = (uuid: string, updatedValues: Row) => {
-    setData((prev) =>
-      prev.map((row) => {
-        if (row.uuid !== uuid) return row
-        const updated = { ...row, ...updatedValues }
-        delete updated.__isNew
-        return updated
-      })
-    )
-
-    setRowModesModel((prev) => ({ ...prev, [uuid]: "view" }))
-    removeOriginalRow(uuid)
-    setFocusedCell(null)
-  }
-
-  const handleDeleteRow = (uuid: string) => {
-    setData((prev) => prev.filter((row) => row.uuid !== uuid))
-    removeOriginalRow(uuid)
-  }
-
-  const handleAddRow = () => {
-    const uuid = crypto.randomUUID()
-    const emptyRow = columns.reduce((acc, column) => ({ ...acc, [column.field]: "" }), {
-      uuid,
-      __isNew: true,
-    } as Row)
-
-    setData((prev) => [...prev, emptyRow])
-    setRowModesModel((prev) => ({ ...prev, [uuid]: "edit" }))
+  const handleCancel = () => {
+    setData(originalData.map((row) => ({ ...row })))
+    setIsEditingTable(false)
+    setOriginalData([])
   }
 
   const handleInputChange = (uuid: string, key: keyof Row, value: string) => {
     setData((prev) => prev.map((row) => (row.uuid === uuid ? { ...row, [key]: value } : row)))
   }
 
-  const handleFocus = (uuid: string, key: keyof Row) => setFocusedCell({ uuid, key })
-  const handleBlur = () => setFocusedCell(null)
+  const handleDeleteRow = (uuid: string) => {
+    setData((prev) => prev.filter((row) => row.uuid !== uuid))
+  }
+
+  const handleAddRow = () => {
+    const uuid = crypto.randomUUID()
+    const emptyRow = columns.reduce((acc, column) => ({ ...acc, [column.field]: "" }), {
+      uuid,
+    } as Row)
+    setData((prev) => [...prev, emptyRow])
+  }
+
+  const actionsColumnWidth = 60
 
   useEffect(() => {
     if (focusedCell) {
@@ -120,8 +77,6 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
       inputRefs.current[inputKey]?.focus()
     }
   }, [focusedCell])
-
-  const actionsColumnWidth = 60
 
   return (
     <div className="rounded-md border overflow-hidden">
@@ -138,11 +93,9 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
               </TableHead>
             ))}
             <TableHead
-              style={{ width: actionsColumnWidth }}
+              style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
               className="sticky top-0 z-10 bg-background text-center"
-            >
-              Actions
-            </TableHead>
+            ></TableHead>
           </TableRow>
         </TableHeader>
       </Table>
@@ -150,40 +103,27 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
       <ScrollArea className="h-[243.5px]">
         <Table className="">
           <TableBody>
-            {data.map((item) => {
+            {data.map((item, rowIndex) => {
               const uuid = item.uuid
-              const isEditing = rowModesModel[uuid] === "edit"
-
               return (
-                <TableRow
-                  key={uuid}
-                  className={cn(
-                    { "bg-muted hover:bg-muted": isEditing },
-                    {
-                      "!border-b": item.__isNew || data[data.length - 1].uuid === uuid,
-                    }
-                  )}
-                  onDoubleClick={(e) => {
-                    const key = (e.target as HTMLElement).getAttribute("data-key")
-                    handleStartEditing(uuid, key || columns[0].field)
-                  }}
-                >
+                <TableRow key={uuid} className={cn("h-12 hover:bg-transparent")}>
                   {columns.map((column, columnIndex) => {
                     const key = column.field
-                    const isFocused = focusedCell?.uuid === uuid && focusedCell?.key === key
                     const inputKey = `${uuid}-${key}`
+                    const isFocused = focusedCell?.uuid === uuid && focusedCell?.key === key
 
                     return (
                       <TableCell
                         key={columnIndex}
                         style={column.width ? { width: column.width } : undefined}
-                        className={cn("p-0", {
-                          "border-1 border-blue-500": isFocused,
+                        className={cn("p-1 align-middle", {
+                          "border-b": rowIndex === data.length - 1,
+                          "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
+                          "bg-muted hover:bg-muted": isEditingTable,
                         })}
                       >
-                        {isEditing ? (
+                        {isEditingTable ? (
                           <Input
-                            data-key={key}
                             ref={(el) => {
                               inputRefs.current[inputKey] = el
                             }}
@@ -191,15 +131,14 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             onChange={(e) =>
                               handleInputChange(uuid, key as keyof Row, e.target.value)
                             }
-                            onFocus={() => handleFocus(uuid, key as keyof Row)}
-                            onBlur={handleBlur}
-                            className="h-full bg-muted! shadow-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                            onFocus={() => setFocusedCell({ uuid, key })}
+                            onBlur={() => setFocusedCell(null)}
+                            className="h-12 bg-muted! shadow-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
                             style={column.width ? { width: column.width } : undefined}
                           />
                         ) : (
                           <div
-                            className="px-4 py-2"
-                            data-key={key}
+                            className="px-4 h-12 flex items-center"
                             style={column.width ? { width: column.width } : undefined}
                           >
                             {item[key as keyof typeof item] || ""}
@@ -208,46 +147,20 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                       </TableCell>
                     )
                   })}
-                  <TableCell style={{ width: actionsColumnWidth }}>
+                  <TableCell
+                    className="border-b bg-transparent hover:bg-transparent"
+                    style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
+                  >
                     <div className="flex justify-center gap-2">
-                      {isEditing ? (
-                        <>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleSaveEditing(uuid, item)}
-                            className="text-green-500 hover:text-green-700"
-                          >
-                            <Check className="size-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleCancelEditing(uuid)}
-                            className="text-red-500 hover:text-red-700"
-                          >
-                            <X className="size-4" />
-                          </Button>
-                        </>
-                      ) : (
-                        <>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleStartEditing(uuid)}
-                            className="text-yellow-500 hover:text-yellow-700"
-                          >
-                            <Pencil className="size-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDeleteRow(uuid)}
-                            className="text-red-500 hover:text-red-700"
-                          >
-                            <Trash2 className="size-4" />
-                          </Button>
-                        </>
+                      {isEditingTable && (
+                        <Button
+                          variant="link"
+                          size="icon"
+                          onClick={() => handleDeleteRow(uuid)}
+                          className="text-red-500 hover:text-red-700 hover:bg-transparent"
+                        >
+                          <Trash2 className="size-4" />
+                        </Button>
                       )}
                     </div>
                   </TableCell>
@@ -259,12 +172,21 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
       </ScrollArea>
 
       <div className="p-2 flex gap-2 justify-between border-t">
-        <Button size="sm" variant="outline" onClick={handleAddRow}>
-          Add New Row
-        </Button>
-        <Button size="sm" onClick={() => onSubmit?.(data)}>
-          Save
-        </Button>
+        <div className="flex gap-2">
+          <Button size="sm" onClick={handleToggleEdit}>
+            {isEditingTable ? "Save" : "Edit"}
+          </Button>
+          {isEditingTable && (
+            <Button size="sm" variant="ghost" onClick={handleCancel}>
+              Cancel
+            </Button>
+          )}
+        </div>
+        {isEditingTable && (
+          <Button className="size-8" variant="outline" onClick={handleAddRow}>
+            <Plus className="size-4" />
+          </Button>
+        )}
       </div>
     </div>
   )

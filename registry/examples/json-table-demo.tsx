@@ -7,6 +7,12 @@ const data = [
     age: "30",
     phone: "123-456-7890",
   },
+  {
+    uuid: "d8f5b223-e332-4f88-a768-41b2b7815f5b",
+    name: "John Doe 1",
+    age: "32",
+    phone: "123-456-7891",
+  },
 ]
 
 const columns = [
