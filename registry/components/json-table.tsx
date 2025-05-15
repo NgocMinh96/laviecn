@@ -101,7 +101,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
       </Table>
 
       <ScrollArea className="h-[243.5px]">
-        <Table className="">
+        <Table>
           <TableBody>
             {data.map((item, rowIndex) => {
               const uuid = item.uuid
@@ -116,7 +116,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                       <TableCell
                         key={columnIndex}
                         style={column.width ? { width: column.width } : undefined}
-                        className={cn("p-1 align-middle", {
+                        className={cn("p-0.5 align-middle", {
                           "border-b": rowIndex === data.length - 1,
                           "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
                           "bg-muted hover:bg-muted": isEditingTable,
@@ -133,12 +133,12 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                             }
                             onFocus={() => setFocusedCell({ uuid, key })}
                             onBlur={() => setFocusedCell(null)}
-                            className="h-12 bg-muted! shadow-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                            className="h-12 bg-muted! shadow-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2"
                             style={column.width ? { width: column.width } : undefined}
                           />
                         ) : (
                           <div
-                            className="px-4 h-12 flex items-center"
+                            className="px-2 h-12 flex items-center"
                             style={column.width ? { width: column.width } : undefined}
                           >
                             {item[key as keyof typeof item] || ""}
