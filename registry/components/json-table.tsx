@@ -80,7 +80,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
   return (
     <div className="rounded-md border overflow-hidden">
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-muted/50">
           <TableRow>
             {columns.map(({ headerName }, i) => (
               <TableHead key={i} className="sticky top-0 z-10 ">
@@ -106,10 +106,10 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                     <TableCell
                       key={colIndex}
                       style={width ? { width } : undefined}
-                      className={cn("p-0.5 align-middle", {
+                      className={cn("p-0 align-middle", {
                         "border-b": isLastRow,
                         "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
-                        "bg-muted hover:bg-muted": isEditing,
+                        "bg-muted/30 hover:bg-muted/30": isEditing,
                       })}
                     >
                       {isEditing ? (
@@ -121,7 +121,10 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                           onChange={(e) => handleInputChange(row.uuid, field, e.target.value)}
                           onFocus={() => setFocusedCell({ uuid: row.uuid, key: field })}
                           onBlur={() => setFocusedCell(null)}
-                          className="h-12 bg-muted! shadow-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2"
+                          className={cn(
+                            "bg-muted/30! shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2",
+                            {}
+                          )}
                           style={width ? { width } : undefined}
                         />
                       ) : (
@@ -137,21 +140,19 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                 })}
 
                 <TableCell
-                  className="border-b bg-transparent hover:bg-transparent"
+                  className="h-12 border-b bg-transparent hover:bg-transparent text-center"
                   style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
                 >
-                  <div className="flex justify-center gap-2">
-                    {isEditing && (
-                      <Button
-                        variant="link"
-                        size="icon"
-                        onClick={() => handleDeleteRow(row.uuid)}
-                        className="text-red-500 hover:text-red-700 hover:bg-transparent"
-                      >
-                        <Trash2 className="size-4" />
-                      </Button>
-                    )}
-                  </div>
+                  {isEditing && (
+                    <Button
+                      variant="link"
+                      size="icon"
+                      onClick={() => handleDeleteRow(row.uuid)}
+                      className="text-red-500 hover:text-red-700 hover:bg-transparent"
+                    >
+                      <Trash2 className="size-4" />
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
