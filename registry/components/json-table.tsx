@@ -45,6 +45,8 @@ type JsonTableProps = {
   onSubmit?: (data: Row[]) => void
 }
 
+const commonRowClass = "hover:bg-transparent last:border-b!"
+
 function DraggableRow({
   id,
   children,
@@ -58,8 +60,9 @@ function DraggableRow({
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
   })
+
   return (
-    <tr
+    <TableRow
       ref={setNodeRef}
       style={{
         transform: CSS.Transform.toString(transform),
@@ -68,10 +71,11 @@ function DraggableRow({
         zIndex: isDragging ? 1 : 0,
         position: "relative",
       }}
+      className={commonRowClass}
       data-draggable-row
     >
       {children({ listeners, attributes })}
-    </tr>
+    </TableRow>
   )
 }
 
@@ -84,22 +88,24 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
   const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
 
-  const actionsColumnWidth = 80
-
   const sensors = useSensors(
-    useSensor(MouseSensor, {}),
-    useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {})
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor)
   )
 
+  const actionsColumnWidth = 80
+
   const handleToggleEdit = () => {
-    if (isEditing) {
-      onSubmit?.(data)
-      setOriginalData([])
-    } else {
-      setOriginalData(data)
-    }
-    setIsEditing((prev) => !prev)
+    setIsEditing((prev) => {
+      const next = !prev
+      if (next) setOriginalData(data)
+      else {
+        onSubmit?.(data)
+        setOriginalData([])
+      }
+      return next
+    })
   }
 
   const handleCancel = () => {
@@ -123,24 +129,47 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
     setData((prev) => [...prev, emptyRow])
   }
 
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event
+  const handleDragEnd = ({ active, over }: DragEndEvent) => {
     if (active.id !== over?.id && over) {
-      setData((items) => {
-        const oldIndex = items.findIndex((i) => i.uuid === active.id)
-        const newIndex = items.findIndex((i) => i.uuid === over.id)
-        return arrayMove(items, oldIndex, newIndex)
-      })
+      const oldIndex = data.findIndex((i) => i.uuid === active.id)
+      const newIndex = data.findIndex((i) => i.uuid === over.id)
+      setData(arrayMove(data, oldIndex, newIndex))
     }
   }
 
   useEffect(() => {
     if (focusedCell) {
       const { uuid, key } = focusedCell
-      const inputKey = `${uuid}-${key}`
-      inputRefs.current[inputKey]?.focus()
+      inputRefs.current[`${uuid}-${key}`]?.focus()
     }
   }, [focusedCell])
+
+  const renderInputCell = (row: Row, field: string, width?: number) => {
+    const inputKey = `${row.uuid}-${field}`
+    const isFocused = focusedCell?.uuid === row.uuid && focusedCell?.key === field
+    return (
+      <TableCell
+        key={field}
+        style={width ? { width } : undefined}
+        className={cn("p-0 align-middle px-0.5", {
+          "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
+          "bg-muted hover:bg-muted": isEditing,
+        })}
+      >
+        <Input
+          ref={(el) => {
+            inputRefs.current[inputKey] = el
+          }}
+          value={String(row[field] || "")}
+          onChange={(e) => handleInputChange(row.uuid, field, e.target.value)}
+          onFocus={() => setFocusedCell({ uuid: row.uuid, key: field })}
+          onBlur={() => setFocusedCell(null)}
+          className="dark:bg-muted! shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2"
+          style={width ? { width } : undefined}
+        />
+      </TableCell>
+    )
+  }
 
   return (
     <div className="rounded-md border overflow-hidden">
@@ -175,41 +204,10 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                     <DraggableRow key={row.uuid} id={row.uuid}>
                       {({ listeners, attributes }) => (
                         <>
-                          {columns.map(({ field, width }, colIndex) => {
-                            const inputKey = `${row.uuid}-${field}`
-                            const isFocused =
-                              focusedCell?.uuid === row.uuid && focusedCell?.key === field
-                            return (
-                              <TableCell
-                                key={colIndex}
-                                style={width ? { width } : undefined}
-                                className={cn("p-0 align-middle px-0.5", {
-                                  "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
-                                  "bg-muted hover:bg-muted": isEditing,
-                                })}
-                              >
-                                <Input
-                                  ref={(el) => {
-                                    inputRefs.current[inputKey] = el
-                                  }}
-                                  value={String(row[field] || "")}
-                                  onChange={(e) =>
-                                    handleInputChange(row.uuid, field, e.target.value)
-                                  }
-                                  onFocus={() => setFocusedCell({ uuid: row.uuid, key: field })}
-                                  onBlur={() => setFocusedCell(null)}
-                                  className={cn(
-                                    "dark:bg-muted! shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2",
-                                    {}
-                                  )}
-                                  style={width ? { width } : undefined}
-                                />
-                              </TableCell>
-                            )
-                          })}
+                          {columns.map(({ field, width }) => renderInputCell(row, field, width))}
                           <TableCell
                             className="h-12 bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1"
-                            style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
+                            style={{ width: actionsColumnWidth }}
                           >
                             <Button
                               variant="link"
@@ -235,26 +233,24 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
           <Table>
             <TableBody>
               {data.map((row) => (
-                <TableRow key={row.uuid} className={cn("h-12 hover:bg-transparent")}>
-                  {columns.map(({ field, width }, colIndex) => {
-                    return (
-                      <TableCell
-                        key={colIndex}
+                <TableRow key={row.uuid} className={commonRowClass}>
+                  {columns.map(({ field, width }) => (
+                    <TableCell
+                      key={field}
+                      style={width ? { width } : undefined}
+                      className="p-0 align-middle px-0.5"
+                    >
+                      <div
+                        className="px-2 h-12 flex items-center"
                         style={width ? { width } : undefined}
-                        className="p-0 align-middle px-0.5"
                       >
-                        <div
-                          className="px-2 h-12 flex items-center"
-                          style={width ? { width } : undefined}
-                        >
-                          {row[field] || ""}
-                        </div>
-                      </TableCell>
-                    )
-                  })}
+                        {row[field] || ""}
+                      </div>
+                    </TableCell>
+                  ))}
                   <TableCell
-                    className="h-12 bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1"
-                    style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
+                    className="h-12  bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1"
+                    style={{ width: actionsColumnWidth }}
                   >
                     <Button variant="link" size="icon" className="text-red-500">
                       <Trash2 className="size-4" />
