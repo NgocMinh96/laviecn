@@ -46,6 +46,33 @@ type JsonTableProps = {
 }
 
 const commonRowClass = "hover:bg-transparent last:border-b!"
+const commonCellClass = "p-0 align-middle px-0.5"
+
+const ActionsCell = ({
+  uuid,
+  onDelete,
+  listeners,
+  attributes,
+}: {
+  uuid: string
+  onDelete?: (uuid: string) => void
+  listeners?: React.HTMLAttributes<HTMLElement>
+  attributes?: React.HTMLAttributes<HTMLElement>
+}) => (
+  <TableCell className="w-[80px] h-12 bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1">
+    <Button
+      variant="link"
+      size="icon"
+      onClick={() => onDelete?.(uuid)}
+      className="text-red-500 hover:text-red-700 hover:bg-transparent"
+    >
+      <Trash2 className="size-4" />
+    </Button>
+    <Button variant="link" size="icon" {...listeners} {...attributes}>
+      <GripVertical className="size-4" />
+    </Button>
+  </TableCell>
+)
 
 function DraggableRow({
   id,
@@ -93,8 +120,6 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
     useSensor(TouchSensor),
     useSensor(KeyboardSensor)
   )
-
-  const actionsColumnWidth = 80
 
   const handleToggleEdit = () => {
     setIsEditing((prev) => {
@@ -151,7 +176,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
       <TableCell
         key={field}
         style={width ? { width } : undefined}
-        className={cn("p-0 align-middle px-0.5", {
+        className={cn(commonCellClass, {
           "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
           "bg-muted hover:bg-muted": isEditing,
         })}
@@ -181,7 +206,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                 {headerName}
               </TableHead>
             ))}
-            <TableHead style={{ width: actionsColumnWidth }}></TableHead>
+            <TableHead style={{ width: 80 }}></TableHead>
           </TableRow>
         </TableHeader>
       </Table>
@@ -205,22 +230,12 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                       {({ listeners, attributes }) => (
                         <>
                           {columns.map(({ field, width }) => renderInputCell(row, field, width))}
-                          <TableCell
-                            className="h-12 bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1"
-                            style={{ width: actionsColumnWidth }}
-                          >
-                            <Button
-                              variant="link"
-                              size="icon"
-                              onClick={() => handleDeleteRow(row.uuid)}
-                              className="text-red-500 hover:text-red-700 hover:bg-transparent"
-                            >
-                              <Trash2 className="size-4" />
-                            </Button>
-                            <Button variant="link" size="icon" {...listeners} {...attributes}>
-                              <GripVertical className="size-4" />
-                            </Button>
-                          </TableCell>
+                          <ActionsCell
+                            uuid={row.uuid}
+                            onDelete={handleDeleteRow}
+                            listeners={listeners}
+                            attributes={attributes}
+                          />
                         </>
                       )}
                     </DraggableRow>
@@ -238,7 +253,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                     <TableCell
                       key={field}
                       style={width ? { width } : undefined}
-                      className="p-0 align-middle px-0.5"
+                      className={commonCellClass}
                     >
                       <div
                         className="px-2 h-12 flex items-center"
@@ -248,17 +263,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                       </div>
                     </TableCell>
                   ))}
-                  <TableCell
-                    className="h-12  bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1"
-                    style={{ width: actionsColumnWidth }}
-                  >
-                    <Button variant="link" size="icon" className="text-red-500">
-                      <Trash2 className="size-4" />
-                    </Button>
-                    <Button variant="link" size="icon">
-                      <GripVertical className="size-4" />
-                    </Button>
-                  </TableCell>
+                  <ActionsCell uuid={row.uuid} />
                 </TableRow>
               ))}
             </TableBody>
