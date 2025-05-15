@@ -10,8 +10,26 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
-import { Plus, Trash2 } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core"
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers"
+import {
+  arrayMove,
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
+import { GripVertical, Plus, Trash2 } from "lucide-react"
+import React, { useEffect, useRef, useState } from "react"
 
 type Column = {
   field: string
@@ -27,6 +45,36 @@ type JsonTableProps = {
   onSubmit?: (data: Row[]) => void
 }
 
+function DraggableRow({
+  id,
+  children,
+}: {
+  id: string
+  children: (props: {
+    listeners?: React.HTMLAttributes<HTMLElement>
+    attributes?: React.HTMLAttributes<HTMLElement>
+  }) => React.ReactNode
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id,
+  })
+  return (
+    <tr
+      ref={setNodeRef}
+      style={{
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.8 : 1,
+        zIndex: isDragging ? 1 : 0,
+        position: "relative",
+      }}
+      data-draggable-row
+    >
+      {children({ listeners, attributes })}
+    </tr>
+  )
+}
+
 export function JsonTable({ columns, data: initialData, onSubmit }: JsonTableProps) {
   const [data, setData] = useState<Row[]>(() =>
     initialData.map((item) => ({ ...item, uuid: item.uuid || crypto.randomUUID() }))
@@ -36,7 +84,13 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
   const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
 
-  const actionsColumnWidth = 60
+  const actionsColumnWidth = 80
+
+  const sensors = useSensors(
+    useSensor(MouseSensor, {}),
+    useSensor(TouchSensor, {}),
+    useSensor(KeyboardSensor, {})
+  )
 
   const handleToggleEdit = () => {
     if (isEditing) {
@@ -69,6 +123,17 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
     setData((prev) => [...prev, emptyRow])
   }
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+    if (active.id !== over?.id && over) {
+      setData((items) => {
+        const oldIndex = items.findIndex((i) => i.uuid === active.id)
+        const newIndex = items.findIndex((i) => i.uuid === over.id)
+        return arrayMove(items, oldIndex, newIndex)
+      })
+    }
+  }
+
   useEffect(() => {
     if (focusedCell) {
       const { uuid, key } = focusedCell
@@ -93,71 +158,116 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
       </Table>
 
       <ScrollArea className="h-[243.5px]">
-        <Table>
-          <TableBody>
-            {data.map((row, rowIndex) => (
-              <TableRow key={row.uuid} className={cn("h-12 hover:bg-transparent")}>
-                {columns.map(({ field, width }, colIndex) => {
-                  const isLastRow = rowIndex === data.length - 1
-                  const inputKey = `${row.uuid}-${field}`
-                  const isFocused = focusedCell?.uuid === row.uuid && focusedCell?.key === field
-
-                  return (
-                    <TableCell
-                      key={colIndex}
-                      style={width ? { width } : undefined}
-                      className={cn("p-0 align-middle", {
-                        "border-b": isLastRow,
-                        "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
-                        "bg-muted/30 hover:bg-muted/30": isEditing,
-                      })}
-                    >
-                      {isEditing ? (
-                        <Input
-                          ref={(el) => {
-                            inputRefs.current[inputKey] = el
-                          }}
-                          value={String(row[field] || "")}
-                          onChange={(e) => handleInputChange(row.uuid, field, e.target.value)}
-                          onFocus={() => setFocusedCell({ uuid: row.uuid, key: field })}
-                          onBlur={() => setFocusedCell(null)}
-                          className={cn(
-                            "bg-muted/30! shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2",
-                            {}
-                          )}
-                          style={width ? { width } : undefined}
-                        />
-                      ) : (
+        {isEditing ? (
+          <DndContext
+            collisionDetection={closestCenter}
+            modifiers={[restrictToVerticalAxis]}
+            onDragEnd={handleDragEnd}
+            sensors={sensors}
+          >
+            <Table>
+              <SortableContext
+                items={data.map((row) => row.uuid)}
+                strategy={verticalListSortingStrategy}
+              >
+                <TableBody>
+                  {data.map((row) => (
+                    <DraggableRow key={row.uuid} id={row.uuid}>
+                      {({ listeners, attributes }) => (
+                        <>
+                          {columns.map(({ field, width }, colIndex) => {
+                            const inputKey = `${row.uuid}-${field}`
+                            const isFocused =
+                              focusedCell?.uuid === row.uuid && focusedCell?.key === field
+                            return (
+                              <TableCell
+                                key={colIndex}
+                                style={width ? { width } : undefined}
+                                className={cn("p-0 align-middle px-0.5", {
+                                  "shadow-[inset_0_0_0_0.5px_#3b82f6]": isFocused,
+                                  "bg-muted hover:bg-muted": isEditing,
+                                })}
+                              >
+                                <Input
+                                  ref={(el) => {
+                                    inputRefs.current[inputKey] = el
+                                  }}
+                                  value={String(row[field] || "")}
+                                  onChange={(e) =>
+                                    handleInputChange(row.uuid, field, e.target.value)
+                                  }
+                                  onFocus={() => setFocusedCell({ uuid: row.uuid, key: field })}
+                                  onBlur={() => setFocusedCell(null)}
+                                  className={cn(
+                                    "dark:bg-muted! shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2",
+                                    {}
+                                  )}
+                                  style={width ? { width } : undefined}
+                                />
+                              </TableCell>
+                            )
+                          })}
+                          <TableCell
+                            className="h-12 bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1"
+                            style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
+                          >
+                            <Button
+                              variant="link"
+                              size="icon"
+                              onClick={() => handleDeleteRow(row.uuid)}
+                              className="text-red-500 hover:text-red-700 hover:bg-transparent"
+                            >
+                              <Trash2 className="size-4" />
+                            </Button>
+                            <Button variant="link" size="icon" {...listeners} {...attributes}>
+                              <GripVertical className="size-4" />
+                            </Button>
+                          </TableCell>
+                        </>
+                      )}
+                    </DraggableRow>
+                  ))}
+                </TableBody>
+              </SortableContext>
+            </Table>
+          </DndContext>
+        ) : (
+          <Table>
+            <TableBody>
+              {data.map((row) => (
+                <TableRow key={row.uuid} className={cn("h-12 hover:bg-transparent")}>
+                  {columns.map(({ field, width }, colIndex) => {
+                    return (
+                      <TableCell
+                        key={colIndex}
+                        style={width ? { width } : undefined}
+                        className="p-0 align-middle px-0.5"
+                      >
                         <div
                           className="px-2 h-12 flex items-center"
                           style={width ? { width } : undefined}
                         >
                           {row[field] || ""}
                         </div>
-                      )}
-                    </TableCell>
-                  )
-                })}
-
-                <TableCell
-                  className="h-12 border-b bg-transparent hover:bg-transparent text-center"
-                  style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
-                >
-                  {isEditing && (
-                    <Button
-                      variant="link"
-                      size="icon"
-                      onClick={() => handleDeleteRow(row.uuid)}
-                      className="text-red-500 hover:text-red-700 hover:bg-transparent"
-                    >
+                      </TableCell>
+                    )
+                  })}
+                  <TableCell
+                    className="h-12 bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1"
+                    style={{ width: actionsColumnWidth, minWidth: actionsColumnWidth }}
+                  >
+                    <Button variant="link" size="icon" className="text-red-500">
                       <Trash2 className="size-4" />
                     </Button>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+                    <Button variant="link" size="icon">
+                      <GripVertical className="size-4" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
       </ScrollArea>
 
       <div className="p-2 flex gap-2 justify-between border-t">
