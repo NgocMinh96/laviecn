@@ -75,8 +75,7 @@ export default function ZoneFilter({
   const filteredItems = getFilteredItems()
 
   const rows = 4
-  const columns = Math.max(4, Math.ceil(filteredItems.length / rows))
-  const width = 150 * rows
+  const columns = Math.max(5, Math.ceil(filteredItems.length / rows))
   const height = 46 * rows
 
   const triggerOnChange = (id: string) => {
@@ -119,7 +118,7 @@ export default function ZoneFilter({
   }
 
   return (
-    <div className="rounded-md border pr-0">
+    <div className="w-full rounded-md border">
       <div className="flex justify-between gap-2 items-center h-10 px-2 pt-2">
         <Input
           placeholder={`Tìm kiếm ${label.toLowerCase()}...`}
@@ -127,16 +126,20 @@ export default function ZoneFilter({
           onChange={(e) => setSearch(e.target.value)}
           className="w-full h-8"
         />
-        {step > 0 && (
-          <Button variant="outline" size="icon" className="size-8" onClick={onBack}>
-            <ArrowLeft />
-          </Button>
-        )}
+        <Button
+          disabled={step === 0}
+          variant="outline"
+          size="icon"
+          className="size-8"
+          onClick={onBack}
+        >
+          <ArrowLeft />
+        </Button>
       </div>
 
-      <ScrollArea style={{ width, height, overflowY: "hidden" }}>
+      <ScrollArea className="p-2" style={{ height, overflowY: "hidden" }}>
         <div
-          className="grid gap-2 p-2"
+          className="grid gap-2"
           style={{
             gridTemplateColumns: `repeat(${columns}, max-content)`,
             gridAutoFlow: "row",
@@ -148,7 +151,7 @@ export default function ZoneFilter({
               variant={selectedId === item.id ? "default" : "outline"}
               onClick={() => handleSelect(item.id)}
               className="justify-start whitespace-nowrap"
-              style={{ width: 140 }}
+              style={{ width: 142 }}
             >
               {item.name}
             </Button>
