@@ -120,21 +120,18 @@ export default function ZoneFilter({
 
   return (
     <div className="rounded-md border pr-0">
-      <div className="flex justify-between items-center h-9 px-2 pt-2">
-        <span className="text-sm">{label}</span>
+      <div className="flex justify-between gap-2 items-center h-10 px-2 pt-2">
+        <Input
+          placeholder={`Tìm kiếm ${label.toLowerCase()}...`}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full h-8"
+        />
         {step > 0 && (
           <Button variant="outline" size="icon" className="size-8" onClick={onBack}>
             <ArrowLeft />
           </Button>
         )}
-      </div>
-
-      <div className="p-2">
-        <Input
-          placeholder={`Tìm kiếm ${label.toLowerCase()}...`}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
       </div>
 
       <ScrollArea style={{ width, height, overflowY: "hidden" }}>
