@@ -213,7 +213,6 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
         </Table>
 
         <div className="h-[243.5px]">
-          {/* <ScrollBar orientation="horizontal" /> */}
           {isEditing ? (
             <DndContext
               collisionDetection={closestCenter}
