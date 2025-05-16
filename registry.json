@@ -20,6 +20,17 @@
       ]
     },
     {
+      "name": "zone-filter",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/zone-filter.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "scroll-to-top",
       "type": "registry:component",
       "dependencies": [
@@ -74,6 +85,16 @@
       "files": [
         {
           "path": "registry/examples/zone-select-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "zone-filter-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/zone-filter-demo.tsx",
           "type": "registry:example"
         }
       ]

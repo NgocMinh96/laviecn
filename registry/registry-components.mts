@@ -19,6 +19,17 @@ export const components: Registry["items"] = [
     ],
   },
   {
+    name: "zone-filter",
+    type: "registry:component",
+    registryDependencies: [],
+    files: [
+      {
+        path: "components/zone-filter.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
     name: "scroll-to-top",
     type: "registry:component",
     dependencies: ["motion", "lucide-react"],

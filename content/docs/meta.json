@@ -8,6 +8,7 @@
     "index",
     "---Components---",
     "components/zone-select",
+    "components/zone-filter",
     "components/scroll-to-top",
     "components/json-table",
     "---Utils---",

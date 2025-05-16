@@ -12,6 +12,16 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "zone-filter-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/zone-filter-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "scroll-to-top-demo",
     type: "registry:example",
     files: [

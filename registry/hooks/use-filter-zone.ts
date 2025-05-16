@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react"
 
-interface Province {
+export interface Province {
   id: string
   name: string
   name_slug: string
   full_name: string
 }
 
-interface District {
+export interface District {
   id: string
   name: string
   name_slug: string
@@ -15,7 +15,7 @@ interface District {
   province_id: string
 }
 
-interface Ward {
+export interface Ward {
   id: string
   name: string
   name_slug: string
