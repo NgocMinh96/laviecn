@@ -198,78 +198,81 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
 
   return (
     <div className="rounded-md border overflow-hidden">
-      <Table>
-        <TableHeader className="bg-muted/50">
-          <TableRow>
-            {columns.map(({ headerName }, i) => (
-              <TableHead key={i} className="sticky top-0 z-10 ">
-                {headerName}
-              </TableHead>
-            ))}
-            <TableHead style={{ width: 80 }}></TableHead>
-          </TableRow>
-        </TableHeader>
-      </Table>
-
-      <ScrollArea className="h-[243.5px]">
-        <ScrollBar orientation="horizontal" />
-        {isEditing ? (
-          <DndContext
-            collisionDetection={closestCenter}
-            modifiers={[restrictToVerticalAxis]}
-            onDragEnd={handleDragEnd}
-            sensors={sensors}
-          >
-            <Table>
-              <SortableContext
-                items={data.map((row) => row.uuid)}
-                strategy={verticalListSortingStrategy}
-              >
-                <TableBody>
-                  {data.map((row) => (
-                    <DraggableRow key={row.uuid} id={row.uuid}>
-                      {({ listeners, attributes }) => (
-                        <>
-                          {columns.map(({ field, width }) => renderInputCell(row, field, width))}
-                          <ActionsCell
-                            uuid={row.uuid}
-                            onDelete={handleDeleteRow}
-                            listeners={listeners}
-                            attributes={attributes}
-                          />
-                        </>
-                      )}
-                    </DraggableRow>
-                  ))}
-                </TableBody>
-              </SortableContext>
-            </Table>
-          </DndContext>
-        ) : (
-          <Table>
-            <TableBody>
-              {data.map((row) => (
-                <TableRow key={row.uuid} className={commonRowClass}>
-                  {columns.map(({ field, width }) => (
-                    <TableCell
-                      key={field}
-                      style={width ? { width } : undefined}
-                      className={commonCellClass}
-                    >
-                      <div
-                        className="px-2 h-12 flex items-center"
-                        style={width ? { width } : undefined}
-                      >
-                        {row[field] || ""}
-                      </div>
-                    </TableCell>
-                  ))}
-                  <ActionsCell uuid={row.uuid} />
-                </TableRow>
+      <ScrollArea>
+        <Table>
+          <TableHeader className="bg-muted/50">
+            <TableRow>
+              {columns.map(({ headerName }, i) => (
+                <TableHead key={i} className="sticky top-0 z-10 ">
+                  {headerName}
+                </TableHead>
               ))}
-            </TableBody>
-          </Table>
-        )}
+              <TableHead style={{ width: 80 }}></TableHead>
+            </TableRow>
+          </TableHeader>
+        </Table>
+
+        <div className="h-[243.5px]">
+          {/* <ScrollBar orientation="horizontal" /> */}
+          {isEditing ? (
+            <DndContext
+              collisionDetection={closestCenter}
+              modifiers={[restrictToVerticalAxis]}
+              onDragEnd={handleDragEnd}
+              sensors={sensors}
+            >
+              <Table>
+                <SortableContext
+                  items={data.map((row) => row.uuid)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  <TableBody>
+                    {data.map((row) => (
+                      <DraggableRow key={row.uuid} id={row.uuid}>
+                        {({ listeners, attributes }) => (
+                          <>
+                            {columns.map(({ field, width }) => renderInputCell(row, field, width))}
+                            <ActionsCell
+                              uuid={row.uuid}
+                              onDelete={handleDeleteRow}
+                              listeners={listeners}
+                              attributes={attributes}
+                            />
+                          </>
+                        )}
+                      </DraggableRow>
+                    ))}
+                  </TableBody>
+                </SortableContext>
+              </Table>
+            </DndContext>
+          ) : (
+            <Table>
+              <TableBody>
+                {data.map((row) => (
+                  <TableRow key={row.uuid} className={commonRowClass}>
+                    {columns.map(({ field, width }) => (
+                      <TableCell
+                        key={field}
+                        style={width ? { width } : undefined}
+                        className={commonCellClass}
+                      >
+                        <div
+                          className="px-2 h-12 flex items-center"
+                          style={width ? { width } : undefined}
+                        >
+                          {row[field] || ""}
+                        </div>
+                      </TableCell>
+                    ))}
+                    <ActionsCell uuid={row.uuid} />
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </div>
+        <ScrollBar orientation="horizontal" />
       </ScrollArea>
 
       <div className="p-2 flex gap-2 justify-between border-t">
