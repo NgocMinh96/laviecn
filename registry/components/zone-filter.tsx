@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { ArrowLeft } from "lucide-react"
 import React, { useState } from "react"
@@ -36,6 +37,7 @@ export default function ZoneFilter({
   onChange,
 }: ZoneFilterProps) {
   const [step, setStep] = useState(0)
+  const [search, setSearch] = useState("")
 
   const stepMap = [
     {
@@ -59,21 +61,40 @@ export default function ZoneFilter({
   ]
 
   const { label, items, selectedId, handler } = stepMap[step]
+
+  const getFilteredItems = () => {
+    const keyword = search.trim().toLowerCase()
+    if (!keyword) return items
+    return items.filter((item) =>
+      [item.name, item.full_name, item.name_slug].some((field) =>
+        field?.toLowerCase().includes(keyword)
+      )
+    )
+  }
+
+  const filteredItems = getFilteredItems()
+
   const rows = 4
-  const columns = Math.max(4, Math.ceil(items.length / rows))
+  const columns = Math.max(4, Math.ceil(filteredItems.length / rows))
   const width = 150 * rows
   const height = 46 * rows
 
-  const handleSelect = (id: string) => {
-    handler(id)
-
+  const triggerOnChange = (id: string) => {
     onChange?.({
       province: provinces.find((p) => p.id === (step === 0 ? id : selectedProvince)),
       district: districts.find((d) => d.id === (step === 1 ? id : selectedDistrict)),
       ward: wards.find((w) => w.id === (step === 2 ? id : selectedWard)),
     })
+  }
 
-    if (step < 2) setStep(step + 1)
+  const handleSelect = (id: string) => {
+    handler(id)
+    triggerOnChange(id)
+
+    if (step < 2) {
+      setStep(step + 1)
+      setSearch("")
+    }
   }
 
   const onBack = () => {
@@ -88,6 +109,7 @@ export default function ZoneFilter({
     }
 
     setStep(newStep)
+    setSearch("")
 
     onChange?.({
       province: provinces.find((p) => p.id === selectedProvince),
@@ -106,13 +128,16 @@ export default function ZoneFilter({
           </Button>
         )}
       </div>
-      <ScrollArea
-        style={{
-          width,
-          height,
-          overflowY: "hidden",
-        }}
-      >
+
+      <div className="p-2">
+        <Input
+          placeholder={`Tìm kiếm ${label.toLowerCase()}...`}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+
+      <ScrollArea style={{ width, height, overflowY: "hidden" }}>
         <div
           className="grid gap-2 p-2"
           style={{
@@ -120,7 +145,7 @@ export default function ZoneFilter({
             gridAutoFlow: "row",
           }}
         >
-          {items.map((item) => (
+          {filteredItems.map((item) => (
             <Button
               key={item.id}
               variant={selectedId === item.id ? "default" : "outline"}
