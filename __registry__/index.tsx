@@ -27,7 +27,7 @@ export const Index: Record<string, any> = {
     name: "zone-filter",
     description: "",
     type: "registry:component",
-    registryDependencies: [],
+    registryDependencies: ["button","input","scroll-area","https://laviecn.vercel.app/r/use-filter-zone.json"],
     files: [{
       path: "registry/components/zone-filter.tsx",
       type: "registry:component",
