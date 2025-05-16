@@ -41,4 +41,16 @@ export const components: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "json-table",
+    type: "registry:component",
+    dependencies: ["@dnd-kit/core", "@dnd-kit/modifiers", "@dnd-kit/sortable", "lucide-react"],
+    registryDependencies: ["button", "input", "scroll-area", "table", "utils"],
+    files: [
+      {
+        path: "components/json-table.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ]

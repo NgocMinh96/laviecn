@@ -46,6 +46,29 @@
       }
     },
     {
+      "name": "json-table",
+      "type": "registry:component",
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/modifiers",
+        "@dnd-kit/sortable",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "scroll-area",
+        "table",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/components/json-table.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "zone-select-demo",
       "type": "registry:example",
       "files": [

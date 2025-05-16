@@ -40,6 +40,23 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "json-table": {
+    name: "json-table",
+    description: "",
+    type: "registry:component",
+    registryDependencies: ["button","input","scroll-area","table","utils"],
+    files: [{
+      path: "registry/components/json-table.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/components/json-table.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "zone-select-demo": {
     name: "zone-select-demo",
     description: "",
