@@ -203,16 +203,21 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
           <TableHeader className="bg-muted/50">
             <TableRow>
               {columns.map(({ headerName }, i) => (
-                <TableHead key={i} className="sticky top-0 z-10 ">
-                  {headerName}
-                </TableHead>
+                <TableHead key={i}>{headerName}</TableHead>
               ))}
-              <TableHead style={{ width: 80 }}></TableHead>
+              <TableHead className="w-[80px]"></TableHead>
             </TableRow>
           </TableHeader>
         </Table>
 
-        <div className="h-[243.5px]">
+        <div
+          style={
+            {
+              "--item-height": "48.7px",
+              height: `calc(var(--item-height) * ${5})`,
+            } as React.CSSProperties
+          }
+        >
           {isEditing ? (
             <DndContext
               collisionDetection={closestCenter}
