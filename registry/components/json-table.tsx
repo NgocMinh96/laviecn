@@ -189,7 +189,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
           onChange={(e) => handleInputChange(row.uuid, field, e.target.value)}
           onFocus={() => setFocusedCell({ uuid: row.uuid, key: field })}
           onBlur={() => setFocusedCell(null)}
-          className="dark:bg-muted! shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2"
+          className="dark:bg-muted! text-sm shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2"
           style={width ? { width } : undefined}
         />
       </TableCell>
