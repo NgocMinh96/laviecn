@@ -66,7 +66,7 @@ export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
         transform={`rotate(-90 ${center} ${center})`}
         style={{ fill: "none", stroke: "var(--scroll-top)", strokeWidth: 2 }}
         strokeDasharray={circumference}
-        strokeDashoffset={offset}
+        strokeDashoffset={isNaN(offset) ? 0 : offset}
       />
       <g transform={`translate(${iconTranslate}, ${iconTranslate})`}>
         <ChevronUp size={iconSize} color="var(--scroll-top)" strokeWidth={3} />
