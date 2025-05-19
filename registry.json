@@ -88,6 +88,23 @@
       ]
     },
     {
+      "name": "horizontal-scroll-menu",
+      "type": "registry:component",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/components/horizontal-scroll-menu.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "zone-select-demo",
       "type": "registry:example",
       "files": [
@@ -133,6 +150,16 @@
       "files": [
         {
           "path": "registry/examples/json-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "horizontal-scroll-menu-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/horizontal-scroll-menu-demo.tsx",
           "type": "registry:example"
         }
       ]

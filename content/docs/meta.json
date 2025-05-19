@@ -11,6 +11,7 @@
     "components/zone-filter",
     "components/scroll-to-top",
     "components/json-table",
+    "components/horizontal-scroll-menu",
     "---Utils---",
     "utils/sotienthanhchu"
   ]

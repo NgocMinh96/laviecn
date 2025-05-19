@@ -70,4 +70,16 @@ export const components: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "horizontal-scroll-menu",
+    type: "registry:component",
+    dependencies: ["lucide-react"],
+    registryDependencies: ["button", "utils"],
+    files: [
+      {
+        path: "components/horizontal-scroll-menu.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ]

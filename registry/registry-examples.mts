@@ -51,4 +51,14 @@ export const examples: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "horizontal-scroll-menu-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/horizontal-scroll-menu-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
 ]
