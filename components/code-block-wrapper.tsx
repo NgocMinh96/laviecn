@@ -30,7 +30,7 @@ export function CodeBlockWrapper({
       <CollapsibleContent forceMount className={cn("overflow-hidden", !open && "max-h-32")}>
         <div
           className={cn(
-            "[&_figure]:my-0 [&_figure]:max-h-[640px] [&_figure]:pb-[20px]",
+            "[&_figure]:my-0 [&_figure]:max-h-[640px] [&_figure]:pb-[20px] [&_figure]:bg-secondary/50 [&_figure]:border-none",
             !open ? "[&_figure]:overflow-hidden" : "[&_figure]:overflow-auto]"
           )}
         >

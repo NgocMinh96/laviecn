@@ -230,19 +230,15 @@
 
 @utility component-block {
   & pre {
-    @apply max-h-[432.4px];
+    @apply max-h-[400px];
   }
 
   [data-rehype-pretty-code-figure] figure {
-    @apply rounded-none! my-4!;
+    @apply bg-secondary/50 rounded-none! my-0! border-none!;
   }
 }
 
 @layer components {
-  [data-rehype-pretty-code-figure] figure {
-    @apply bg-secondary/50! border-none;
-  }
-
   [data-line] span {
     @apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
   }

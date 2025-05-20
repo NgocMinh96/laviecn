@@ -1,10 +1,10 @@
 "use client"
 
 import { Index } from "@/__registry__"
-// import { Skeleton } from "@/components/ui/skeleton";lib/utillib/utils
 import { cn } from "@/lib/utils"
-import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+import { CodeIcon, EyeIcon } from "lucide-react"
 import * as React from "react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 
 interface ComponentTabsProps extends React.ComponentPropsWithoutRef<"div"> {
   name: string
@@ -15,15 +15,7 @@ interface ComponentTabsProps extends React.ComponentPropsWithoutRef<"div"> {
   fullPreview?: boolean
 }
 
-export function ComponentTabs({
-  name,
-  children,
-  align = "center",
-  preventPreviewFocus,
-  scalePreview,
-  fullPreview,
-  className,
-}: ComponentTabsProps) {
+export function ComponentTabs({ name, children, className }: ComponentTabsProps) {
   const Codes = React.Children.toArray(children) as React.ReactElement[]
   const Code = Codes[0]
 
@@ -46,36 +38,36 @@ export function ComponentTabs({
   }, [name])
 
   return (
-    <Tabs items={["Preview", "Code"]} className="rounded-md">
-      <Tab
-        value="Preview"
-        className={cn(
-          "not-prose",
-          preventPreviewFocus && "focus-visible:outline-hidden focus-visible:ring-0"
-        )}
-        tabIndex={preventPreviewFocus ? -1 : 0}
-      >
-        <div
-          className={cn(
-            "flex h-[400px] w-full justify-center p-10",
-            {
-              "items-start": align === "start",
-              "items-center": align === "center",
-              "items-end": align === "end",
-              "h-full p-0": fullPreview,
-              "sm:p-10": scalePreview,
-            },
-            className
-          )}
-        >
-          {/* <React.Suspense fallback={<Skeleton className="size-full" />}> */}
-          {Preview}
-          {/* </React.Suspense> */}
-        </div>
-      </Tab>
-      <Tab value="Code" className="component-block py-0">
-        {Code}
-      </Tab>
-    </Tabs>
+    <div
+      className={cn(
+        "size-full overflow-hidden rounded-lg border bg-background not-prose max-h-[438px]",
+        className
+      )}
+    >
+      <Tabs defaultValue="preview" className="size-full gap-0">
+        <TabsList className="w-full rounded-none border-b">
+          <TabsTrigger value="preview">
+            <EyeIcon size={16} className="text-muted-foreground" />
+            Preview
+          </TabsTrigger>
+          <TabsTrigger value="code">
+            <CodeIcon size={16} className="text-muted-foreground" />
+            Code
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="code" className="component-block">
+          {Code}
+        </TabsContent>
+        <TabsContent value="preview" className="not-fumadocs-codeblock size-full overflow-hidden">
+          <div className="relative flex size-full flex-col items-center justify-center gap-4 overflow-hidden p-10">
+            <div className="-translate-y-px absolute top-6 right-0 left-0 border border-border/50 border-dashed" />
+            <div className="absolute right-0 bottom-6 left-0 translate-y-px border border-border/50 border-dashed" />
+            <div className="-translate-x-px absolute top-0 bottom-0 left-6 border border-border/50 border-dashed" />
+            <div className="absolute top-0 right-6 bottom-0 translate-x-px border border-border/50 border-dashed" />
+            {Preview}
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
   )
 }
