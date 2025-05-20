@@ -231,6 +231,7 @@
 @utility component-block {
   & pre {
     @apply max-h-[400px];
+    @apply min-h-[400px];
   }
 
   [data-rehype-pretty-code-figure] figure {
