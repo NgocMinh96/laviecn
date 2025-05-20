@@ -30,7 +30,7 @@ export function CodeBlockWrapper({
       <CollapsibleContent forceMount className={cn("overflow-hidden", !open && "max-h-32")}>
         <div
           className={cn(
-            "[&_figure]:my-0 [&_figure]:max-h-[640px] [&_figure]:pb-[20px] [&_figure]:bg-secondary/50 [&_figure]:border-none",
+            "[&_figure]:my-0 [&_figure]:max-h-[640px] [&_figure]:pb-[20px] [&_figure]:bg-secondary/30 [&_figure]:border-none",
             !open ? "[&_figure]:overflow-hidden" : "[&_figure]:overflow-auto]"
           )}
         >
@@ -39,12 +39,12 @@ export function CodeBlockWrapper({
       </CollapsibleContent>
       <div
         className={cn(
-          "bg-linear-to-b absolute flex items-center justify-center from-zinc-600/30 to-zinc-900/50 p-2",
-          open ? "inset-x-0 bottom-0 h-12" : "inset-0"
+          "bg-linear-to-b absolute flex items-center justify-center from-zinc-400/20 to-zinc-800/60 p-2",
+          open ? "inset-x-0 bottom-0 h-10" : "inset-0"
         )}
       >
         <CollapsibleTrigger asChild>
-          <Button className="bg-background text-foreground hover:bg-background/90 h-8">
+          <Button className="bg-background text-foreground hover:bg-background/80 h-7">
             {open ? "Collapse" : expandButtonTitle}
           </Button>
         </CollapsibleTrigger>

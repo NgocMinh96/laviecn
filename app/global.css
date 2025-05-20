@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/shadcn.css";
 @import "fumadocs-ui/css/preset.css";
 @import "tw-animate-css";
 
@@ -230,16 +230,19 @@
 
 @utility component-block {
   & pre {
-    @apply max-h-[400px];
-    @apply min-h-[400px];
+    @apply max-h-[400px] min-h-[400px];
   }
 
   [data-rehype-pretty-code-figure] figure {
-    @apply bg-secondary/50 rounded-none! my-0! border-none!;
+    @apply bg-secondary/30 rounded-t-none! my-0! border-none!;
   }
 }
 
 @layer components {
+  [data-line] {
+    @apply mx-4;
+  }
+
   [data-line] span {
     @apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
   }
