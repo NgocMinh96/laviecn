@@ -153,7 +153,7 @@ export default function ZoneFilter({
               className="justify-start whitespace-nowrap"
               style={{ width: 142 }}
             >
-              {item.name}
+              {item.full_name}
             </Button>
           ))}
         </div>
