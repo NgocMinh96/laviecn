@@ -146,6 +146,7 @@
 
   --sidebar-ring: oklch(0.708 0 0);
 
+  /* -------------- CUSTOM -------------- */
   --scroll-top: oklch(0.55 0.01 286);
   --scroll-top-bg: oklch(0.55 0.01 286 / 10%);
   --scroll-top-track: oklch(0.55 0.01 286 / 20%);
@@ -214,6 +215,7 @@
 
   --sidebar-ring: oklch(0.556 0 0);
 
+  /* -------------- CUSTOM -------------- */
   --scroll-top: oklch(0.92 0 286);
   --scroll-top-bg: oklch(0.92 0 286 / 15%);
   --scroll-top-track: oklch(0.92 0 286 / 20%);
@@ -225,6 +227,16 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* -------------- CUSTOM -------------- */
+@supports (color: color-mix(in oklab, red, red)) {
+  .bg-fd-primary\/10 {
+    background-color: color-mix(in oklab, var(--color-fd-primary) 5%, transparent);
+  }
+  .dark .bg-fd-primary\/10 {
+    background-color: color-mix(in oklab, var(--color-fd-primary) 10%, transparent);
   }
 }
 

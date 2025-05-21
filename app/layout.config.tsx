@@ -1,4 +1,8 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared"
+import { Emilys_Candy } from "next/font/google"
+import Image from "next/image"
+
+const righteous = Emilys_Candy({ subsets: ["latin"], weight: "400" })
 
 /**
  * Shared layout configurations
@@ -11,10 +15,10 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <>
-        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" aria-label="Logo">
-          <circle cx={12} cy={12} r={12} fill="currentColor" />
-        </svg>
-        Laviecn
+        <Image src="/assets/logo.JPG" alt="Logo" width={24} height={24} className="rounded-full" />
+        <div>
+          ₊˚✧ <span className={`${righteous.className} text-[24px]`}>Laviecn</span> ✧˚₊
+        </div>
       </>
     ),
   },
@@ -24,5 +28,12 @@ export const baseOptions: BaseLayoutProps = {
     //   url: '/docs',
     //   active: 'nested-url',
     // },
+    {
+      type: "icon",
+      url: "",
+      text: "",
+      icon: "ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧",
+      external: false,
+    },
   ],
 }
