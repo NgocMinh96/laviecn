@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, MapPin } from "lucide-react"
 import React, { useState } from "react"
 import type { District, Province, Ward } from "../hooks/use-filter-zone"
 
@@ -150,9 +150,10 @@ export default function ZoneFilter({
               key={item.id}
               variant={selectedId === item.id ? "default" : "outline"}
               onClick={() => handleSelect(item.id)}
-              className="justify-start whitespace-nowrap text-xs px-2"
+              className="justify-start whitespace-nowrap text-xs has-[>svg]:px-1 gap-0.5"
               style={{ width: 142 }}
             >
+              <MapPin className="size-3" />
               {item.full_name}
             </Button>
           ))}
