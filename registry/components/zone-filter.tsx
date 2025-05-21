@@ -150,7 +150,7 @@ export default function ZoneFilter({
               key={item.id}
               variant={selectedId === item.id ? "default" : "outline"}
               onClick={() => handleSelect(item.id)}
-              className="justify-start whitespace-nowrap"
+              className="justify-start whitespace-nowrap text-xs px-2"
               style={{ width: 142 }}
             >
               {item.full_name}
