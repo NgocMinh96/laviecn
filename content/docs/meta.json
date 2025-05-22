@@ -7,10 +7,11 @@
     "---Introduction---",
     "index",
     "---Components---",
+    "components/json-table",
     "components/zone-select",
     "components/zone-filter",
     "components/scroll-to-top",
-    "components/json-table",
+    "components/multiple-selector",
     "components/horizontal-scroll-menu",
     "---Utils---",
     "utils/sotienthanhchu"

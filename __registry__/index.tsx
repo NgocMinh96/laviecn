@@ -91,6 +91,23 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "multiple-selector": {
+    name: "multiple-selector",
+    description: "",
+    type: "registry:component",
+    registryDependencies: ["command","utils","cmdk"],
+    files: [{
+      path: "registry/components/multiple-selector.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/components/multiple-selector.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "zone-select-demo": {
     name: "zone-select-demo",
     description: "",
@@ -188,6 +205,23 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/examples/horizontal-scroll-menu-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "multiple-selector-demo": {
+    name: "multiple-selector-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/examples/multiple-selector-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/examples/multiple-selector-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

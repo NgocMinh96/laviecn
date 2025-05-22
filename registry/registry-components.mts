@@ -82,4 +82,16 @@ export const components: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "multiple-selector",
+    type: "registry:component",
+    dependencies: ["lucide-react"],
+    registryDependencies: ["command", "utils", "cmdk"],
+    files: [
+      {
+        path: "components/multiple-selector.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ]

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "multiple-selector-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "registry/examples/multiple-selector-demo.tsx",
+      "content": "import MultipleSelector from \"../components/multiple-selector\"\r\n\r\nconst options = [\r\n  { label: \"React\", value: \"react\" },\r\n  { label: \"Vue\", value: \"vue\" },\r\n  { label: \"Svelte\", value: \"svelte\" },\r\n  { label: \"Ajax\", value: \"ajax\" },\r\n  { label: \"Angular\", value: \"angular\" },\r\n  { label: \"Remix\", value: \"remix\" },\r\n]\r\n\r\nexport default function MultipleSelectorDemo() {\r\n  return (\r\n    <>\r\n      <MultipleSelector\r\n        size=\"md\"\r\n        commandProps={{\r\n          label: \"Select frameworks\",\r\n        }}\r\n        defaultOptions={options}\r\n        placeholder=\"Multiple Select\"\r\n        hidePlaceholderWhenSelected\r\n        emptyIndicator={<p className=\"text-center text-sm\">No results found</p>}\r\n      />\r\n    </>\r\n  )\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -61,4 +61,14 @@ export const examples: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "multiple-selector-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/multiple-selector-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
 ]
