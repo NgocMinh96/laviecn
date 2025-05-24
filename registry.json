@@ -123,6 +123,24 @@
       ]
     },
     {
+      "name": "password-input",
+      "type": "registry:component",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/components/password-input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "zone-select-demo",
       "type": "registry:example",
       "files": [
@@ -188,6 +206,16 @@
       "files": [
         {
           "path": "registry/examples/multiple-selector-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "password-input-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/password-input-demo.tsx",
           "type": "registry:example"
         }
       ]

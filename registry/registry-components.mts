@@ -94,4 +94,16 @@ export const components: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "password-input",
+    type: "registry:component",
+    dependencies: ["lucide-react"],
+    registryDependencies: ["button", "input", "utils"],
+    files: [
+      {
+        path: "components/password-input.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ]

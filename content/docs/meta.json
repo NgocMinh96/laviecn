@@ -11,6 +11,7 @@
     "components/zone-filter",
     "components/zone-select",
     "components/scroll-to-top",
+    "components/password-input",
     "components/multiple-selector",
     "components/horizontal-scroll-menu",
     "---Utils---",

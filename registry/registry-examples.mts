@@ -71,4 +71,14 @@ export const examples: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "password-input-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/password-input-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
 ]
