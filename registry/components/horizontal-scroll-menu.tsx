@@ -17,6 +17,7 @@ interface HorizontalScrollMenuProps {
   menu: MenuItem[]
   selected?: string
   onFilterChange?: (filter: string) => void
+  showScrollButton?: boolean
 }
 
 interface ScrollState {
@@ -112,6 +113,7 @@ export function HorizontalScrollMenu({
   menu,
   selected,
   onFilterChange,
+  showScrollButton = false,
 }: HorizontalScrollMenuProps) {
   const [selectedFilter, setSelectedFilter] = useState(selected)
   const { scrollContainerRef, scrollState, scroll, handleMouseDown } = useHorizontalScroll()
@@ -135,17 +137,19 @@ export function HorizontalScrollMenu({
   return (
     <div className="relative w-full">
       <div className="container relative flex h-10 items-center justify-center px-3">
-        <Button
-          variant="secondary"
-          size="icon"
-          className={cn(
-            "bg-background rounded-full absolute left-0 z-10 h-8 w-8",
-            !scrollState.canScrollLeft && "hidden"
-          )}
-          onClick={() => scroll("left")}
-        >
-          <ChevronLeft className="size-4" />
-        </Button>
+        {showScrollButton && (
+          <Button
+            variant="secondary"
+            size="icon"
+            className={cn(
+              "bg-background hover:bg-background rounded-full absolute left-0 z-10 h-8 w-8",
+              !scrollState.canScrollLeft && "hidden"
+            )}
+            onClick={() => scroll("left")}
+          >
+            <ChevronLeft className="size-4" />
+          </Button>
+        )}
 
         <div
           ref={scrollContainerRef}
@@ -173,17 +177,19 @@ export function HorizontalScrollMenu({
           </div>
         </div>
 
-        <Button
-          variant="secondary"
-          size="icon"
-          className={cn(
-            "bg-background rounded-full absolute right-0 z-10 h-8 w-8",
-            !scrollState.canScrollRight && "hidden"
-          )}
-          onClick={() => scroll("right")}
-        >
-          <ChevronRight className="size-4" />
-        </Button>
+        {showScrollButton && (
+          <Button
+            variant="secondary"
+            size="icon"
+            className={cn(
+              "bg-background hover:bg-background rounded-full absolute right-0 z-10 h-8 w-8",
+              !scrollState.canScrollRight && "hidden"
+            )}
+            onClick={() => scroll("right")}
+          >
+            <ChevronRight className="size-4" />
+          </Button>
+        )}
       </div>
     </div>
   )

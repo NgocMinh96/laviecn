@@ -20,6 +20,7 @@ export default function HorizontalScrollMenuDemo() {
       menu={menuItems}
       selected="music"
       onFilterChange={(filter) => console.log("Selected:", filter)}
+      showScrollButton
     />
   )
 }
