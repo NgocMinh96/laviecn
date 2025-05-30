@@ -4,8 +4,6 @@
   "icon": "Building2",
   "root": true,
   "pages": [
-    "---Introduction---",
-    "index",
     "---Components---",
     "components/json-table",
     "components/zone-filter",
