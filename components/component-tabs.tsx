@@ -56,10 +56,10 @@ export function ComponentTabs({ name, children, className }: ComponentTabsProps)
           value="preview"
           className="relative flex items-center justify-center p-6 min-h-[438px]"
         >
-          <div className="-translate-y-px absolute top-4 right-0 left-0 border border-border/50 border-dashed" />
-          <div className="absolute right-0 bottom-4 left-0 translate-y-px border border-border/50 border-dashed" />
-          <div className="-translate-x-px absolute top-0 bottom-0 left-4 border border-border/50 border-dashed" />
-          <div className="absolute top-0 right-4 bottom-0 translate-x-px border border-border/50 border-dashed" />
+          <div className="-translate-y-px absolute top-4 right-0 left-0 border border-border/50 dark:border-border border-dashed" />
+          <div className="absolute right-0 bottom-4 left-0 translate-y-px border border-border/50 dark:border-border border-dashed" />
+          <div className="-translate-x-px absolute top-0 bottom-0 left-4 border border-border/50 dark:border-border border-dashed" />
+          <div className="absolute top-0 right-4 bottom-0 translate-x-px border border-border/50 dark:border-border border-dashed" />
           {Preview}
         </TabsContent>
 
