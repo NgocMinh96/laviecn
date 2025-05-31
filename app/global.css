@@ -286,7 +286,15 @@
   }
 
   figure {
-    @apply dark:bg-fd-card! bg-neutral-50! ;
+    @apply dark:bg-fd-card! bg-neutral-50!;
+
+    & svg {
+      @apply size-4! dark:text-muted-foreground!;
+    }
+
+    & button {
+      @apply [@media(hover:hover)]:opacity-100! hover:bg-transparent!;
+    }
   }
 }
 
@@ -313,9 +321,6 @@
   border-bottom-style: solid;
   padding-block: calc(var(--spacing) * 2.5);
   padding-inline: calc(var(--spacing) * 4);
-  font-size: var(--text-sm);
-  font-family: var(--font-mono);
-  color: var(--color-code-foreground);
 }
 
 [data-line-numbers] {
