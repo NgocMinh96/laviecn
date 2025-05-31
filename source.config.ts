@@ -7,6 +7,7 @@ import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import { codeImport } from "remark-code-import"
 import remarkMath from "remark-math"
+import { transformers } from "./lib/highlight-code"
 
 // Options: https://fumadocs.vercel.app/docs/mdx/collections#define-docs
 export const docs = defineDocs({
@@ -30,6 +31,7 @@ export default defineConfig({
             getHighlighter({
               themes: ["one-dark-pro", "one-light"],
             }),
+          transformers,
         },
       ],
     ],

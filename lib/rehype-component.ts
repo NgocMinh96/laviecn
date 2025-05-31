@@ -60,15 +60,7 @@ export function rehypeComponent() {
               tagName: "pre",
               properties: {
                 __src__: src,
-                __style__: "",
               },
-              attributes: [
-                {
-                  name: "styleName",
-                  type: "mdxJsxAttribute",
-                  value: "",
-                },
-              ],
               children: [
                 u("element", {
                   tagName: "code",
