@@ -277,6 +277,10 @@
 }
 
 @layer components {
+  button[aria-label="Collapse Sidebar"] {
+    @apply -my-0!;
+  }
+
   [data-line] span {
     color: var(--shiki-light);
 
