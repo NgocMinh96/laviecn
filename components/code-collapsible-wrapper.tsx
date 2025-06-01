@@ -21,7 +21,7 @@ export function CodeCollapsibleWrapper({
       {...props}
     >
       <CollapsibleTrigger asChild>
-        <div className="absolute top-1.5 right-9 z-10 flex items-center">
+        <div className="absolute top-2 right-9 z-10 flex items-center">
           <Button variant="ghost" size="sm" className="text-muted-foreground h-7 rounded-md px-2">
             {isOpened ? "Collapse" : "Expand"}
           </Button>

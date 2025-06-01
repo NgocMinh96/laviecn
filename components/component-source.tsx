@@ -77,18 +77,26 @@ function ComponentCode({
   title: string | undefined
 }) {
   return (
-    <figure data-rehype-pretty-code-figure="" className="component-code [&>pre]:max-h-96">
-      {title && (
-        <figcaption
-          data-rehype-pretty-code-title=""
-          className="mt-0 text-sm bg-muted text-fd-muted-foreground! [&_svg]:text-fd-muted-foreground! flex items-center gap-2 [&_svg]:size-3.5 [&_svg]:opacity-50"
-          data-language={language}
-        >
-          {getIconForLanguageExtension(language)}
-          {title}
-        </figcaption>
+    <figure
+      data-rehype-pretty-code-figure=""
+      className="relative outline-0 text-sm rounded-lg border overflow-hidden [&>pre]:max-h-96"
+    >
+      {title ? (
+        <div className="flex items-center gap-2 bg-fd-secondary px-4 py-3">
+          <figcaption
+            data-rehype-pretty-code-title=""
+            className="mt-0 text-sm bg-muted text-muted-foreground! [&_svg]:text-muted-foreground! flex items-center gap-2 [&_svg]:size-3.5 [&_svg]:opacity-50"
+            data-language={language}
+          >
+            {getIconForLanguageExtension(language)}
+            {title}
+          </figcaption>
+          <CopyButton value={code} />
+        </div>
+      ) : (
+        <CopyButton value={code} />
       )}
-      <CopyButton value={code} />
+
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   )

@@ -2,7 +2,7 @@
 
 import { Event, trackEvent } from "@/lib/events"
 import { cn } from "@/lib/utils"
-import { CheckIcon, Copy } from "lucide-react"
+import { Check, Copy } from "lucide-react"
 import * as React from "react"
 import { Button } from "./ui/button"
 
@@ -30,7 +30,7 @@ export function CopyButton({
     if (!hasCopied) return
     const timeout = setTimeout(() => {
       setHasCopied(false)
-    }, 2000)
+    }, 1500)
     return () => clearTimeout(timeout)
   }, [hasCopied])
 
@@ -39,10 +39,7 @@ export function CopyButton({
       data-slot="copy-button"
       size="icon"
       variant={variant}
-      className={cn(
-        "absolute top-3 right-2 z-10 size-6 transition-opacity duration-100 hover:opacity-100 focus-visible:opacity-100",
-        className
-      )}
+      className={cn("absolute top-1 right-1 z-10 text-muted-foreground", className)}
       onClick={() => {
         copyToClipboardWithMeta(
           value,
@@ -59,11 +56,8 @@ export function CopyButton({
       }}
       {...props}
     >
-      <span className="sr-only">Copy</span>
-      <Copy className={`absolute transition-transform ${hasCopied ? "scale-0" : "scale-100"}`} />
-      <CheckIcon
-        className={`absolute transition-transform ${hasCopied ? "scale-100" : "scale-0"}`}
-      />
+      <Copy className={cn("absolute transition-transform", hasCopied && "scale-0")} />
+      <Check className={cn("transition-transform", !hasCopied && "scale-0")} />
     </Button>
   )
 }
