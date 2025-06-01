@@ -63,7 +63,7 @@ export function ComponentTabs({ name, children, className }: ComponentTabsProps)
           {Preview}
         </TabsContent>
 
-        <TabsContent value="code" className="component-block max-h-[438px]">
+        <TabsContent value="code" className="component-code-demo max-h-[438px]">
           {Code}
         </TabsContent>
       </Tabs>

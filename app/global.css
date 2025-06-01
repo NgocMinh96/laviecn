@@ -247,7 +247,7 @@
   }
 }
 
-@utility component-block {
+@utility component-code-demo {
   & pre {
     @apply max-h-[400px] min-h-[400px];
   }
@@ -316,7 +316,7 @@
   background-color: var(--color-fd-card);
 }
 
-[role="tabpanel"]:not(.component-block) figure {
+[role="tabpanel"]:not(.component-code-demo) figure {
   @apply rounded-none!;
 
   [data-line-numbers] [data-line] {
