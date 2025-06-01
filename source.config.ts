@@ -1,8 +1,11 @@
 import { rehypeComponent } from "@/lib/rehype-component"
 import { getHighlighter } from "@shikijs/compat"
-import { rehypeCode, remarkGfm } from "fumadocs-core/mdx-plugins"
+import { transformerRemoveNotationEscape } from "@shikijs/transformers"
+import { rehypeCode, rehypeCodeDefaultOptions, remarkGfm } from "fumadocs-core/mdx-plugins"
 import { fileGenerator, remarkDocGen, remarkInstall } from "fumadocs-docgen"
 import { defineConfig, defineDocs } from "fumadocs-mdx/config"
+import { transformerTwoslash } from "fumadocs-twoslash"
+import { createFileSystemTypesCache } from "fumadocs-twoslash/cache-fs"
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import { codeImport } from "remark-code-import"
@@ -16,6 +19,33 @@ export const docs = defineDocs({
 
 export default defineConfig({
   mdxOptions: {
+    rehypeCodeOptions: {
+      lazy: true,
+      experimentalJSEngine: true,
+      langs: ["ts", "js", "html", "tsx", "mdx"],
+      inline: "tailing-curly-colon",
+      themes: {
+        light: "one-light",
+        dark: "one-dark-pro",
+      },
+      transformers: [
+        ...(rehypeCodeDefaultOptions.transformers ?? []),
+        transformerTwoslash({
+          typesCache: createFileSystemTypesCache(),
+        }),
+        transformerRemoveNotationEscape(),
+      ],
+    },
+    remarkCodeTabOptions: {
+      parseMdx: true,
+    },
+    remarkPlugins: [
+      codeImport,
+      remarkGfm,
+      remarkMath,
+      [remarkInstall, { persist: { id: "package-manager" } }],
+      [remarkDocGen, { generators: [fileGenerator()] }],
+    ],
     rehypePlugins: [
       rehypeCode,
       rehypeSlug,
@@ -34,13 +64,6 @@ export default defineConfig({
           transformers,
         },
       ],
-    ],
-    remarkPlugins: [
-      codeImport,
-      remarkGfm,
-      remarkMath,
-      [remarkInstall, { persist: { id: "package-manager" } }],
-      [remarkDocGen, { generators: [fileGenerator()] }],
     ],
   },
 })
