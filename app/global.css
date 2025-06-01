@@ -81,12 +81,7 @@
   --scroll-top-bg: var(--scroll-top-bg);
   --scroll-top-track: var(--scroll-top-track);
 
-  --color-surface: var(--surface);
-  --color-surface-foreground: var(--surface-foreground);
   --color-code: var(--code);
-  --color-code-foreground: var(--code-foreground);
-  --color-code-highlight: var(--code-highlight);
-  --color-code-number: var(--code-number);
 }
 
 :root {
@@ -159,12 +154,7 @@
   --scroll-top-bg: oklch(0.55 0.01 286 / 10%);
   --scroll-top-track: oklch(0.55 0.01 286 / 20%);
 
-  --surface: oklch(0.98 0 0);
-  --surface-foreground: var(--foreground);
-  --code: var(--surface);
-  --code-foreground: var(--surface-foreground);
-  --code-highlight: oklch(0.96 0 0);
-  --code-number: oklch(0.56 0 0);
+  --code: oklch(0.98 0 0);
 }
 
 .dark {
@@ -235,12 +225,7 @@
   --scroll-top-bg: oklch(0.92 0 286 / 15%);
   --scroll-top-track: oklch(0.92 0 286 / 20%);
 
-  --surface: oklch(0.2 0 0);
-  --surface-foreground: oklch(0.708 0 0);
-  --code: var(--surface);
-  --code-foreground: var(--surface-foreground);
-  --code-highlight: oklch(0.27 0 0);
-  --code-number: oklch(0.72 0 0);
+  --code: oklch(0.2 0 0);
 }
 
 @layer base {
@@ -329,4 +314,16 @@
 
 .dark [data-line-numbers] [data-line]::before {
   background-color: var(--color-fd-card);
+}
+
+[role="tabpanel"]:not(.component-block) figure {
+  @apply rounded-none!;
+
+  [data-line-numbers] [data-line] {
+    @apply px-4!;
+  }
+
+  [data-line-numbers] [data-line]::before {
+    @apply hidden!;
+  }
 }
