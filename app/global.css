@@ -256,7 +256,7 @@
     @apply rounded-lg!;
 
     & figure {
-      @apply rounded-t-none! my-0! border-none!;
+      @apply my-0!;
     }
   }
 }

@@ -6,7 +6,7 @@ import { CodeIcon, EyeIcon } from "lucide-react"
 import * as React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 
-interface ComponentTabsProps extends React.ComponentPropsWithoutRef<"div"> {
+interface ComponentPreviewProps extends React.ComponentPropsWithoutRef<"div"> {
   name: string
   children: React.ReactNode
   align?: "start" | "center" | "end"
@@ -15,7 +15,7 @@ interface ComponentTabsProps extends React.ComponentPropsWithoutRef<"div"> {
   fullPreview?: boolean
 }
 
-export function ComponentTabs({ name, children, className }: ComponentTabsProps) {
+export function ComponentPreview({ name, children, className }: ComponentPreviewProps) {
   const Codes = React.Children.toArray(children) as React.ReactElement[]
   const Code = Codes[0]
 
@@ -38,9 +38,9 @@ export function ComponentTabs({ name, children, className }: ComponentTabsProps)
   }, [name])
 
   return (
-    <div className={cn("rounded-lg border bg-background", className)}>
-      <Tabs defaultValue="preview" className="gap-0 not-prose">
-        <TabsList className="w-full rounded-b-none border-b text-muted-foreground">
+    <div className={cn("rounded-lg  bg-background", className)}>
+      <Tabs defaultValue="preview" className=" not-prose">
+        <TabsList className=" text-muted-foreground">
           <TabsTrigger value="preview">
             <EyeIcon size={16} />
             Preview
@@ -54,7 +54,7 @@ export function ComponentTabs({ name, children, className }: ComponentTabsProps)
 
         <TabsContent
           value="preview"
-          className="relative flex items-center justify-center p-6 min-h-[438px]"
+          className="relative border rounded-lg flex items-center justify-center p-6 min-h-[438px]"
         >
           <div className="-translate-y-px absolute top-4 right-0 left-0 border border-border/50 dark:border-border border-dashed" />
           <div className="absolute right-0 bottom-4 left-0 translate-y-px border border-border/50 dark:border-border border-dashed" />

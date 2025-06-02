@@ -82,7 +82,7 @@ export function rehypeComponent() {
         }
       }
 
-      if (node.name === "ComponentTabs") {
+      if (node.name === "ComponentPreview") {
         const name = getNodeAttributeByName(node, "name")?.value as string
 
         if (!name) {
