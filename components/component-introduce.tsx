@@ -1,23 +1,21 @@
 "use client"
 
 import { Cover } from "@/components/ui/cover"
+import { typography } from "@/lib/typography"
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
-import { Emilys_Candy } from "next/font/google"
 import React from "react"
-import { ContainerTextFlip } from "./ui/container-text-flip"
-
-const righteous = Emilys_Candy({ subsets: ["latin"], weight: "400" })
+import { MorphingText } from "./ui/morphing-text"
 
 export function ComponentIntroduce() {
-  const words = ["better", "modern", "beautiful", "awesome"]
-
   return (
     <div>
       <div className="relative max-w-7xl mx-auto text-center">
         <Cover>
           <span className="text-2xl md:text-3xl lg:text-4xl">₊˚✧ </span>
-          <span className={`${righteous.className} text-5xl md:text-6xl lg:text-7xl`}>Laviecn</span>
+          <span className={`${typography.EmilysCandy} text-5xl md:text-6xl lg:text-7xl`}>
+            Laviecn
+          </span>
           <span className="text-2xl md:text-3xl lg:text-4xl"> ✧˚₊</span>
         </Cover>
       </div>
@@ -32,7 +30,11 @@ export function ComponentIntroduce() {
         layout
       >
         <span className="inline-block font-bold ">
-          Make your websites look 10x <ContainerTextFlip words={words} />
+          Make your websites look 10x
+          <MorphingText
+            texts={["better", "modern", "beautiful", "awesome"]}
+            className="mt-5 text-5xl md:text-6xl lg:text-7xl"
+          />
         </span>
       </motion.div>
     </div>

@@ -1,8 +1,6 @@
+import { typography } from "@/lib/typography"
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared"
-import { Emilys_Candy } from "next/font/google"
 import Image from "next/image"
-
-const righteous = Emilys_Candy({ subsets: ["latin"], weight: "400" })
 
 /**
  * Shared layout configurations
@@ -17,7 +15,7 @@ export const baseOptions: BaseLayoutProps = {
       <>
         <Image src="/assets/logo.JPG" alt="Logo" width={24} height={24} className="rounded-full" />
         <div>
-          ₊˚✧ <span className={`${righteous.className} text-[24px]`}>Laviecn</span> ✧˚₊
+          ₊˚✧ <span className={`${typography.EmilysCandy} text-[24px]`}>Laviecn</span> ✧˚₊
         </div>
       </>
     ),
