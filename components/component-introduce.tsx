@@ -17,7 +17,7 @@ export function ComponentIntroduce() {
             animate={{ backgroundPosition: "-200% 0" }}
             transition={{
               repeat: Infinity,
-              duration: 5,
+              duration: 4,
               ease: "linear",
             }}
           >
