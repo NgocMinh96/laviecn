@@ -285,21 +285,22 @@
 }
 
 [data-line-numbers] [data-line]::before {
-  font-size: 13px;
+  font-size: 0.875rem;
   counter-increment: line;
   content: counter(line);
   display: inline-block;
   width: calc(var(--spacing) * 16);
   padding-right: calc(var(--spacing) * 6);
   text-align: right;
-  color: var(--color-muted-foreground);
-  background: #fafafa;
+  color: #a3a3a3;
+  background: var(--color-code);
   position: sticky;
   left: 0;
 }
 
 .dark [data-line-numbers] [data-line]::before {
-  background-color: var(--color-fd-card);
+  color: #525252;
+  background: var(--color-fd-card);
 }
 
 [role="tabpanel"]:not(.component-code-demo) figure {
