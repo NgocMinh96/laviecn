@@ -24,11 +24,11 @@ export function ComponentPreviewTabs({
         <div className="flex items-center justify-between">
           {!hideCode && (
             <TabsList className="border">
-              <TabsTrigger value="preview" className="dark:data-[state=active]:bg-fd-card">
+              <TabsTrigger value="preview" className="dark:data-[state=active]:bg-fd-card border-0">
                 <EyeIcon size={16} />
                 Preview
               </TabsTrigger>
-              <TabsTrigger value="code" className="dark:data-[state=active]:bg-fd-card">
+              <TabsTrigger value="code" className="dark:data-[state=active]:bg-fd-card border-0">
                 <CodeIcon size={16} />
                 Code
               </TabsTrigger>
