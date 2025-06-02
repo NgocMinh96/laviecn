@@ -264,7 +264,7 @@
     @apply dark:bg-fd-card! bg-neutral-50! border!;
 
     & svg {
-      @apply size-4! dark:text-muted-foreground!;
+      @apply size-4!;
     }
 
     & button {

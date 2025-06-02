@@ -81,7 +81,7 @@ function ComponentCode({
       data-rehype-pretty-code-figure=""
       className="relative outline-0 rounded-lg overflow-hidden [&>pre]:max-h-96"
     >
-      {title ? (
+      {title && (
         <div className="flex items-center gap-2 bg-fd-secondary px-4 py-3">
           <figcaption
             data-rehype-pretty-code-title=""
@@ -91,12 +91,9 @@ function ComponentCode({
             {getIconForLanguageExtension(language)}
             {title}
           </figcaption>
-          <CopyButton value={code} />
         </div>
-      ) : (
-        <CopyButton value={code} />
       )}
-
+      <CopyButton value={code} />
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   )
