@@ -26,7 +26,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       </CodeBlock>
     ),
     code: ({ ...props }: React.ComponentProps<"code">) => {
-      return <code data-line-numbers="">{props.children}</code>
+      if (typeof props.children === "object") {
+        return <code data-line-numbers="">{props.children}</code>
+      }
+      return <code>{props.children}</code>
     },
     span: ({ className, ...props }: React.ComponentProps<"span">) => {
       if (typeof className === "string" && className.includes("line")) {

@@ -1,3 +1,5 @@
+"use client"
+
 import { districts } from "@/data/districts"
 import { provinces } from "@/data/provinces"
 import { wards } from "@/data/wards"

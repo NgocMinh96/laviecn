@@ -1,3 +1,5 @@
+"use client"
+
 import { JsonTable } from "../components/json-table"
 
 const data = [

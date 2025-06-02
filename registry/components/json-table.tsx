@@ -199,10 +199,10 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
   }
 
   return (
-    <div className="rounded-md border overflow-hidden">
+    <div className="rounded-md border overflow-hidden not-prose">
       <ScrollArea>
         <Table>
-          <TableHeader className="bg-muted/50">
+          <TableHeader className="bg-muted/80">
             <TableRow>
               {columns.map(({ headerName }, i) => (
                 <TableHead key={i}>{headerName}</TableHead>

@@ -1,3 +1,5 @@
+"use client"
+
 import { HorizontalScrollMenu } from "../components/horizontal-scroll-menu"
 
 const menuItems = [

@@ -247,20 +247,6 @@
   }
 }
 
-@utility component-code-demo {
-  & pre {
-    @apply max-h-[400px] min-h-[400px];
-  }
-
-  [data-rehype-pretty-code-figure] {
-    @apply rounded-lg!;
-
-    & figure {
-      @apply my-0!;
-    }
-  }
-}
-
 @layer components {
   button[aria-label="Collapse Sidebar"] {
     @apply -my-0!;
@@ -275,7 +261,7 @@
   }
 
   figure {
-    @apply dark:bg-fd-card! bg-neutral-50!;
+    @apply dark:bg-fd-card! bg-neutral-50! border!;
 
     & svg {
       @apply size-4! dark:text-muted-foreground!;
