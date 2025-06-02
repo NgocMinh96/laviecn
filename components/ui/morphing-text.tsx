@@ -8,8 +8,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const morphTime = 1.5
-const cooldownTime = 0.5
+const morphTime = 0.75
+const cooldownTime = 2.5
 
 const useMorphingText = (texts: string[]) => {
   const textIndexRef = useRef(0)
@@ -125,12 +125,7 @@ const SvgFilters: React.FC = () => (
 )
 
 export const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
-  <div
-    className={cn(
-      "relative mx-auto w-full text-center leading-none [filter:url(#threshold)_blur(0.6px)]",
-      className
-    )}
-  >
+  <div className={cn("relative mx-auto w-full text-center leading-none", className)}>
     <Texts texts={texts} />
     <SvgFilters />
   </div>

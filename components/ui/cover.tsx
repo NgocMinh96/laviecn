@@ -1,13 +1,12 @@
 "use client"
 
 import { SparklesCore } from "@/components/ui/sparkles"
-import { cn } from "@/lib/utils"
 import { AnimatePresence, motion } from "motion/react"
 import React from "react"
 
 export const Cover = ({ children }: { children?: React.ReactNode; className?: string }) => {
   return (
-    <div className="relative hover:bg-neutral-800 group/cover inline-block dark:bg-neutral-800 bg-neutral-100 px-1 py-1 mt-2 transition duration-200 rounded-lg">
+    <div className="relative group/cover inline-block dark:bg-neutral-800 bg-neutral-800 px-1 py-1 mt-2 rounded-lg">
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}
@@ -54,16 +53,5 @@ export const Cover = ({ children }: { children?: React.ReactNode; className?: st
       </AnimatePresence>
       {children}
     </div>
-  )
-}
-
-export const CircleIcon = ({ className }: { className?: string; delay?: number }) => {
-  return (
-    <div
-      className={cn(
-        `pointer-events-none animate-pulse group-hover/cover:hidden group-hover/cover:opacity-100 group h-2 w-2 rounded-full bg-neutral-600 dark:bg-white opacity-20 group-hover/cover:bg-white`,
-        className
-      )}
-    ></div>
   )
 }
