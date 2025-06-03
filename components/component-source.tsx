@@ -81,7 +81,7 @@ function ComponentCode({
   return (
     <figure
       data-rehype-pretty-code-figure=""
-      className="relative outline-0 rounded-lg overflow-hidden [&>pre]:max-h-96"
+      className="relative outline-0 rounded-xl overflow-hidden [&>pre]:max-h-96"
     >
       {title && (
         <div className="flex items-center gap-2 bg-fd-secondary px-4 py-3">

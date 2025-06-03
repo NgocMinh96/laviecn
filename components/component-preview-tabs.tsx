@@ -42,13 +42,9 @@ export function ComponentPreviewTabs({
         <div
           data-slot="preview"
           data-active={tab === "preview"}
-          className="invisible data-[active=true]:visible border-1 rounded-lg"
+          className="invisible data-[active=true]:visible border rounded-xl p-1.25"
         >
-          <div className="flex min-h-[450px] items-center justify-center p-6 md:p-10">
-            <div className="-translate-y-px absolute top-3 md:top-5 right-0 left-0 border border-border/50 dark:border-border border-dashed" />
-            <div className="absolute right-0 bottom-3 md:bottom-5 left-0 translate-y-px border border-border/50 dark:border-border border-dashed" />
-            <div className="-translate-x-px absolute top-0 bottom-0 left-3 md:left-5 border border-border/50 dark:border-border border-dashed" />
-            <div className="absolute top-0 right-3 md:right-5 bottom-0 translate-x-px border border-border/50 dark:border-border border-dashed" />
+          <div className="flex min-h-[450px] items-center justify-center rounded-lg p-6 md:p-10 shadow-[0px_0px_10px_2px_#e5e5e5] dark:shadow-[0px_0px_10px_2px_#2D2D2D]">
             {component}
           </div>
         </div>
