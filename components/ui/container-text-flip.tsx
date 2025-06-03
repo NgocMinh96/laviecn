@@ -1,8 +1,9 @@
 "use client"
 
-import { cn } from "@/lib/utils"
-import { motion } from "motion/react"
 import React, { useEffect, useId, useState } from "react"
+import { motion } from "motion/react"
+
+import { cn } from "@/lib/utils"
 
 export interface ContainerTextFlipProps {
   /** Array of words to cycle through in the animation */

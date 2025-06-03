@@ -1,5 +1,6 @@
-import { Index } from "@/__registry__"
 import * as React from "react"
+import { Index } from "@/__registry__"
+
 import { ComponentPreviewTabs } from "./component-preview-tabs"
 import { ComponentSource } from "./component-source"
 

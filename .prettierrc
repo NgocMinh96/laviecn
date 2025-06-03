@@ -6,9 +6,26 @@
   "printWidth": 100,
   "trailingComma": "es5",
   "tailwindStylesheet": "./app/globals.css",
-  "plugins": [
-    "prettier-plugin-tailwindcss",
-    "@ianvs/prettier-plugin-sort-imports"
-  ],
-  "tailwindFunctions": ["cva", "clsx"]
+  "plugins": ["prettier-plugin-tailwindcss", "@ianvs/prettier-plugin-sort-imports"],
+  "tailwindFunctions": ["cva", "clsx"],
+  "importOrder": [
+    "^(react/(.*)$)|^(react$)",
+    "^(next/(.*)$)|^(next$)",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^@workspace/(.*)$",
+    "",
+    "^types$",
+    "^@/types/(.*)$",
+    "^@/config/(.*)$",
+    "^@/lib/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/components/ui/(.*)$",
+    "^@/components/(.*)$",
+    "^@/registry/(.*)$",
+    "^@/styles/(.*)$",
+    "^@/app/(.*)$",
+    "",
+    "^[./]"
+  ]
 }

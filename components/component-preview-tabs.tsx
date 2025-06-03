@@ -1,8 +1,10 @@
 "use client"
 
-import { cn } from "@/lib/utils"
-import { CodeIcon, EyeIcon } from "lucide-react"
 import * as React from "react"
+import { CodeIcon, EyeIcon } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
 
 export function ComponentPreviewTabs({

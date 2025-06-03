@@ -1,9 +1,11 @@
 "use client"
 
+import * as React from "react"
+import { Check, Copy } from "lucide-react"
+
 import { Event, trackEvent } from "@/lib/events"
 import { cn } from "@/lib/utils"
-import { Check, Copy } from "lucide-react"
-import * as React from "react"
+
 import { Button } from "./ui/button"
 
 export function copyToClipboardWithMeta(value: string, event?: Event) {

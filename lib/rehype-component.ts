@@ -7,6 +7,7 @@ import path from "node:path"
 import { Index } from "@/__registry__"
 import { u } from "unist-builder"
 import { visit } from "unist-util-visit"
+
 import type { UnistNode, UnistTree } from "../types/unist"
 
 export function rehypeComponent() {

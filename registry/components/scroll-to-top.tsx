@@ -1,8 +1,8 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { ChevronUp } from "lucide-react"
 import { motion } from "motion/react"
-import { useEffect, useState } from "react"
 
 type ScrollToTopProps = { size?: number }
 

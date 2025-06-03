@@ -1,8 +1,9 @@
 "use client"
 
-import { SparklesCore } from "@/components/ui/sparkles"
-import { AnimatePresence, motion } from "motion/react"
 import React from "react"
+import { AnimatePresence, motion } from "motion/react"
+
+import { SparklesCore } from "@/components/ui/sparkles"
 
 export const Cover = ({ children }: { children?: React.ReactNode; className?: string }) => {
   return (

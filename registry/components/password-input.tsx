@@ -1,10 +1,11 @@
 "use client"
 
+import { forwardRef, useState } from "react"
+import { Eye, EyeOff } from "lucide-react"
+
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
-import { Eye, EyeOff } from "lucide-react"
-import { forwardRef, useState } from "react"
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 

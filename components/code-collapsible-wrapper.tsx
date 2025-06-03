@@ -1,7 +1,9 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
 import { Button } from "./ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { Separator } from "./ui/separator"

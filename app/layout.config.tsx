@@ -1,6 +1,7 @@
-import { typography } from "@/lib/typography"
-import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared"
 import Image from "next/image"
+import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared"
+
+import { typography } from "@/lib/typography"
 
 /**
  * Shared layout configurations

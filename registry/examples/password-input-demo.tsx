@@ -1,7 +1,9 @@
 "use client"
 
-import { Form, FormControl, FormField } from "@/components/ui/form"
 import { useForm } from "react-hook-form"
+
+import { Form, FormControl, FormField } from "@/components/ui/form"
+
 import { PasswordInput } from "../components/password-input"
 
 export default function PasswordInputDemo() {

@@ -1,10 +1,11 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { forwardRef, useRef, type ComponentProps, type HTMLAttributes, type ReactNode } from "react"
 import { useCopyButton } from "@/utils/use-copy-button"
 import { Check, Copy } from "lucide-react"
-import { forwardRef, useRef, type ComponentProps, type HTMLAttributes, type ReactNode } from "react"
+
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 export type CodeBlockProps = HTMLAttributes<HTMLElement> & {
   /**

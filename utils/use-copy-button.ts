@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffectEvent } from "fumadocs-core/utils/use-effect-event"
 import { useEffect, useRef, useState, type MouseEventHandler } from "react"
+import { useEffectEvent } from "fumadocs-core/utils/use-effect-event"
 
 export function useCopyButton(
   onCopy: () => void | Promise<void>

@@ -1,7 +1,9 @@
+// file: components/MorphingText.tsx
+
 "use client"
 
-import { clsx, type ClassValue } from "clsx"
 import { useCallback, useEffect, useRef } from "react"
+import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -43,17 +45,13 @@ const useMorphingText = (texts: string[]) => {
     cooldownRef.current = 0
 
     let fraction = morphRef.current / morphTime
-
     if (fraction > 1) {
       cooldownRef.current = cooldownTime
       fraction = 1
     }
 
     setStyles(fraction)
-
-    if (fraction === 1) {
-      textIndexRef.current++
-    }
+    if (fraction === 1) textIndexRef.current++
   }, [setStyles])
 
   const doCooldown = useCallback(() => {
@@ -72,11 +70,9 @@ const useMorphingText = (texts: string[]) => {
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate)
-
       const newTime = new Date()
       const dt = (newTime.getTime() - timeRef.current.getTime()) / 1000
       timeRef.current = newTime
-
       cooldownRef.current -= dt
 
       if (cooldownRef.current <= 0) doMorph()
@@ -84,9 +80,7 @@ const useMorphingText = (texts: string[]) => {
     }
 
     animate()
-    return () => {
-      cancelAnimationFrame(animationFrameId)
-    }
+    return () => cancelAnimationFrame(animationFrameId)
   }, [doMorph, doCooldown])
 
   return { text1Ref, text2Ref }
@@ -100,34 +94,12 @@ interface MorphingTextProps {
 const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({ texts }) => {
   const { text1Ref, text2Ref } = useMorphingText(texts)
   return (
-    <>
-      <span className="absolute inset-x-0 top-0 m-auto inline-block w-full" ref={text1Ref} />
-      <span className="absolute inset-x-0 top-0 m-auto inline-block w-full" ref={text2Ref} />
-    </>
+    <div className="relative inline-block min-w-[100px] md:min-w-[130px] lg:min-w-[180px]">
+      <span className="absolute left-0 inline-block" ref={text1Ref} />
+      <span className="absolute left-0 inline-block" ref={text2Ref} />
+    </div>
   )
 }
 
-const SvgFilters: React.FC = () => (
-  <svg id="filters" className="fixed h-0 w-0" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <filter id="threshold">
-        <feColorMatrix
-          in="SourceGraphic"
-          type="matrix"
-          values="1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  0 0 0 255 -140"
-        />
-      </filter>
-    </defs>
-  </svg>
-)
-
-export const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
-  <div className={cn("relative mx-auto w-full text-center leading-none", className)}>
-    <Texts texts={texts} />
-    <SvgFilters />
-  </div>
-)
+export const MorphingText: React.FC<MorphingTextProps> = ({ texts }) => <Texts texts={texts} />
 MorphingText.displayName = "MorphingText"

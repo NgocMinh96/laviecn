@@ -1,9 +1,10 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 const SCROLL_AMOUNT = 200
 const SCROLL_MULTIPLIER = 1.5

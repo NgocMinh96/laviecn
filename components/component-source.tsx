@@ -1,10 +1,12 @@
 import fs from "node:fs/promises"
 import path from "node:path"
-import { CopyButton } from "@/components/copy-button"
+import * as React from "react"
+
 import { highlightCode } from "@/lib/highlight-code"
 import { getRegistryItem } from "@/lib/registry"
 import { cn } from "@/lib/utils"
-import * as React from "react"
+import { CopyButton } from "@/components/copy-button"
+
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import { getIconForLanguageExtension } from "./icons"
 
