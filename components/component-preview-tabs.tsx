@@ -5,6 +5,7 @@ import { CodeIcon, EyeIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+import { GlowingEffect } from "./ui/glowing-effect"
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
 
 export function ComponentPreviewTabs({
@@ -44,6 +45,15 @@ export function ComponentPreviewTabs({
           data-active={tab === "preview"}
           className="invisible data-[active=true]:visible border rounded-xl p-1.25"
         >
+          <GlowingEffect
+            blur={4}
+            borderWidth={1}
+            spread={80}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+          />
           <div className="flex min-h-[450px] items-center justify-center rounded-lg p-6 md:p-10 shadow-[0px_0px_10px_2px_#e5e5e5] dark:shadow-[0px_0px_10px_2px_#2D2D2D]">
             {component}
           </div>
