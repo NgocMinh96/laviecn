@@ -235,6 +235,10 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  article:has(.component-introduce) {
+    @apply pt-0!;
+  }
 }
 
 /* -------------- CUSTOM -------------- */

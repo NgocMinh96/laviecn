@@ -18,7 +18,7 @@ export function ComponentsList() {
   ]
 
   return (
-    <div className="mt-12 space-y-8">
+    <div className="space-y-8">
       {groups.map(
         (group) =>
           group.items.length > 0 && (
