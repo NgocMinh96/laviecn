@@ -1,5 +1,5 @@
 import Image from "next/image"
-import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared"
+import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared"
 
 import { typography } from "@/lib/typography"
 
@@ -16,23 +16,20 @@ export const baseOptions: BaseLayoutProps = {
       <>
         <Image src="/assets/logo.JPG" alt="Logo" width={24} height={24} className="rounded-full" />
         <div>
-          ₊˚✧ <span className={`${typography.EmilysCandy} text-[24px]`}>Laviecn</span> ✧˚₊
+          <span className="text-[12px]">₊˚✧ </span>
+          <span className={`${typography.EmilysCandy} text-[24px]`}>Laviecn</span>
+          <span className="text-[12px]"> ✧˚₊</span>
         </div>
       </>
     ),
+    transparentMode: "top",
   },
-  links: [
-    // {
-    //   text: 'Documentation',
-    //   url: '/docs',
-    //   active: 'nested-url',
-    // },
-    {
-      type: "icon",
-      url: "",
-      text: "",
-      icon: "ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧",
-      external: false,
-    },
-  ],
 }
+
+export const linkItems: LinkItemType[] = [
+  {
+    text: "Components",
+    url: "/docs",
+    active: "nested-url",
+  },
+]
