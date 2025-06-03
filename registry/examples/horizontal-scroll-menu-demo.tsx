@@ -18,11 +18,18 @@ const menuItems = [
 
 export default function HorizontalScrollMenuDemo() {
   return (
-    <HorizontalScrollMenu
-      menu={menuItems}
-      selected="music"
-      onFilterChange={(filter) => console.log("Selected:", filter)}
-      showScrollButton
-    />
+    <div className="flex flex-col items-center gap-8 w-full">
+      <HorizontalScrollMenu
+        menu={menuItems}
+        selected="music"
+        onFilterChange={(filter) => console.log("Selected:", filter)}
+      />
+      <HorizontalScrollMenu
+        menu={menuItems}
+        selected="music"
+        onFilterChange={(filter) => console.log("Selected:", filter)}
+        showScrollButton
+      />
+    </div>
   )
 }
