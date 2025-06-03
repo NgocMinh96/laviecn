@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { source } from "@/lib/source"
+import { cn } from "@/lib/utils"
 
 export function ComponentsList() {
   const components = source.pageTree
@@ -26,12 +27,17 @@ export function ComponentsList() {
               <div className="mb-4 text-xl font-medium">{group.title}</div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 lg:gap-x-16 lg:gap-y-6 xl:gap-x-20">
                 {group.items.map((component) => (
-                  <Link
-                    key={component.$id}
-                    href={component.url}
-                    className="not-prose text-lg text-muted-foreground font-medium underline-offset-4 hover:underline md:text-base"
-                  >
-                    {component.name}
+                  <Link key={component.$id} href={component.url}>
+                    <span
+                      className={cn(
+                        "not-prose text-lg font-medium text-muted-foreground hover:text-foreground md:text-base",
+                        "relative inline-block hover:after:origin-left hover:after:scale-x-100",
+                        "after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:scale-x-0 after:bg-primary",
+                        "after:transition-transform after:duration-300 after:ease-in-out after:origin-right"
+                      )}
+                    >
+                      {component.name}
+                    </span>
                   </Link>
                 ))}
               </div>
