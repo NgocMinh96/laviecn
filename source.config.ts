@@ -32,6 +32,7 @@ export default defineConfig({
           typesCache: createFileSystemTypesCache(),
         }),
         transformerRemoveNotationEscape(),
+        ...transformers,
       ],
     },
     remarkCodeTabOptions: {
@@ -59,7 +60,6 @@ export default defineConfig({
             getHighlighter({
               themes: ["one-dark-pro", "one-light"],
             }),
-          transformers,
         },
       ],
     ],
