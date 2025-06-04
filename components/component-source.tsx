@@ -87,7 +87,7 @@ function ComponentCode({
         <div className="flex items-center gap-2 bg-fd-secondary px-4 py-3">
           <figcaption
             data-rehype-pretty-code-title=""
-            className="mt-0 text-sm bg-muted text-muted-foreground! [&_svg]:text-muted-foreground! flex items-center gap-2 [&_svg]:size-3.5 [&_svg]:opacity-50"
+            className="mt-0 text-sm bg-muted text-muted-foreground! flex items-center gap-2 [&_svg]:size-3.5"
             data-language={language}
           >
             {getIconForLanguageExtension(language)}

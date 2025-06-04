@@ -31,7 +31,7 @@ function Footer() {
               target="_blank"
               className="font-medium"
             >
-              minh nguyen
+              MinhPC
             </a>
           </p>
         </div>

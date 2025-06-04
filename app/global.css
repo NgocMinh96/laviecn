@@ -253,7 +253,7 @@
 
 @layer components {
   button[aria-label="Collapse Sidebar"] {
-    @apply -my-0!;
+    @apply mb-0! size-8!;
   }
 
   [data-line] span {

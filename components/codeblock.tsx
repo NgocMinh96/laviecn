@@ -7,6 +7,8 @@ import { Check, Copy } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
+import { getIconForLanguageExtension } from "./icons"
+
 export type CodeBlockProps = HTMLAttributes<HTMLElement> & {
   /**
    * Icon of code block
@@ -71,6 +73,8 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 
       void navigator.clipboard.writeText(clone.textContent ?? "")
     }
+
+    icon = title?.includes(".css") ? getIconForLanguageExtension("postcss") : icon
 
     return (
       <figure
