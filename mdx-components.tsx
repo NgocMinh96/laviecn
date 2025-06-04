@@ -4,6 +4,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs"
 import defaultComponents from "fumadocs-ui/mdx"
 import type { MDXComponents } from "mdx/types"
 
+import { ComponentInstall } from "@/components/component-install"
 import { ComponentIntroduce } from "@/components/component-introduce"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
@@ -21,8 +22,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Steps,
     ComponentsList,
     ComponentSource,
+    ComponentInstall,
     ComponentPreview,
     ComponentIntroduce,
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     pre: ({ ref: _ref, ...props }) => (
       <CodeBlock {...props}>

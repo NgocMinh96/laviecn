@@ -307,7 +307,7 @@
   background: var(--color-fd-card);
 }
 
-[role="tabpanel"]:not(.component-code-demo) figure {
+[role="tabpanel"] figure {
   @apply rounded-none!;
 
   [data-line-numbers] [data-line] {
