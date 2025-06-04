@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "registry/examples/sotienthanhchu-demo.tsx",
-      "content": "import { Input } from \"@/components/ui/input\"\nimport { useState } from \"react\"\nimport { SoTienThanhChu } from \"../utils/sotienthanhchu\"\n\nexport function SoTienThanhChuDemo() {\n  const [value, setValue] = useState<number | string>(\"\")\n\n  return (\n    <div>\n      <div className=\"w-full\">\n        <Input\n          value={value ?? \"\"}\n          onChange={(e) => setValue(e.target.value)}\n          placeholder=\"Nhập số tiền\"\n          className=\"w-2xs\"\n        />\n        <div className=\"text-sm w-2xs mt-2\">{SoTienThanhChu(value)}</div>\n      </div>\n    </div>\n  )\n}\n",
+      "content": "\"use client\"\r\n\r\nimport { useState } from \"react\"\r\n\r\nimport { Input } from \"@/components/ui/input\"\r\n\r\nimport { SoTienThanhChu } from \"../utils/sotienthanhchu\"\r\n\r\nexport function SoTienThanhChuDemo() {\r\n  const [value, setValue] = useState<number | string>(\"\")\r\n\r\n  return (\r\n    <div>\r\n      <div className=\"w-full\">\r\n        <Input\r\n          value={value ?? \"\"}\r\n          onChange={(e) => setValue(e.target.value)}\r\n          placeholder=\"Nhập số tiền\"\r\n          className=\"w-2xs\"\r\n        />\r\n        <div className=\"text-sm w-2xs mt-2\">{SoTienThanhChu(value)}</div>\r\n      </div>\r\n    </div>\r\n  )\r\n}\r\n",
       "type": "registry:example"
     }
   ]
