@@ -1,21 +1,6 @@
 import { codeToHtml, type ShikiTransformer } from "shiki"
 
-export const transformers = [
-  {
-    code(node) {
-      if (node.tagName === "code") {
-        node.properties["data-line-numbers"] = ""
-        // Add an empty line span at the end
-        node.children.push({
-          type: "element",
-          tagName: "span",
-          properties: { className: "line mb-2", "data-line": "" },
-          children: [],
-        })
-      }
-    },
-  },
-] as ShikiTransformer[]
+export const transformers = [{}] as ShikiTransformer[]
 
 export async function highlightCode(code: string, language: string = "tsx") {
   const html = await codeToHtml(code, {

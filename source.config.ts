@@ -1,4 +1,3 @@
-import { getHighlighter } from "@shikijs/compat"
 import { transformerRemoveNotationEscape } from "@shikijs/transformers"
 import { rehypeCode, rehypeCodeDefaultOptions, remarkGfm } from "fumadocs-core/mdx-plugins"
 import { fileGenerator, remarkDocGen, remarkInstall } from "fumadocs-docgen"
@@ -45,24 +44,7 @@ export default defineConfig({
       [remarkInstall, { persist: { id: "package-manager" } }],
       [remarkDocGen, { generators: [fileGenerator()] }],
     ],
-    rehypePlugins: [
-      rehypeCode,
-      rehypeSlug,
-      rehypeComponent,
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            dark: "one-dark-pro",
-            light: "one-light",
-          },
-          createHighlighter: () =>
-            getHighlighter({
-              themes: ["one-dark-pro", "one-light"],
-            }),
-        },
-      ],
-    ],
+    rehypePlugins: [rehypeCode, rehypeSlug, rehypeComponent, rehypePrettyCode],
   },
 })
 
