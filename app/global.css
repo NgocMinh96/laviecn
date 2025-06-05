@@ -306,3 +306,16 @@
   color: #525252;
   background: var(--color-fd-card);
 }
+
+@keyframes bg-shine {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.bg-shine {
+  animation: bg-shine 2.5s linear infinite;
+}
