@@ -9,8 +9,8 @@ export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col justify-center text-center">
       <div className="container flex flex-col items-center gap-2 py-8 text-center md:py-16 lg:py-20 xl:gap-4">
-        <h1 className="relative z-20 bg-gradient-to-b from-neutral-900 to-neutral-700 bg-clip-text py-2 text-center font-sans text-4xl font-bold tracking-tight text-transparent lg:text-5xl dark:from-neutral-600 dark:to-white">
-          Open components for the Shadcn ecosystem
+        <h1 className="relative z-20 bg-gradient-to-b from-neutral-900 to-neutral-600 bg-clip-text py-2 text-center font-sans text-4xl font-bold tracking-tight text-transparent md:text-5xl lg:text-5xl dark:from-white dark:to-neutral-600">
+          Open components for Shadcn ecosystem
         </h1>
         <p className="text-muted-foreground max-w-3xl text-base text-balance sm:text-lg">
           A set of open-source, accessible components built with TypeScript,
