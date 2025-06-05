@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "Components",
     "shadcn",
   ],
-  creator: "MinhPC",
+  creator: "minhpc",
   icons: {
     icon: "assets/logo.JPG",
   },
