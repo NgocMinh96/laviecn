@@ -27,3 +27,48 @@ title: Horizontal Scroll Menu
 
   </Step>
 </Steps>
+
+## Props
+
+### HorizontalScrollMenuProps
+
+<TypeTable
+  type={{
+    showScrollButton: {
+      description: "",
+      type: "boolean",
+      default: "false",
+      required: false,
+    },
+    onFilterChange: {
+      description: "",
+      type: "(filter: string) => void",
+      required: false,
+    },
+    selected: {
+      description: "",
+      type: "string",
+      required: false,
+    },
+    menu: {
+      description: "",
+      type: "MenuItem[]",
+      required: true,
+    },
+  }}
+/>
+
+### MenuItem
+
+<TypeTable
+  type={{
+    name: {
+      type: "string",
+      required: true,
+    },
+    id: {
+      type: "string",
+      required: true,
+    },
+  }}
+/>

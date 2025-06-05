@@ -27,3 +27,137 @@ title: Multiple Selector
 
   </Step>
 </Steps>
+
+## Props
+
+### MultipleSelectorProps
+
+<TypeTable
+  type={{
+    value: {
+      type: "Option[]",
+      required: false,
+      description: "Selected options (controlled mode)",
+    },
+    defaultOptions: {
+      type: "Option[]",
+      required: false,
+      description: "Default options on mount",
+    },
+    options: {
+      type: "Option[]",
+      required: false,
+      description: "Manually controlled options",
+    },
+    placeholder: {
+      type: "string",
+      required: false,
+      description: "Input placeholder",
+    },
+    loadingIndicator: {
+      type: "React.ReactNode",
+      required: false,
+      description: "Loading component.",
+    },
+    emptyIndicator: {
+      type: "React.ReactNode",
+      required: false,
+      description: "Empty component.",
+    },
+    delay: {
+      type: "number",
+      required: false,
+      description: "Debounce time for async search. Only work with `onSearch`.",
+    },
+    triggerSearchOnFocus: {
+      type: "boolean",
+      required: false,
+      description:
+        "Only work with `onSearch` prop. Trigger search when `onFocus`.",
+    },
+    onSearch: {
+      type: "(value: string) => Promise<Option[]>",
+      required: false,
+      description: "Async search",
+    },
+    onSearchSync: {
+      type: "(value: string) => Option[]",
+      required: false,
+      description:
+        "Sync search. This search will not showing loadingIndicator.",
+    },
+    onChange: {
+      type: "(options: Option[]) => void",
+      required: false,
+      description: "Callback when selected options change.",
+    },
+    maxSelected: {
+      type: "number",
+      required: false,
+      description: "Limit the maximum number of selected options.",
+    },
+    onMaxSelected: {
+      type: "(maxLimit: number) => void",
+      required: false,
+      description:
+        "Called when the number of selected options exceeds the limit.",
+    },
+    hidePlaceholderWhenSelected: {
+      type: "boolean",
+      required: false,
+      description: "Hide the placeholder when there are options selected.",
+    },
+    disabled: {
+      type: "boolean",
+      required: false,
+      description: "Disable selector.",
+    },
+    groupBy: {
+      type: "string",
+      required: false,
+      description: "Group the options base on provided key.",
+    },
+    className: {
+      type: "string",
+      required: false,
+      description: "ClassName for component.",
+    },
+    badgeClassName: {
+      type: "string",
+      required: false,
+      description: "ClassName for badge option.",
+    },
+    selectFirstItem: {
+      type: "boolean",
+      required: false,
+      description:
+        "First item selected is a default behavior by cmdk. That is why the default is true.",
+    },
+    creatable: {
+      type: "boolean",
+      required: false,
+      description:
+        "Allow user to create option when there is no option matched.",
+    },
+    commandProps: {
+      type: "React.ComponentPropsWithoutRef<typeof Command>",
+      required: false,
+      description: "Props of `Command`.",
+    },
+    inputProps: {
+      type: "Omit<React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>, 'value' | 'placeholder' | 'disabled'>",
+      required: false,
+      description: "Props of `CommandInput`.",
+    },
+    hideClearAllButton: {
+      type: "boolean",
+      required: false,
+      description: "Hide the clear all button.",
+    },
+    size: {
+      type: '"sm" | "md"',
+      required: false,
+      description: "Size of the input.",
+    },
+  }}
+/>
