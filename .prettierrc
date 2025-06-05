@@ -6,7 +6,10 @@
   "printWidth": 100,
   "trailingComma": "es5",
   "tailwindStylesheet": "./app/globals.css",
-  "plugins": ["prettier-plugin-tailwindcss", "@ianvs/prettier-plugin-sort-imports"],
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
   "tailwindFunctions": ["cva", "clsx"],
   "importOrder": [
     "^(react/(.*)$)|^(react$)",
