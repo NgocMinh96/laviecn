@@ -239,6 +239,10 @@
   article:has(.component-introduce) {
     @apply pt-0!;
   }
+
+  header#nd-nav {
+    @apply backdrop-blur-none! md:border-b-0!;
+  }
 }
 
 /* -------------- CUSTOM -------------- */
