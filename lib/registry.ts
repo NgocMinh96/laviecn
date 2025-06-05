@@ -19,7 +19,9 @@ export async function getRegistryItem(name: string) {
 
   // Convert all file paths to object.
   // TODO: remove when we migrate to new registry.
-  item.files = item.files.map((file: unknown) => (typeof file === "string" ? { path: file } : file))
+  item.files = item.files.map((file: unknown) =>
+    typeof file === "string" ? { path: file } : file
+  )
 
   // Fail early before doing expensive file operations.
   const result = registryItemSchema.safeParse(item)
@@ -142,7 +144,12 @@ function fixFilePaths(files: z.infer<typeof registryItemSchema>["files"]) {
 export function fixImport(content: string) {
   const regex = /@\/(.+?)\/((?:.*?\/)?(?:components|ui|hooks|lib))\/([\w-]+)/g
 
-  const replacement = (match: string, path: string, type: string, component: string) => {
+  const replacement = (
+    match: string,
+    path: string,
+    type: string,
+    component: string
+  ) => {
     if (type.endsWith("components")) {
       return `@/components/${component}`
     } else if (type.endsWith("ui")) {
@@ -189,7 +196,9 @@ export function createFileTreeForRegistryItemFiles(
           currentLevel = existingNode.children!
         }
       } else {
-        const newNode: FileTree = isFile ? { name: part, path } : { name: part, children: [] }
+        const newNode: FileTree = isFile
+          ? { name: part, path }
+          : { name: part, children: [] }
 
         currentLevel.push(newNode)
 

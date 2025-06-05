@@ -41,7 +41,10 @@ export function CopyButton({
       data-slot="copy-button"
       size="icon"
       variant={variant}
-      className={cn("absolute top-1 right-1 z-10 text-muted-foreground", className)}
+      className={cn(
+        "text-muted-foreground absolute top-1 right-1 z-10",
+        className
+      )}
       onClick={() => {
         copyToClipboardWithMeta(
           value,
@@ -58,7 +61,9 @@ export function CopyButton({
       }}
       {...props}
     >
-      <Copy className={cn("absolute transition-transform", hasCopied && "scale-0")} />
+      <Copy
+        className={cn("absolute transition-transform", hasCopied && "scale-0")}
+      />
       <Check className={cn("transition-transform", !hasCopied && "scale-0")} />
     </Button>
   )

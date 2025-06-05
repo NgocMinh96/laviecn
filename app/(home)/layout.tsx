@@ -15,15 +15,17 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 function Footer() {
   return (
-    <footer className="mt-auto py-5 text-fd-secondary-foreground">
+    <footer className="text-fd-secondary-foreground mt-auto py-5">
       <div className="container flex flex-col items-center gap-4">
         <div className="flex flex-col items-center">
           <p className="mb-1 text-sm font-semibold">
             <span className="text-[8px]">₊˚✧ </span>
-            <span className={`${typography.EmilysCandy} text-[16px]`}>Laviecn</span>
+            <span className={`${typography.EmilysCandy} text-[16px]`}>
+              Laviecn
+            </span>
             <span className="text-[8px]"> ✧˚₊</span>
           </p>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             Built with ❤️ by{" "}
             <a
               href="https://fuma-dev.vercel.app"

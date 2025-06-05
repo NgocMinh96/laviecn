@@ -5,7 +5,11 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 import { Button } from "./ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible"
 import { Separator } from "./ui/separator"
 
 export function CodeCollapsibleWrapper({
@@ -24,7 +28,11 @@ export function CodeCollapsibleWrapper({
     >
       <CollapsibleTrigger asChild>
         <div className="absolute top-2 right-9 z-10 flex items-center">
-          <Button variant="ghost" size="sm" className="text-muted-foreground h-7 rounded-md px-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-muted-foreground h-7 rounded-md px-2"
+          >
             {isOpened ? "Collapse" : "Expand"}
           </Button>
           <Separator orientation="vertical" className="mx-1.5 !h-4" />
@@ -36,7 +44,7 @@ export function CodeCollapsibleWrapper({
       >
         {children}
       </CollapsibleContent>
-      <CollapsibleTrigger className="border border-t-0 from-code/70 to-code text-muted-foreground absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b text-sm group-data-[state=open]/collapsible:hidden">
+      <CollapsibleTrigger className="from-code/70 to-code text-muted-foreground absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg border border-t-0 bg-gradient-to-b text-sm group-data-[state=open]/collapsible:hidden">
         {isOpened ? "Collapse" : "Expand"}
       </CollapsibleTrigger>
     </Collapsible>

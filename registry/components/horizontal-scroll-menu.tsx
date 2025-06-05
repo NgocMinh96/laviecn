@@ -117,7 +117,8 @@ export function HorizontalScrollMenu({
   showScrollButton = false,
 }: HorizontalScrollMenuProps) {
   const [selectedFilter, setSelectedFilter] = useState(selected)
-  const { scrollContainerRef, scrollState, scroll, handleMouseDown } = useHorizontalScroll()
+  const { scrollContainerRef, scrollState, scroll, handleMouseDown } =
+    useHorizontalScroll()
 
   const handleFilterChange = useCallback(
     (filter: string) => {
@@ -130,20 +131,21 @@ export function HorizontalScrollMenu({
   const buttonVariants = useMemo(
     () => ({
       selected: "default",
-      unselected: "bg-secondary text-secondary-foreground hover:bg-secondary/50",
+      unselected:
+        "bg-secondary text-secondary-foreground hover:bg-secondary/50",
     }),
     []
   )
 
   return (
     <div className="relative w-full">
-      <div className="container relative flex h-10 items-center justify-center px-3">
+      <div className="relative container flex h-10 items-center justify-center px-3">
         {showScrollButton && (
           <Button
             variant="secondary"
             size="icon"
             className={cn(
-              "bg-background hover:bg-background rounded-full absolute left-0 z-10 h-8 w-8",
+              "bg-background hover:bg-background absolute left-0 z-10 h-8 w-8 rounded-full",
               !scrollState.canScrollLeft && "hidden"
             )}
             onClick={() => scroll("left")}
@@ -154,7 +156,7 @@ export function HorizontalScrollMenu({
 
         <div
           ref={scrollContainerRef}
-          className="w-full overflow-x-auto scrollbar-none"
+          className="scrollbar-none w-full overflow-x-auto"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -167,8 +169,10 @@ export function HorizontalScrollMenu({
                 key={item.id}
                 variant={selectedFilter === item.id ? "default" : "ghost"}
                 className={cn(
-                  "text-sm font-medium whitespace-nowrap h-8",
-                  selectedFilter === item.id ? buttonVariants.selected : buttonVariants.unselected
+                  "h-8 text-sm font-medium whitespace-nowrap",
+                  selectedFilter === item.id
+                    ? buttonVariants.selected
+                    : buttonVariants.unselected
                 )}
                 onClick={() => handleFilterChange(item.id)}
               >
@@ -183,7 +187,7 @@ export function HorizontalScrollMenu({
             variant="secondary"
             size="icon"
             className={cn(
-              "bg-background hover:bg-background rounded-full absolute right-0 z-10 h-8 w-8",
+              "bg-background hover:bg-background absolute right-0 z-10 h-8 w-8 rounded-full",
               !scrollState.canScrollRight && "hidden"
             )}
             onClick={() => scroll("right")}

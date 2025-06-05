@@ -20,7 +20,8 @@ export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight
       const progress = Math.min(scrollTop / docHeight, 1)
       setOffset(progress >= 0.999 ? 0 : circumference * (1 - progress))
       setIsVisible(scrollTop > 100)
@@ -38,7 +39,8 @@ export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
-  const svgStyle = "fixed bottom-4 right-4 z-50 cursor-pointer transition-opacity duration-300"
+  const svgStyle =
+    "fixed bottom-4 right-4 z-50 cursor-pointer transition-opacity duration-300"
   const visibleStyle = isVisible
     ? "opacity-100 pointer-events-auto"
     : "opacity-0 pointer-events-none"
@@ -57,7 +59,11 @@ export default function ScrollToTop({ size = 44 }: ScrollToTopProps) {
         cy={center}
         r={r}
         transform={`rotate(-90 ${center} ${center})`}
-        style={{ fill: "var(--scroll-top-bg)", stroke: "var(--scroll-top-track)", strokeWidth: 2 }}
+        style={{
+          fill: "var(--scroll-top-bg)",
+          stroke: "var(--scroll-top-track)",
+          strokeWidth: 2,
+        }}
       />
       <motion.circle
         cx={center}

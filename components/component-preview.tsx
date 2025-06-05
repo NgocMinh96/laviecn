@@ -33,7 +33,9 @@ export function ComponentPreview({
       // align={align}
       hideCode={hideCode}
       component={<Component key={name} />}
-      source={<ComponentSource name={name} title={"demo.tsx"} collapsible={false} />}
+      source={
+        <ComponentSource name={name} title={"demo.tsx"} collapsible={false} />
+      }
       {...props}
     />
   )

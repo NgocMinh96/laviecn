@@ -23,15 +23,20 @@ export function ComponentIntroduce() {
           }}
         >
           <span className="text-2xl md:text-3xl lg:text-4xl">₊˚✧ </span>
-          <span className={`${typography.EmilysCandy} text-5xl md:text-6xl lg:text-7xl`}>
+          <span
+            className={`${typography.EmilysCandy} text-5xl md:text-6xl lg:text-7xl`}
+          >
             Laviecn
           </span>
           <span className="text-2xl md:text-3xl lg:text-4xl"> ✧˚₊</span>
         </motion.div>
       </Cover>
-      <div className="flex justify-center items-center px-4">
+      <div className="flex items-center justify-center px-4">
         <div
-          className={cn(typography.EmilysCandy, "py-6 text-4xl md:text-5xl mx-auto font-normal")}
+          className={cn(
+            typography.EmilysCandy,
+            "mx-auto py-6 text-4xl font-normal md:text-5xl"
+          )}
         >
           Make your websites
           <FlipWords words={["better", "modern", "beautiful", "awesome"]} />

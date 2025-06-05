@@ -23,7 +23,10 @@ const defaultPackageManagers: PackageManager[] = [
   { name: "bun", command: (cmd) => convert(cmd, "bun") },
 ]
 
-export async function ComponentInstall({ command = "", packageManagers }: ComponentInstallProps) {
+export async function ComponentInstall({
+  command = "",
+  packageManagers,
+}: ComponentInstallProps) {
   const managers = packageManagers ?? defaultPackageManagers
 
   const highlightedMap: Record<string, string> = {}
@@ -41,7 +44,7 @@ export async function ComponentInstall({ command = "", packageManagers }: Compon
     >
       {managers.map((pm) => (
         <Tab key={pm.name}>
-          <CodeBlock className="[&_pre]:py-0! [&_pre]:overflow-x-visible! rounded-t-none!">
+          <CodeBlock className="rounded-t-none! [&_pre]:overflow-x-visible! [&_pre]:py-0!">
             <div
               dangerouslySetInnerHTML={{
                 __html: highlightedMap[pm.name] ?? "",

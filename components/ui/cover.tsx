@@ -5,9 +5,14 @@ import { AnimatePresence, motion } from "motion/react"
 
 import { SparklesCore } from "@/components/ui/sparkles"
 
-export const Cover = ({ children }: { children?: React.ReactNode; className?: string }) => {
+export const Cover = ({
+  children,
+}: {
+  children?: React.ReactNode
+  className?: string
+}) => {
   return (
-    <div className="relative group/cover inline-block dark:bg-neutral-800 bg-neutral-800 px-1 py-1 mt-2 rounded-lg">
+    <div className="group/cover relative mt-2 inline-block rounded-lg bg-neutral-800 px-1 py-1 dark:bg-neutral-800">
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}
@@ -18,7 +23,7 @@ export const Cover = ({ children }: { children?: React.ReactNode; className?: st
               duration: 0.2,
             },
           }}
-          className="h-full w-full overflow-hidden absolute inset-0"
+          className="absolute inset-0 h-full w-full overflow-hidden"
         >
           <motion.div
             animate={{
@@ -31,14 +36,14 @@ export const Cover = ({ children }: { children?: React.ReactNode; className?: st
                 repeat: Infinity,
               },
             }}
-            className="w-[200%] h-full flex"
+            className="flex h-full w-[200%]"
           >
             <SparklesCore
               background="transparent"
               minSize={0.4}
               maxSize={1}
               particleDensity={500}
-              className="w-full h-full"
+              className="h-full w-full"
               particleColor="#FFFFFF"
             />
             <SparklesCore
@@ -46,7 +51,7 @@ export const Cover = ({ children }: { children?: React.ReactNode; className?: st
               minSize={0.4}
               maxSize={1}
               particleDensity={500}
-              className="w-full h-full"
+              className="h-full w-full"
               particleColor="#FFFFFF"
             />
           </motion.div>

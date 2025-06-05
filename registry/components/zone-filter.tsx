@@ -22,7 +22,11 @@ interface ZoneFilterProps {
   handleSelectProvince: (id: string) => void
   handleSelectDistrict: (id: string) => void
   handleSelectWard: (id: string) => void
-  onChange?: (zone: { province?: Province; district?: District; ward?: Ward }) => void
+  onChange?: (zone: {
+    province?: Province
+    district?: District
+    ward?: Ward
+  }) => void
 }
 
 export default function ZoneFilter({
@@ -84,8 +88,12 @@ export default function ZoneFilter({
 
   const triggerOnChange = (id: string) => {
     onChange?.({
-      province: provinces.find((p) => p.id === (step === 0 ? id : selectedProvince)),
-      district: districts.find((d) => d.id === (step === 1 ? id : selectedDistrict)),
+      province: provinces.find(
+        (p) => p.id === (step === 0 ? id : selectedProvince)
+      ),
+      district: districts.find(
+        (d) => d.id === (step === 1 ? id : selectedDistrict)
+      ),
       ward: wards.find((w) => w.id === (step === 2 ? id : selectedWard)),
     })
   }
@@ -116,19 +124,22 @@ export default function ZoneFilter({
 
     onChange?.({
       province: provinces.find((p) => p.id === selectedProvince),
-      district: newStep >= 1 ? districts.find((d) => d.id === selectedDistrict) : undefined,
+      district:
+        newStep >= 1
+          ? districts.find((d) => d.id === selectedDistrict)
+          : undefined,
       ward: undefined,
     })
   }
 
   return (
     <div className="w-full rounded-md border">
-      <div className="flex justify-between gap-2 items-center h-10 px-2 pt-2">
+      <div className="flex h-10 items-center justify-between gap-2 px-2 pt-2">
         <Input
           placeholder={`Tìm kiếm ${label.toLowerCase()}...`}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full h-8"
+          className="h-8 w-full"
         />
         <Button
           disabled={step === 0}
@@ -154,7 +165,7 @@ export default function ZoneFilter({
               key={item.id}
               variant={selectedId === item.id ? "default" : "outline"}
               onClick={() => handleSelect(item.id)}
-              className="justify-start whitespace-nowrap text-xs has-[>svg]:px-1 gap-0.5"
+              className="justify-start gap-0.5 text-xs whitespace-nowrap has-[>svg]:px-1"
               style={{ width: 142 }}
             >
               <MapPin className="size-3" />

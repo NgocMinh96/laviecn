@@ -14,7 +14,11 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import { Label } from "@/components/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 export interface ZoneItem {
   id: string
@@ -46,7 +50,9 @@ export default function ZoneSelect({
 }: ZoneSelectProps) {
   const id = useId()
   const [open, setOpen] = useState<boolean>(false)
-  const [internalValue, setInternalValue] = useState<string>(externalValue || "")
+  const [internalValue, setInternalValue] = useState<string>(
+    externalValue || ""
+  )
 
   // Sync internal value with external value
   useEffect(() => {
@@ -63,12 +69,18 @@ export default function ZoneSelect({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-none outline-offset-0 focus-visible:outline-[3px]"
+            className="bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
             disabled={disabled}
           >
-            <span className={cn("truncate", !internalValue && "text-muted-foreground")}>
+            <span
+              className={cn(
+                "truncate",
+                !internalValue && "text-muted-foreground"
+              )}
+            >
               {internalValue
-                ? zone?.find((item: ZoneItem) => item.id === internalValue)?.full_name
+                ? zone?.find((item: ZoneItem) => item.id === internalValue)
+                    ?.full_name
                 : placeholder}
             </span>
             <ChevronDownIcon
@@ -92,7 +104,9 @@ export default function ZoneSelect({
                     key={item.id}
                     value={item.name_slug}
                     onSelect={(currentValue) => {
-                      const selectedItem = zone.find((item) => item.name_slug === currentValue)
+                      const selectedItem = zone.find(
+                        (item) => item.name_slug === currentValue
+                      )
                       const newValue = selectedItem ? selectedItem.id : ""
                       setInternalValue(newValue)
                       onSelect?.(newValue)
@@ -100,7 +114,9 @@ export default function ZoneSelect({
                     }}
                   >
                     {item.full_name}
-                    {internalValue === item.id && <CheckIcon size={16} className="ml-auto" />}
+                    {internalValue === item.id && (
+                      <CheckIcon size={16} className="ml-auto" />
+                    )}
                   </CommandItem>
                 ))}
               </CommandGroup>

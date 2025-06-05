@@ -66,7 +66,10 @@ export function ZoneSelectDemo() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4 w-[210px]">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex w-[210px] flex-col gap-4"
+      >
         <FormField
           control={form.control}
           name="province"

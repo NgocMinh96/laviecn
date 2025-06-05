@@ -5,12 +5,16 @@ import { cn } from "@/lib/utils"
 
 export function ComponentsList() {
   const components = source.pageTree
-  const list = components.children.filter((component) => component.type === "page")
+  const list = components.children.filter(
+    (component) => component.type === "page"
+  )
 
   const groups = [
     {
       title: "Components",
-      items: list.filter((item) => item.$id && item.$id.startsWith("components/")),
+      items: list.filter(
+        (item) => item.$id && item.$id.startsWith("components/")
+      ),
     },
     {
       title: "Utils",
@@ -30,10 +34,10 @@ export function ComponentsList() {
                   <Link key={component.$id} href={component.url}>
                     <span
                       className={cn(
-                        "not-prose text-lg font-medium text-muted-foreground hover:text-foreground md:text-base",
+                        "not-prose text-muted-foreground hover:text-foreground text-lg font-medium md:text-base",
                         "relative inline-block hover:after:origin-left hover:after:scale-x-100",
-                        "after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:scale-x-0 after:bg-primary",
-                        "after:transition-transform after:duration-300 after:ease-in-out after:origin-right"
+                        "after:bg-primary after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:scale-x-0",
+                        "after:origin-right after:transition-transform after:duration-300 after:ease-in-out"
                       )}
                     >
                       {component.name}

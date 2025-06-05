@@ -20,7 +20,13 @@ export const provinces = [
     full_name: "Tp. Hải Phòng",
     code_name: "hai_phong",
   },
-  { id: "01", name: "Hà Nội", name_slug: "Ha Noi", full_name: "Tp. Hà Nội", code_name: "ha_noi" },
+  {
+    id: "01",
+    name: "Hà Nội",
+    name_slug: "Ha Noi",
+    full_name: "Tp. Hà Nội",
+    code_name: "ha_noi",
+  },
   {
     id: "79",
     name: "Hồ Chí Minh",
@@ -28,7 +34,13 @@ export const provinces = [
     full_name: "Tp. Hồ Chí Minh",
     code_name: "ho_chi_minh",
   },
-  { id: "46", name: "Huế", name_slug: "Hue", full_name: "Tp. Huế", code_name: "hue" },
+  {
+    id: "46",
+    name: "Huế",
+    name_slug: "Hue",
+    full_name: "Tp. Huế",
+    code_name: "hue",
+  },
   {
     id: "89",
     name: "An Giang",
@@ -106,7 +118,13 @@ export const provinces = [
     full_name: "T. Bình Thuận",
     code_name: "binh_thuan",
   },
-  { id: "96", name: "Cà Mau", name_slug: "Ca Mau", full_name: "T. Cà Mau", code_name: "ca_mau" },
+  {
+    id: "96",
+    name: "Cà Mau",
+    name_slug: "Ca Mau",
+    full_name: "T. Cà Mau",
+    code_name: "ca_mau",
+  },
   {
     id: "04",
     name: "Cao Bằng",
@@ -170,7 +188,13 @@ export const provinces = [
     full_name: "T. Hải Dương",
     code_name: "hai_duong",
   },
-  { id: "35", name: "Hà Nam", name_slug: "Ha Nam", full_name: "T. Hà Nam", code_name: "ha_nam" },
+  {
+    id: "35",
+    name: "Hà Nam",
+    name_slug: "Ha Nam",
+    full_name: "T. Hà Nam",
+    code_name: "ha_nam",
+  },
   {
     id: "42",
     name: "Hà Tĩnh",
@@ -339,7 +363,13 @@ export const provinces = [
     full_name: "T. Sóc Trăng",
     code_name: "soc_trang",
   },
-  { id: "14", name: "Sơn La", name_slug: "Son La", full_name: "T. Sơn La", code_name: "son_la" },
+  {
+    id: "14",
+    name: "Sơn La",
+    name_slug: "Son La",
+    full_name: "T. Sơn La",
+    code_name: "son_la",
+  },
   {
     id: "72",
     name: "Tây Ninh",

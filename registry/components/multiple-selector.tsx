@@ -5,7 +5,12 @@ import { Command as CommandPrimitive, useCommandState } from "cmdk"
 import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Command, CommandGroup, CommandItem, CommandList } from "@/components/ui/command"
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
 
 export interface Option {
   value: string
@@ -125,14 +130,18 @@ function removePickedOption(groupOption: GroupOption, picked: Option[]) {
   const cloneOption = JSON.parse(JSON.stringify(groupOption)) as GroupOption
 
   for (const [key, value] of Object.entries(cloneOption)) {
-    cloneOption[key] = value.filter((val) => !picked.find((p) => p.value === val.value))
+    cloneOption[key] = value.filter(
+      (val) => !picked.find((p) => p.value === val.value)
+    )
   }
   return cloneOption
 }
 
 function isOptionsExist(groupOption: GroupOption, targetOption: Option[]) {
   for (const [, value] of Object.entries(groupOption)) {
-    if (value.some((option) => targetOption.find((p) => p.value === option.value))) {
+    if (
+      value.some((option) => targetOption.find((p) => p.value === option.value))
+    ) {
       return true
     }
   }
@@ -420,13 +429,15 @@ const MultipleSelector = ({
         commandProps?.className
       )}
       shouldFilter={
-        commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch
+        commandProps?.shouldFilter !== undefined
+          ? commandProps.shouldFilter
+          : !onSearch
       } // When onSearch is provided, we don&lsquo;t want to filter the options. You can still override it.
       filter={commandFilter()}
     >
       <div
         className={cn(
-          "relative rounded-md border border-input text-sm transition-[color,box-shadow] outline-none focus-within:border-ring focus-within:ring-[2px] focus-within:ring-ring/40 has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40",
+          "border-input focus-within:border-ring focus-within:ring-ring/40 has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 relative rounded-md border text-sm transition-[color,box-shadow] outline-none focus-within:ring-[2px] has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
           {
             "p-[3.08px]": selected.length !== 0,
             "cursor-text": !disabled && selected.length !== 0,
@@ -445,7 +456,7 @@ const MultipleSelector = ({
               <div
                 key={option.value}
                 className={cn(
-                  "animate-fadeIn relative inline-flex cursor-default items-center rounded-md border bg-background ps-2 pe-7 pl-2 text-xs font-medium text-foreground/80 transition-all hover:bg-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-fixed:pe-2",
+                  "animate-fadeIn bg-background text-foreground/80 hover:bg-background relative inline-flex cursor-default items-center rounded-md border ps-2 pe-7 pl-2 text-xs font-medium transition-all disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-fixed:pe-2",
                   {
                     "h-6": size === "sm",
                     "h-7": size === "md",
@@ -458,7 +469,7 @@ const MultipleSelector = ({
                 {option.label}
                 <button
                   className={cn(
-                    "absolute -inset-y-px -end-px flex items-center justify-center rounded-e-md border border-transparent p-0 text-muted-foreground/80 outline-hidden transition-[color,box-shadow] outline-none hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+                    "text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute -inset-y-px -end-px flex items-center justify-center rounded-e-md border border-transparent p-0 outline-hidden transition-[color,box-shadow] outline-none focus-visible:ring-[3px]",
                     {
                       "size-6": size === "sm",
                       "size-7": size === "md",
@@ -504,9 +515,13 @@ const MultipleSelector = ({
               }
               inputProps?.onFocus?.(event)
             }}
-            placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? "" : placeholder}
+            placeholder={
+              hidePlaceholderWhenSelected && selected.length !== 0
+                ? ""
+                : placeholder
+            }
             className={cn(
-              "flex-1 bg-transparent outline-hidden placeholder:text-muted-foreground/70 disabled:cursor-not-allowed",
+              "placeholder:text-muted-foreground/70 flex-1 bg-transparent outline-hidden disabled:cursor-not-allowed",
               {
                 "w-full": hidePlaceholderWhenSelected,
                 "px-3 py-2": selected.length === 0,
@@ -524,7 +539,7 @@ const MultipleSelector = ({
               onChange?.(selected.filter((s) => s.fixed))
             }}
             className={cn(
-              "absolute end-0 top-0 flex size-8 items-center justify-center rounded-md border border-transparent text-muted-foreground/80 transition-[color,box-shadow] outline-none hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+              "text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute end-0 top-0 flex size-8 items-center justify-center rounded-md border border-transparent transition-[color,box-shadow] outline-none focus-visible:ring-[3px]",
               {
                 "size-8": size === "sm",
                 "size-9": size === "md",
@@ -544,7 +559,7 @@ const MultipleSelector = ({
       <div className="relative">
         <div
           className={cn(
-            "absolute top-2 z-10 w-full overflow-hidden rounded-md border border-input",
+            "border-input absolute top-2 z-10 w-full overflow-hidden rounded-md border",
             "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
             !open && "hidden"
           )}
@@ -569,9 +584,15 @@ const MultipleSelector = ({
                 <>
                   {EmptyItem()}
                   {CreatableItem()}
-                  {!selectFirstItem && <CommandItem value="-" className="hidden" />}
+                  {!selectFirstItem && (
+                    <CommandItem value="-" className="hidden" />
+                  )}
                   {Object.entries(selectables).map(([key, dropdowns]) => (
-                    <CommandGroup key={key} heading={key} className="h-full overflow-auto">
+                    <CommandGroup
+                      key={key}
+                      heading={key}
+                      className="h-full overflow-auto"
+                    >
                       <>
                         {dropdowns.map((option) => {
                           return (

@@ -1,4 +1,15 @@
-const ChuSo = [" không", " một", " hai", " ba", " bốn", " năm", " sáu", " bảy", " tám", " chín"]
+const ChuSo = [
+  " không",
+  " một",
+  " hai",
+  " ba",
+  " bốn",
+  " năm",
+  " sáu",
+  " bảy",
+  " tám",
+  " chín",
+]
 const Tien = ["", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ"]
 
 export function SoTienThanhChu(SoTien: number | string): string {

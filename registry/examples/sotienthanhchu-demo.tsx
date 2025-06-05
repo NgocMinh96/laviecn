@@ -18,7 +18,7 @@ export function SoTienThanhChuDemo() {
           placeholder="Nhập số tiền"
           className="w-2xs"
         />
-        <div className="text-sm w-2xs mt-2">{SoTienThanhChu(value)}</div>
+        <div className="mt-2 w-2xs text-sm">{SoTienThanhChu(value)}</div>
       </div>
     </div>
   )

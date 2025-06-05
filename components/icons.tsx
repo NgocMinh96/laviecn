@@ -180,7 +180,12 @@ export const Icons = {
     </svg>
   ),
   v0: (props: IconProps) => (
-    <svg viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 40 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M23.3919 0H32.9188C36.7819 0 39.9136 3.13165 39.9136 6.99475V16.0805H36.0006V6.99475C36.0006 6.90167 35.9969 6.80925 35.9898 6.71766L26.4628 16.079C26.4949 16.08 26.5272 16.0805 26.5595 16.0805H36.0006V19.7762H26.5595C22.6964 19.7762 19.4788 16.6139 19.4788 12.7508V3.68923H23.3919V12.7508C23.3919 12.9253 23.4054 13.0977 23.4316 13.2668L33.1682 3.6995C33.0861 3.6927 33.003 3.68923 32.9188 3.68923H23.3919V0Z"
         fill="currentColor"
@@ -226,12 +231,25 @@ export const Icons = {
         <circle cx="90" cy="90" r="90" fill="black"></circle>
       </mask>
       <g mask="url(#mask0_408_139)">
-        <circle cx="90" cy="90" r="87" fill="black" stroke="white" strokeWidth="6"></circle>
+        <circle
+          cx="90"
+          cy="90"
+          r="87"
+          fill="black"
+          stroke="white"
+          strokeWidth="6"
+        ></circle>
         <path
           d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
           fill="url(#paint0_linear_408_139)"
         ></path>
-        <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_408_139)"></rect>
+        <rect
+          x="115"
+          y="54"
+          width="12"
+          height="72"
+          fill="url(#paint1_linear_408_139)"
+        ></rect>
       </g>
       <defs>
         <linearGradient

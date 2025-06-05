@@ -62,7 +62,12 @@ export async function ComponentSource({
 
   return (
     <CodeCollapsibleWrapper className={className}>
-      <ComponentCode code={code} highlightedCode={highlightedCode} language={lang} title={title} />
+      <ComponentCode
+        code={code}
+        highlightedCode={highlightedCode}
+        language={lang}
+        title={title}
+      />
     </CodeCollapsibleWrapper>
   )
 }
@@ -81,13 +86,13 @@ function ComponentCode({
   return (
     <figure
       data-rehype-pretty-code-figure=""
-      className="relative outline-0 rounded-xl overflow-hidden [&>pre]:max-h-96"
+      className="relative overflow-hidden rounded-xl outline-0 [&>pre]:max-h-96"
     >
       {title && (
-        <div className="flex items-center gap-2 bg-fd-secondary px-4 py-3">
+        <div className="bg-fd-secondary flex items-center gap-2 px-4 py-3">
           <figcaption
             data-rehype-pretty-code-title=""
-            className="mt-0 text-sm bg-muted text-muted-foreground! flex items-center gap-2 [&_svg]:size-3.5"
+            className="bg-muted text-muted-foreground! mt-0 flex items-center gap-2 text-sm [&_svg]:size-3.5"
             data-language={language}
           >
             {getIconForLanguageExtension(language)}

@@ -18,7 +18,7 @@ const menuItems = [
 
 export default function HorizontalScrollMenuDemo() {
   return (
-    <div className="flex flex-col items-center gap-8 w-full">
+    <div className="flex w-full flex-col items-center gap-8">
       <HorizontalScrollMenu
         menu={menuItems}
         selected="music"

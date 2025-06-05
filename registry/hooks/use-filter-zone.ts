@@ -31,13 +31,19 @@ interface UseFilterZoneProps {
   wards: Ward[]
 }
 
-export function useFilterZone({ provinces, districts, wards }: UseFilterZoneProps) {
+export function useFilterZone({
+  provinces,
+  districts,
+  wards,
+}: UseFilterZoneProps) {
   const [selectedProvince, setSelectedProvince] = useState<string>("")
   const [selectedDistrict, setSelectedDistrict] = useState<string>("")
   const [selectedWard, setSelectedWard] = useState<string>("")
 
   const filteredDistricts = useMemo(() => {
-    return districts.filter((district) => district.province_id === selectedProvince)
+    return districts.filter(
+      (district) => district.province_id === selectedProvince
+    )
   }, [districts, selectedProvince])
 
   const filteredWards = useMemo(() => {

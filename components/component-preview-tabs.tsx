@@ -22,16 +22,25 @@ export function ComponentPreviewTabs({
   const [tab, setTab] = React.useState("preview")
 
   return (
-    <div className={cn("group relative my-4 flex flex-col gap-2", className)} {...props}>
+    <div
+      className={cn("group relative my-4 flex flex-col gap-2", className)}
+      {...props}
+    >
       <Tabs value={tab} onValueChange={setTab}>
         <div className="flex items-center justify-between">
           {!hideCode && (
             <TabsList className="border">
-              <TabsTrigger value="preview" className="dark:data-[state=active]:bg-fd-card border-0">
+              <TabsTrigger
+                value="preview"
+                className="dark:data-[state=active]:bg-fd-card border-0"
+              >
                 <EyeIcon size={16} />
                 Preview
               </TabsTrigger>
-              <TabsTrigger value="code" className="dark:data-[state=active]:bg-fd-card border-0">
+              <TabsTrigger
+                value="code"
+                className="dark:data-[state=active]:bg-fd-card border-0"
+              >
                 <CodeIcon size={16} />
                 Code
               </TabsTrigger>
@@ -43,7 +52,7 @@ export function ComponentPreviewTabs({
         <div
           data-slot="preview"
           data-active={tab === "preview"}
-          className="invisible data-[active=true]:visible border rounded-xl p-1.25"
+          className="invisible rounded-xl border p-1.25 data-[active=true]:visible"
         >
           <GlowingEffect
             blur={4}
@@ -54,7 +63,7 @@ export function ComponentPreviewTabs({
             proximity={64}
             inactiveZone={0.01}
           />
-          <div className="flex min-h-[450px] items-center justify-center rounded-lg p-6 md:p-10 shadow-[0px_0px_10px_2px_#e5e5e5] dark:shadow-[0px_0px_10px_2px_#2D2D2D]">
+          <div className="flex min-h-[450px] items-center justify-center rounded-lg p-6 shadow-[0px_0px_10px_2px_#e5e5e5] md:p-10 dark:shadow-[0px_0px_10px_2px_#2D2D2D]">
             {component}
           </div>
         </div>

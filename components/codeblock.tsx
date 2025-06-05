@@ -1,6 +1,12 @@
 "use client"
 
-import { forwardRef, useRef, type ComponentProps, type HTMLAttributes, type ReactNode } from "react"
+import {
+  forwardRef,
+  useRef,
+  type ComponentProps,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react"
 import { useCopyButton } from "@/utils/use-copy-button"
 import { Check, Copy } from "lucide-react"
 
@@ -47,7 +53,11 @@ export type CodeBlockProps = HTMLAttributes<HTMLElement> & {
 export const Pre = forwardRef<HTMLPreElement, HTMLAttributes<HTMLPreElement>>(
   ({ className, ...props }, ref) => {
     return (
-      <pre ref={ref} className={cn("min-w-full w-max *:flex *:flex-col", className)} {...props}>
+      <pre
+        ref={ref}
+        className={cn("w-max min-w-full *:flex *:flex-col", className)}
+        {...props}
+      >
         {props.children}
       </pre>
     )
@@ -58,7 +68,15 @@ Pre.displayName = "Pre"
 
 export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
   (
-    { title, allowCopy = true, keepBackground = false, icon, viewportProps, children, ...props },
+    {
+      title,
+      allowCopy = true,
+      keepBackground = false,
+      icon,
+      viewportProps,
+      children,
+      ...props
+    },
     ref
   ) => {
     const areaRef = useRef<HTMLDivElement>(null)
@@ -74,7 +92,9 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
       void navigator.clipboard.writeText(clone.textContent ?? "")
     }
 
-    icon = title?.includes(".css") ? getIconForLanguageExtension("postcss") : icon
+    icon = title?.includes(".css")
+      ? getIconForLanguageExtension("postcss")
+      : icon
 
     return (
       <figure
@@ -82,13 +102,13 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
         dir="ltr"
         {...props}
         className={cn(
-          "not-prose group relative my-4 overflow-hidden rounded-xl bg-fd-card text-sm outline-none",
+          "not-prose group bg-fd-card relative my-4 overflow-hidden rounded-xl text-sm outline-none",
           keepBackground && "bg-(--shiki-light-bg) dark:bg-(--shiki-dark-bg)",
           props.className
         )}
       >
         {title ? (
-          <div className="flex items-center gap-2 bg-fd-secondary px-4 py-1">
+          <div className="bg-fd-secondary flex items-center gap-2 px-4 py-1">
             {icon ? (
               <div
                 className="text-fd-muted-foreground [&_svg]:size-3.5"
@@ -103,19 +123,26 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
                 {typeof icon !== "string" ? icon : null}
               </div>
             ) : null}
-            <figcaption className="flex-1 truncate text-fd-muted-foreground">{title}</figcaption>
-            {allowCopy ? <CopyButton className="-me-2" onCopy={onCopy} /> : null}
+            <figcaption className="text-fd-muted-foreground flex-1 truncate">
+              {title}
+            </figcaption>
+            {allowCopy ? (
+              <CopyButton className="-me-2" onCopy={onCopy} />
+            ) : null}
           </div>
         ) : (
           allowCopy && (
-            <CopyButton className="absolute right-2 top-2 z-[2] backdrop-blur-md" onCopy={onCopy} />
+            <CopyButton
+              className="absolute top-2 right-2 z-[2] backdrop-blur-md"
+              onCopy={onCopy}
+            />
           )
         )}
         <div
           ref={areaRef}
           {...viewportProps}
           className={cn(
-            "py-3.5 overflow-auto max-h-[600px] fd-scroll-container",
+            "fd-scroll-container max-h-[600px] overflow-auto py-3.5",
             props["data-line-numbers"] && "[&_.line]:pl-3",
             viewportProps?.className
           )}
@@ -150,7 +177,7 @@ function CopyButton({
       size="icon"
       variant="ghost"
       className={cn(
-        "transition-opacity group-hover:opacity-100 [&_svg]:size-3.5 text-muted-foreground",
+        "text-muted-foreground transition-opacity group-hover:opacity-100 [&_svg]:size-3.5",
         !checked && "[@media(hover:hover)]:opacity-0",
         className
       )}
@@ -159,7 +186,9 @@ function CopyButton({
       {...props}
     >
       <Check className={cn("transition-transform", !checked && "scale-0")} />
-      <Copy className={cn("absolute transition-transform", checked && "scale-0")} />
+      <Copy
+        className={cn("absolute transition-transform", checked && "scale-0")}
+      />
     </Button>
   )
 }

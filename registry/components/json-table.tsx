@@ -62,12 +62,12 @@ const ActionsCell = ({
   listeners?: React.HTMLAttributes<HTMLElement>
   attributes?: React.HTMLAttributes<HTMLElement>
 }) => (
-  <TableCell className="w-[80px] h-12 bg-transparent hover:bg-transparent text-center flex items-center justify-center gap-1">
+  <TableCell className="flex h-12 w-[80px] items-center justify-center gap-1 bg-transparent text-center hover:bg-transparent">
     <Button
       variant="link"
       size="icon"
       onClick={() => onDelete?.(uuid)}
-      className="text-red-500 hover:text-red-700 hover:bg-transparent"
+      className="text-red-500 hover:bg-transparent hover:text-red-700"
     >
       <Trash2 className="size-4" />
     </Button>
@@ -87,7 +87,14 @@ function DraggableRow({
     attributes?: React.HTMLAttributes<HTMLElement>
   }) => React.ReactNode
 }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
     id,
   })
 
@@ -109,14 +116,24 @@ function DraggableRow({
   )
 }
 
-export function JsonTable({ columns, data: initialData, onSubmit }: JsonTableProps) {
+export function JsonTable({
+  columns,
+  data: initialData,
+  onSubmit,
+}: JsonTableProps) {
   const [data, setData] = useState<Row[]>(() =>
-    initialData.map((item) => ({ ...item, uuid: item.uuid || crypto.randomUUID() }))
+    initialData.map((item) => ({
+      ...item,
+      uuid: item.uuid || crypto.randomUUID(),
+    }))
   )
   const [isEditing, setIsEditing] = useState(false)
   const [originalData, setOriginalData] = useState<Row[]>([])
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
-  const [focusedCell, setFocusedCell] = useState<{ uuid: string; key: string } | null>(null)
+  const [focusedCell, setFocusedCell] = useState<{
+    uuid: string
+    key: string
+  } | null>(null)
 
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -143,7 +160,9 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
   }
 
   const handleInputChange = (uuid: string, key: keyof Row, value: string) => {
-    setData((prev) => prev.map((row) => (row.uuid === uuid ? { ...row, [key]: value } : row)))
+    setData((prev) =>
+      prev.map((row) => (row.uuid === uuid ? { ...row, [key]: value } : row))
+    )
   }
 
   const handleDeleteRow = (uuid: string) => {
@@ -174,7 +193,8 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
 
   const renderInputCell = (row: Row, field: string, width?: number) => {
     const inputKey = `${row.uuid}-${field}`
-    const isFocused = focusedCell?.uuid === row.uuid && focusedCell?.key === field
+    const isFocused =
+      focusedCell?.uuid === row.uuid && focusedCell?.key === field
     return (
       <TableCell
         key={field}
@@ -192,7 +212,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
           onChange={(e) => handleInputChange(row.uuid, field, e.target.value)}
           onFocus={() => setFocusedCell({ uuid: row.uuid, key: field })}
           onBlur={() => setFocusedCell(null)}
-          className="dark:bg-muted! text-sm shadow-none rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2"
+          className="dark:bg-muted! rounded-none border-0 px-2 text-sm shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
           style={width ? { width } : undefined}
         />
       </TableCell>
@@ -200,7 +220,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
   }
 
   return (
-    <div className="rounded-md border overflow-hidden not-prose">
+    <div className="not-prose overflow-hidden rounded-md border">
       <ScrollArea>
         <Table>
           <TableHeader className="bg-muted/80">
@@ -238,7 +258,9 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                       <DraggableRow key={row.uuid} id={row.uuid}>
                         {({ listeners, attributes }) => (
                           <>
-                            {columns.map(({ field, width }) => renderInputCell(row, field, width))}
+                            {columns.map(({ field, width }) =>
+                              renderInputCell(row, field, width)
+                            )}
                             <ActionsCell
                               uuid={row.uuid}
                               onDelete={handleDeleteRow}
@@ -265,7 +287,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
                         className={commonCellClass}
                       >
                         <div
-                          className="px-2 h-12 flex items-center"
+                          className="flex h-12 items-center px-2"
                           style={width ? { width } : undefined}
                         >
                           {row[field] || ""}
@@ -282,7 +304,7 @@ export function JsonTable({ columns, data: initialData, onSubmit }: JsonTablePro
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
 
-      <div className="p-2 flex gap-2 justify-between border-t">
+      <div className="flex justify-between gap-2 border-t p-2">
         <div className="flex gap-2">
           <Button size="sm" onClick={handleToggleEdit}>
             {isEditing ? "Save" : "Edit"}

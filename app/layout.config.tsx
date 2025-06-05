@@ -14,10 +14,18 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <>
-        <Image src="/assets/logo.JPG" alt="Logo" width={24} height={24} className="rounded-full" />
+        <Image
+          src="/assets/logo.JPG"
+          alt="Logo"
+          width={24}
+          height={24}
+          className="rounded-full"
+        />
         <div>
           <span className="text-[12px]">₊˚✧ </span>
-          <span className={`${typography.EmilysCandy} text-[24px]`}>Laviecn</span>
+          <span className={`${typography.EmilysCandy} text-[24px]`}>
+            Laviecn
+          </span>
           <span className="text-[12px]"> ✧˚₊</span>
         </div>
       </>

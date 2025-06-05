@@ -11,7 +11,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "laviecn",
-  keywords: ["laviecn", "Next.js", "React", "Tailwind CSS", "Components", "shadcn"],
+  keywords: [
+    "laviecn",
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Components",
+    "shadcn",
+  ],
   creator: "MinhPC",
   icons: {
     icon: "assets/logo.JPG",

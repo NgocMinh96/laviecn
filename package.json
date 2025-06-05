@@ -11,8 +11,8 @@
     "postinstall": "fumadocs-mdx",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "prettier": "prettier --check \"./**/*.{js,jsx,ts,tsx}\"",
-    "prettier:fix": "prettier --write \"./**/*.{js,jsx,ts,tsx}\""
+    "prettier": "prettier --check \"./**/*.{js,jsx,ts,tsx,mdx}\"",
+    "prettier:fix": "prettier --write \"./**/*.{js,jsx,ts,tsx,mdx}\""
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -75,5 +75,41 @@
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "unist-builder": "^4.0.0"
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "semi": false,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "importOrder": [
+      "^(react/(.*)$)|^(react$)",
+      "^(next/(.*)$)|^(next$)",
+      "<THIRD_PARTY_MODULES>",
+      "",
+      "^@workspace/(.*)$",
+      "",
+      "^types$",
+      "^@/types/(.*)$",
+      "^@/config/(.*)$",
+      "^@/lib/(.*)$",
+      "^@/hooks/(.*)$",
+      "^@/components/ui/(.*)$",
+      "^@/components/(.*)$",
+      "^@/registry/(.*)$",
+      "^@/styles/(.*)$",
+      "^@/app/(.*)$",
+      "",
+      "^[./]"
+    ],
+    "importOrderParserPlugins": [
+      "typescript",
+      "jsx",
+      "decorators-legacy"
+    ],
+    "plugins": [
+      "@ianvs/prettier-plugin-sort-imports",
+      "prettier-plugin-tailwindcss"
+    ]
   }
 }
