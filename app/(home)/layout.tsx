@@ -15,9 +15,9 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 function Footer() {
   return (
-    <footer className="mt-auto border-t py-5 text-fd-secondary-foreground">
-      <div className="container flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
+    <footer className="mt-auto py-5 text-fd-secondary-foreground">
+      <div className="container flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center">
           <p className="mb-1 text-sm font-semibold">
             <span className="text-[8px]">₊˚✧ </span>
             <span className={`${typography.EmilysCandy} text-[16px]`}>Laviecn</span>
@@ -31,7 +31,7 @@ function Footer() {
               target="_blank"
               className="font-medium"
             >
-              MinhPC
+              minhpc
             </a>
           </p>
         </div>
