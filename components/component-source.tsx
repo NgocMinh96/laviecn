@@ -45,7 +45,7 @@ export async function ComponentSource({
   }
 
   const lang = language ?? title?.split(".").pop() ?? "tsx"
-  const highlightedCode = await highlightCode(code, lang)
+  const highlightedCode = await highlightCode(code, lang, true)
 
   if (!collapsible) {
     return (

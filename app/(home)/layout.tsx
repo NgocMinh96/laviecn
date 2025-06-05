@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 function Footer() {
   return (
-    <footer className="mt-auto border-t bg-fd-card py-5 text-fd-secondary-foreground">
+    <footer className="mt-auto border-t py-5 text-fd-secondary-foreground">
       <div className="container flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="mb-1 text-sm font-semibold">

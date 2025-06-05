@@ -41,7 +41,7 @@ export async function ComponentInstall({ command = "", packageManagers }: Compon
     >
       {managers.map((pm) => (
         <Tab key={pm.name}>
-          <CodeBlock viewportProps={{ className: "[&_pre]:py-0! [&_pre]:overflow-x-visible!" }}>
+          <CodeBlock className="[&_pre]:py-0! [&_pre]:overflow-x-visible! rounded-t-none!">
             <div
               dangerouslySetInnerHTML={{
                 __html: highlightedMap[pm.name] ?? "",
