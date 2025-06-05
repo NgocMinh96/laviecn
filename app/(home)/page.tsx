@@ -18,12 +18,12 @@ export default function HomePage() {
         </p>
         <div className="flex w-full items-center justify-center gap-2 py-3 **:data-[slot=button]:shadow-none">
           <HoverBorderGradient
-            containerClassName="rounded-xl p-[0.5px] transition-all duration-200"
+            containerClassName="rounded-xl p-[1px] transition-all duration-200"
             as="button"
             className={cn(
               "bg-shine rounded-xl shadow bg-[length:200%_100%] tracking-wide",
-              "dark:bg-[linear-gradient(110deg,#09090B,45%,#27272A,55%,#09090B)] dark:text-zinc-200 dark:border-zinc-800",
-              "bg-[linear-gradient(110deg,#FFF,45%,#E4E4E7,55%,#FFF)] text-zinc-800 border-zinc-300"
+              "dark:bg-[linear-gradient(110deg,#09090B,45%,#27272A,55%,#09090B)] dark:text-zinc-200",
+              "bg-[linear-gradient(110deg,#FFF,45%,#E4E4E7,55%,#FFF)] text-zinc-800"
             )}
           >
             <Link className="text-base transition-all duration-200" href="/docs">
