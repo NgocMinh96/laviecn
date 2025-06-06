@@ -261,8 +261,8 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "use-filter-fone": {
-    name: "use-filter-fone",
+  "use-filter-zone": {
+    name: "use-filter-zone",
     description: "",
     type: "registry:hook",
     registryDependencies: undefined,

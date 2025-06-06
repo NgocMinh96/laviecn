@@ -48,7 +48,7 @@ export default function HomePage() {
           </HoverBorderGradient>
         </div>
 
-        <DockIcons icons={icons} infiniteHover={!isMobile} movementSpeed={3} />
+        <DockIcons icons={icons} movementSpeed={3} />
       </div>
       {!isMobile && <BackgroundBeams />}
     </main>

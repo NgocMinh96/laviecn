@@ -2,7 +2,7 @@ import { type Registry } from "shadcn/registry"
 
 export const hooks: Registry["items"] = [
   {
-    name: "use-filter-fone",
+    name: "use-filter-zone",
     type: "registry:hook",
     files: [
       {
