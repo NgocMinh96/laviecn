@@ -22,7 +22,9 @@
     {
       "name": "zone-filter",
       "type": "registry:component",
-      "dependencies": ["lucide-react"],
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "input",
@@ -39,7 +41,10 @@
     {
       "name": "scroll-to-top",
       "type": "registry:component",
-      "dependencies": ["motion", "lucide-react"],
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "registry/components/scroll-to-top.tsx",
@@ -85,8 +90,13 @@
     {
       "name": "horizontal-scroll-menu",
       "type": "registry:component",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["button", "utils"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/components/horizontal-scroll-menu.tsx",
@@ -97,8 +107,14 @@
     {
       "name": "multiple-selector",
       "type": "registry:component",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["command", "utils", "cmdk"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "command",
+        "utils",
+        "cmdk"
+      ],
       "files": [
         {
           "path": "registry/components/multiple-selector.tsx",
@@ -109,8 +125,14 @@
     {
       "name": "password-input",
       "type": "registry:component",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["button", "input", "utils"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/components/password-input.tsx",
