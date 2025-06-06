@@ -32,14 +32,14 @@ export function ComponentPreviewTabs({
             <TabsList className="border">
               <TabsTrigger
                 value="preview"
-                className="dark:data-[state=active]:bg-fd-card border-0"
+                className="dark:data-[state=active]:bg-fd-card dark:data-[state=active]:text-fd-primary border-0"
               >
                 <EyeIcon size={16} />
                 Preview
               </TabsTrigger>
               <TabsTrigger
                 value="code"
-                className="dark:data-[state=active]:bg-fd-card border-0"
+                className="dark:data-[state=active]:bg-fd-card dark:data-[state=active]:text-fd-primary border-0"
               >
                 <CodeIcon size={16} />
                 Code

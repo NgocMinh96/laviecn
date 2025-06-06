@@ -226,12 +226,15 @@
   --scroll-top-track: oklch(0.92 0 286 / 20%);
 
   --code: oklch(0.2 0 0);
+
+  --color-fd-primary: oklch(0.95 0.04 75);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

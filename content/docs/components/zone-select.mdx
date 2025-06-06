@@ -29,3 +29,172 @@ title: Zone Select
 
   </Step>
 </Steps>
+
+## Zone Data
+
+| [Provinces](https://laviecn.vercel.app/zone/provinces.js) | [Districts](https://laviecn.vercel.app/zone/districts.js) | [Wards](https://laviecn.vercel.app/zone/wards.js) |
+| --------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------- |
+
+## Props
+
+### ZoneSelectProps
+
+<TypeTable
+  type={{
+    className: {
+      type: "string",
+      required: false,
+    },
+    disabled: {
+      type: "boolean",
+      required: false,
+    },
+    onSelect: {
+      type: "(value: string) => void",
+      required: false,
+    },
+    value: {
+      type: "string",
+      required: false,
+    },
+    placeholder: {
+      type: "string",
+      required: false,
+    },
+    label: {
+      type: "string",
+      required: false,
+    },
+    zone: {
+      type: "ZoneItem[]",
+      required: true,
+    },
+  }}
+/>
+
+### ZoneItem
+
+<TypeTable
+  type={{
+    district_id: {
+      type: "string",
+      required: false,
+    },
+    province_id: {
+      type: "string",
+      required: false,
+    },
+    full_name: {
+      type: "string",
+      required: true,
+    },
+    name_slug: {
+      type: "string",
+      required: true,
+    },
+    name: {
+      type: "string",
+      required: true,
+    },
+    id: {
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+### UseFilterZoneProps
+
+<TypeTable
+  type={{
+    wards: {
+      type: "Ward[]",
+      required: true,
+    },
+    provinces: {
+      type: "Province[]",
+      required: true,
+    },
+    districts: {
+      type: "District[]",
+      required: true,
+    },
+  }}
+/>
+
+### Province
+
+<TypeTable
+  type={{
+    full_name: {
+      type: "string",
+      required: true,
+    },
+    name_slug: {
+      type: "string",
+      required: true,
+    },
+    name: {
+      type: "string",
+      required: true,
+    },
+    id: {
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+### District
+
+<TypeTable
+  type={{
+    province_id: {
+      type: "string",
+      required: true,
+    },
+    full_name: {
+      type: "string",
+      required: true,
+    },
+    name_slug: {
+      type: "string",
+      required: true,
+    },
+    name: {
+      type: "string",
+      required: true,
+    },
+    id: {
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+### Ward
+
+<TypeTable
+  type={{
+    district_id: {
+      type: "string",
+      required: true,
+    },
+    full_name: {
+      type: "string",
+      required: true,
+    },
+    name_slug: {
+      type: "string",
+      required: true,
+    },
+    name: {
+      type: "string",
+      required: true,
+    },
+    id: {
+      type: "string",
+      required: true,
+    },
+  }}
+/>

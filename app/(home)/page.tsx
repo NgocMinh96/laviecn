@@ -25,10 +25,10 @@ export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col justify-center text-center">
       <div className="container flex flex-col items-center gap-2 py-8 text-center md:py-16 lg:py-20 xl:gap-4">
-        <h1 className="relative z-20 bg-gradient-to-b from-neutral-900 to-neutral-600 bg-clip-text py-2 text-center font-sans text-3xl font-bold tracking-tight text-transparent md:text-5xl lg:text-5xl dark:from-white dark:to-neutral-600">
+        <h1 className="dark:from-fd-primary relative z-20 bg-gradient-to-b from-neutral-900 to-neutral-600 bg-clip-text py-2 text-center font-sans text-3xl font-bold tracking-tight text-transparent md:text-5xl lg:text-5xl dark:to-neutral-600">
           Open components for Shadcn ecosystem
         </h1>
-        <p className="text-muted-foreground max-w-3xl text-base text-balance">
+        <p className="text-muted-foreground dark:text-fd-primary/50 max-w-3xl text-sm md:text-lg md:text-balance">
           A set of open-source, accessible components built with TypeScript,
           React, and TailwindCSS. Powered by ShadCN and fully compatible with
           Next.js.
@@ -42,7 +42,10 @@ export default function HomePage() {
               "bg-[linear-gradient(110deg,#0a0a0a,45%,#27272A,55%,#0a0a0a)] text-neutral-100"
             )}
           >
-            <Link className="transition-all duration-200" href="/docs">
+            <Link
+              className="dark:text-fd-primary/80 transition-all duration-200"
+              href="/docs"
+            >
               Explore Components
             </Link>
           </HoverBorderGradient>
