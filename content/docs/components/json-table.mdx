@@ -27,3 +27,58 @@ title: Json Table
 
   </Step>
 </Steps>
+
+## Props
+
+### JsonTableProps
+
+<TypeTable
+  type={{
+    onSubmit: {
+      type: "(data: Row[]) => void",
+      required: true,
+    },
+    data: {
+      type: "Row[]",
+      required: true,
+    },
+    columns: {
+      type: "Column[]",
+      required: true,
+    },
+  }}
+/>
+
+### Column
+
+<TypeTable
+  type={{
+    width: {
+      type: "number",
+      required: false,
+    },
+    headerName: {
+      type: "string",
+      required: true,
+    },
+    field: {
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+### Row
+
+<TypeTable
+  type={{
+    "[key: string]": {
+      type: "string | boolean",
+      required: false,
+    },
+    uuid: {
+      type: "string",
+      required: true,
+    },
+  }}
+/>

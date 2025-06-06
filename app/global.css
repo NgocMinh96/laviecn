@@ -241,7 +241,7 @@
   }
 
   header#nd-nav {
-    @apply backdrop-blur-none! md:border-b-0!;
+    @apply backdrop-blur-none! md:border-b-0! md:shadow-none!;
   }
 }
 

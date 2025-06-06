@@ -307,17 +307,17 @@ export function getIconForLanguageExtension(language: string) {
     case "jsx":
     case "ts":
     case "tsx":
-      return <Icons.typescript className="fill-foreground" />
+      return <Icons.typescript key={language} className="fill-foreground" />
     case "typescript":
-      return <Icons.typescript className="fill-foreground" />
+      return <Icons.typescript key={language} className="fill-foreground" />
     case "reactjs":
-      return <Icons.reactjs className="fill-foreground" />
+      return <Icons.reactjs key={language} className="fill-foreground" />
     case "nextjs":
-      return <Icons.nextjs className="fill-foreground" />
+      return <Icons.nextjs key={language} className="fill-foreground" />
     case "tailwindcss":
-      return <Icons.tailwindcss className="fill-foreground" />
+      return <Icons.tailwindcss key={language} className="fill-foreground" />
     case "shadcn":
-      return <Icons.shadcn className="fill-foreground" />
+      return <Icons.shadcn key={language} className="fill-foreground" />
     default:
       return <FileIcon />
   }
