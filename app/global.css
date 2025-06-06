@@ -246,6 +246,14 @@
   header#nd-nav {
     @apply backdrop-blur-none! md:border-b-0! md:shadow-none!;
   }
+
+  nav button[data-search] {
+    @apply hidden!;
+  }
+
+  header#nd-nav button[data-search-full] {
+    @apply hidden!;
+  }
 }
 
 /* -------------- CUSTOM -------------- */
