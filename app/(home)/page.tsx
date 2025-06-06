@@ -1,12 +1,17 @@
+"use client"
+
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
+import { useIsMobile } from "@/hooks/use-mobile"
 import { BackgroundBeams } from "@/components/ui/background-beams"
 import { DockIcons } from "@/components/ui/dock-icons"
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 import { getIconForLanguageExtension } from "@/components/icons"
 
 export default function HomePage() {
+  const isMobile = useIsMobile()
+
   const iconNames = [
     "typescript",
     "reactjs",
@@ -43,9 +48,9 @@ export default function HomePage() {
           </HoverBorderGradient>
         </div>
 
-        <DockIcons icons={icons} infiniteHover movementSpeed={3} />
+        <DockIcons icons={icons} infiniteHover={!isMobile} movementSpeed={3} />
       </div>
-      <BackgroundBeams />
+      {!isMobile && <BackgroundBeams />}
     </main>
   )
 }

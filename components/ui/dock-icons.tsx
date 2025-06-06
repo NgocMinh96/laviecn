@@ -16,9 +16,9 @@ const IconItem = memo(
     <span
       style={{
         transform: `scale(${scale})`,
-        transformOrigin: "bottom", // Key change: Scales upwards from the bottom
+        transformOrigin: "bottom",
       }}
-      className="block size-7 flex-shrink-0 md:size-8" // Added block and flex-shrink-0 for better behavior
+      className="block size-7 flex-shrink-0 md:size-8"
     >
       {icon}
     </span>
@@ -58,27 +58,16 @@ export function DockIcons({
       if (!el) return 1
       const rect = el.getBoundingClientRect()
       const centerX = (rect.left + rect.right) / 2
-      // For a more Mac-like effect, consider the bottom of the icon for scaling
-      const centerY = rect.bottom // Instead of center, use bottom for vertical calculations
-
+      const centerY = rect.bottom
       const dx = Math.abs(mouse.x - centerX)
-      // For vertical distance, we want to scale based on proximity to the dock's base line.
-      // If the mouse.y is also at the bottom of the container, then dy will be small.
-      // Let's keep mouse.y as is for now since it's already aligned to the center of the dock.
-      const dy = Math.abs(mouse.y - centerY) // This might need more fine-tuning if you want the scale to be y-sensitive.
-      // For a simple Mac-like dock, mouse.y is often fixed to the dock's center/bottom.
-
+      const dy = Math.abs(mouse.y - centerY)
       const dist = Math.sqrt(dx * dx + dy * dy)
-
-      // Mac-like scaling often has a larger max scale and a more pronounced effect on neighbors.
-      // Let's slightly increase the max scale and make the falloff smoother.
-      // Math.min(Math.max(1.0, 1.6 - (dist - 20) / 100), 1.6) // Example for more pronounced effect
       return Math.min(Math.max(1.0, 1.2 - (dist - 20) / 150), 1.2)
     }
 
     const newScales = children.map(computeScale)
     setScales(newScales)
-  }, [mouse]) // Re-run when mouse state changes
+  }, [mouse])
 
   useEffect(() => {
     const container = containerRef.current
@@ -119,11 +108,9 @@ export function DockIcons({
           currentX = startX
         }
 
-        // Use a more dynamic step for smoother movement, or keep it fixed
         let step = 5
         if (movementSpeed !== undefined) {
-          // Use movementSpeed prop
-          step = (endX - startX) / (movementSpeed * 10) // Adjust calculation for movementSpeed
+          step = (endX - startX) / (movementSpeed * 10)
         }
 
         let newX = currentX + step * direction
@@ -136,25 +123,23 @@ export function DockIcons({
           setDirection(1)
         }
 
-        // The y-coordinate should be at the bottom of the container for "bottom" origin scaling
-        return { x: newX, y: containerRect.bottom } // Key change: Mouse Y is at container bottom
+        return { x: newX, y: containerRect.bottom }
       })
-    }, 30) // Fixed interval for smoothness, movementSpeed now controls step
+    }, 30)
 
     return () => clearInterval(interval)
-  }, [infiniteHover, direction, movementSpeed]) // Re-run when infiniteHover, direction, or movementSpeed changes
+  }, [infiniteHover, direction, movementSpeed])
 
   return (
     <div
       ref={containerRef}
       className={cn(
-        "z-10 flex items-end justify-center gap-x-3", // Key change: items-end for bottom alignment
+        "z-10 flex items-end justify-center gap-x-3",
         "[&_span]:transition-transform [&_span]:duration-100 [&_span]:ease-in-out",
-        "overflow-visible px-10", // Changed from hidden to visible, as icons should "grow out"
+        "overflow-visible px-10",
         className
       )}
-      // Added a min-height to ensure space for scaled icons
-      style={{ minHeight: `${1 * 32 * 1.25}px` }} // Example: roughly 2x (base size * max scale) for height
+      style={{ minHeight: `${1 * 32 * 1.25}px` }}
     >
       {icons.map((icon, idx) => (
         <IconItem key={idx} icon={icon} scale={scales[idx]} />
