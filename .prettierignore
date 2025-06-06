@@ -7,3 +7,5 @@ node_modules/*
 __registry__/*
 
 package-lock.json
+
+registry/utils/sotienthanhchu.ts
