@@ -1,7 +1,8 @@
 import Image from "next/image"
 import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared"
 
-import { typography } from "@/lib/typography"
+import { fonts } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 
 /**
  * Shared layout configurations
@@ -21,13 +22,7 @@ export const baseOptions: BaseLayoutProps = {
           height={24}
           className="rounded-full"
         />
-        <div>
-          <span className="text-[12px]">₊˚✧ </span>
-          <span className={`${typography.EmilysCandy} text-[24px]`}>
-            Laviecn
-          </span>
-          <span className="text-[12px]"> ✧˚₊</span>
-        </div>
+        <span className={cn(fonts.Anta, "text-xl")}>Laviecn</span>
       </>
     ),
     transparentMode: "top",

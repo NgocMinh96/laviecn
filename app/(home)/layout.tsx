@@ -1,7 +1,8 @@
 import type { ReactNode } from "react"
 import { HomeLayout } from "fumadocs-ui/layouts/home"
 
-import { typography } from "@/lib/typography"
+import { fonts } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 import { baseOptions, linkItems } from "@/app/layout.config"
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -18,12 +19,8 @@ function Footer() {
     <footer className="text-fd-secondary-foreground mt-auto py-5">
       <div className="container flex flex-col items-center gap-4">
         <div className="flex flex-col items-center">
-          <p className="mb-1 text-sm font-semibold">
-            <span className="text-[8px]">₊˚✧ </span>
-            <span className={`${typography.EmilysCandy} text-[16px]`}>
-              Laviecn
-            </span>
-            <span className="text-[8px]"> ✧˚₊</span>
+          <p className={cn(fonts.Anta, "mb-1 text-lg font-semibold")}>
+            Laviecn
           </p>
           <p className="text-muted-foreground text-xs">
             Built with ❤️ by{" "}
@@ -33,7 +30,7 @@ function Footer() {
               target="_blank"
               className="font-medium"
             >
-              minhpc
+              minh nguyen
             </a>
           </p>
         </div>

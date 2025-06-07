@@ -10,7 +10,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "laviecn",
+  title: "Lavie-cn",
   keywords: [
     "laviecn",
     "Next.js",
