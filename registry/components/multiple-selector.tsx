@@ -421,7 +421,7 @@ const MultipleSelector = ({
         commandProps?.onKeyDown?.(e)
       }}
       className={cn(
-        "h-auto overflow-visible bg-transparent",
+        "dark:bg-input/30 h-auto overflow-visible",
         {
           "min-h-8": size === "sm",
           "min-h-9": size === "md",
@@ -437,7 +437,8 @@ const MultipleSelector = ({
     >
       <div
         className={cn(
-          "border-input focus-within:border-ring focus-within:ring-ring/40 has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 relative rounded-md border text-sm transition-[color,box-shadow] outline-none focus-within:ring-[2px] has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
+          "border-input has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 relative rounded-md border text-sm transition-[color,box-shadow] outline-none has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
+          "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]",
           {
             "p-[3.08px]": selected.length !== 0,
             "cursor-text": !disabled && selected.length !== 0,
@@ -456,7 +457,8 @@ const MultipleSelector = ({
               <div
                 key={option.value}
                 className={cn(
-                  "animate-fadeIn bg-background text-foreground/80 hover:bg-background relative inline-flex cursor-default items-center rounded-md border ps-2 pe-7 pl-2 text-xs font-medium transition-all disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-fixed:pe-2",
+                  "animate-fadeIn relative inline-flex items-center rounded-md border ps-2 pe-7 pl-2 transition-all disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-fixed:pe-2",
+                  "text-muted-foreground hover:border-ring/50 cursor-default text-xs font-medium",
                   {
                     "h-6": size === "sm",
                     "h-7": size === "md",
@@ -469,7 +471,7 @@ const MultipleSelector = ({
                 {option.label}
                 <button
                   className={cn(
-                    "text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute -inset-y-px -end-px flex items-center justify-center rounded-e-md border border-transparent p-0 outline-hidden transition-[color,box-shadow] outline-none focus-visible:ring-[3px]",
+                    "text-muted-foreground hover:text-foreground absolute -inset-y-px -end-px flex items-center justify-center p-0",
                     {
                       "size-6": size === "sm",
                       "size-7": size === "md",
@@ -521,7 +523,7 @@ const MultipleSelector = ({
                 : placeholder
             }
             className={cn(
-              "placeholder:text-muted-foreground/70 flex-1 bg-transparent outline-hidden disabled:cursor-not-allowed",
+              "placeholder:text-muted-foreground flex-1 bg-transparent outline-hidden disabled:cursor-not-allowed",
               {
                 "w-full": hidePlaceholderWhenSelected,
                 "px-3 py-2": selected.length === 0,
