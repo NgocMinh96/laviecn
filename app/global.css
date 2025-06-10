@@ -269,7 +269,7 @@
   }
 
   figure {
-    @apply dark:bg-fd-card! border! bg-neutral-50!;
+    @apply border!;
 
     & svg {
       @apply size-4!;
@@ -281,33 +281,23 @@
   }
 
   [data-line-numbers] {
-    display: grid;
-    min-width: 100%;
-    white-space: pre;
-    border: 0;
-    background: transparent;
-    padding: 0;
+    @apply grid min-w-full border-0 bg-transparent p-0 whitespace-pre;
     counter-reset: line;
     box-decoration-break: clone;
   }
 
   [data-line-numbers] [data-line]::before {
-    font-size: 0.875rem;
+    @apply inline-block bg-[var(--color-code)] text-right text-sm text-[#a3a3a3];
     counter-increment: line;
     content: counter(line);
-    display: inline-block;
     width: calc(var(--spacing) * 16);
     padding-right: calc(var(--spacing) * 6);
-    text-align: right;
-    color: #a3a3a3;
-    background: var(--color-code);
     position: sticky;
     left: 0;
   }
 
   .dark [data-line-numbers] [data-line]::before {
-    color: #525252;
-    background: var(--color-fd-card);
+    @apply bg-[var(--color-fd-card)] text-[#525252];
   }
 
   [data-line] span {
