@@ -239,8 +239,18 @@
     @apply bg-background text-foreground;
   }
 
-  article:has(.component-introduce) {
+  #nd-docs-layout:has(.component-introduce) {
     @apply pt-0!;
+    @apply bg-[radial-gradient(var(--sidebar-border)_1px,transparent_0)] bg-size-[40px_40px];
+  }
+
+  #nd-sidebar,
+  #nd-sidebar-mobile {
+    background-image: repeating-radial-gradient(
+      var(--background) 85%,
+      var(--color-fd-card) 87%
+    );
+    background-size: 40px 40px;
   }
 
   header#nd-nav {

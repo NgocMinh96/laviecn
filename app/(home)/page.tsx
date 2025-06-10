@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { BackgroundBeams } from "@/components/ui/background-beams"
 import { DockIcons } from "@/components/ui/dock-icons"
+import FluidCursor from "@/components/ui/fluid-cursor"
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 import { getIconForLanguageExtension } from "@/components/icons"
 
@@ -54,6 +55,7 @@ export default function HomePage() {
         <DockIcons icons={icons} movementSpeed={3} />
       </div>
       {!isMobile && <BackgroundBeams />}
+      <FluidCursor />
     </main>
   )
 }
