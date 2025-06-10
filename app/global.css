@@ -259,13 +259,9 @@
     @apply bg-[radial-gradient(var(--sidebar-border)_1px,transparent_0)] bg-size-[40px_40px] pt-0!;
   }
 
-  #nd-sidebar,
-  #nd-sidebar-mobile {
-    background-image: repeating-radial-gradient(
-      var(--background) 85%,
-      var(--color-fd-card) 87%
-    );
-    background-size: 40px 40px;
+  #nd-sidebar a.md\:py-1\.5,
+  #nd-sidebar-mobile a.md\:py-1\.5 {
+    @apply md:py-2!;
   }
 
   figure {
