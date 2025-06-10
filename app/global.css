@@ -239,9 +239,24 @@
     @apply bg-background text-foreground;
   }
 
+  header#nd-nav {
+    @apply backdrop-blur-none! md:border-b-0! md:shadow-none!;
+  }
+
+  header#nd-nav button[data-search-full] {
+    @apply hidden!;
+  }
+
+  nav button[data-search] {
+    @apply hidden!;
+  }
+
+  button[aria-label="Collapse Sidebar"] {
+    @apply mb-0! size-8!;
+  }
+
   #nd-docs-layout:has(.component-introduce) {
-    @apply pt-0!;
-    @apply bg-[radial-gradient(var(--sidebar-border)_1px,transparent_0)] bg-size-[40px_40px];
+    @apply bg-[radial-gradient(var(--sidebar-border)_1px,transparent_0)] bg-size-[40px_40px] pt-0!;
   }
 
   #nd-sidebar,
@@ -253,20 +268,57 @@
     background-size: 40px 40px;
   }
 
-  header#nd-nav {
-    @apply backdrop-blur-none! md:border-b-0! md:shadow-none!;
+  figure {
+    @apply dark:bg-fd-card! border! bg-neutral-50!;
+
+    & svg {
+      @apply size-4!;
+    }
+
+    & button {
+      @apply hover:bg-transparent! [@media(hover:hover)]:opacity-100!;
+    }
   }
 
-  nav button[data-search] {
-    @apply hidden!;
+  [data-line-numbers] {
+    display: grid;
+    min-width: 100%;
+    white-space: pre;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    counter-reset: line;
+    box-decoration-break: clone;
   }
 
-  header#nd-nav button[data-search-full] {
-    @apply hidden!;
+  [data-line-numbers] [data-line]::before {
+    font-size: 0.875rem;
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: calc(var(--spacing) * 16);
+    padding-right: calc(var(--spacing) * 6);
+    text-align: right;
+    color: #a3a3a3;
+    background: var(--color-code);
+    position: sticky;
+    left: 0;
+  }
+
+  .dark [data-line-numbers] [data-line]::before {
+    color: #525252;
+    background: var(--color-fd-card);
+  }
+
+  [data-line] span {
+    color: var(--shiki-light);
+
+    @variant dark {
+      color: var(--shiki-dark) !important;
+    }
   }
 }
 
-/* -------------- CUSTOM -------------- */
 @supports (color: color-mix(in oklab, red, red)) {
   .bg-fd-primary\/10 {
     background-color: color-mix(
@@ -282,62 +334,6 @@
       transparent
     );
   }
-}
-
-@layer components {
-  button[aria-label="Collapse Sidebar"] {
-    @apply mb-0! size-8!;
-  }
-
-  [data-line] span {
-    color: var(--shiki-light);
-
-    @variant dark {
-      color: var(--shiki-dark) !important;
-    }
-  }
-
-  figure {
-    @apply dark:bg-fd-card! border! bg-neutral-50!;
-
-    & svg {
-      @apply size-4!;
-    }
-
-    & button {
-      @apply hover:bg-transparent! [@media(hover:hover)]:opacity-100!;
-    }
-  }
-}
-
-[data-line-numbers] {
-  display: grid;
-  min-width: 100%;
-  white-space: pre;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  counter-reset: line;
-  box-decoration-break: clone;
-}
-
-[data-line-numbers] [data-line]::before {
-  font-size: 0.875rem;
-  counter-increment: line;
-  content: counter(line);
-  display: inline-block;
-  width: calc(var(--spacing) * 16);
-  padding-right: calc(var(--spacing) * 6);
-  text-align: right;
-  color: #a3a3a3;
-  background: var(--color-code);
-  position: sticky;
-  left: 0;
-}
-
-.dark [data-line-numbers] [data-line]::before {
-  color: #525252;
-  background: var(--color-fd-card);
 }
 
 @keyframes bg-shine {
