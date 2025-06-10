@@ -27,6 +27,7 @@ export const baseOptions: BaseLayoutProps = {
     ),
     transparentMode: "top",
   },
+  githubUrl: "https://github.com/NgocMinh96/laviecn",
 }
 
 export const linkItems: LinkItemType[] = [
