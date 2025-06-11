@@ -11,7 +11,6 @@ export function HoverBorderGradient({
   children,
   containerClassName,
   className,
-  as: Tag = "button",
   duration = 1,
   clockwise = true,
   ...props
@@ -60,20 +59,20 @@ export function HoverBorderGradient({
     }
   }, [duration, hovered, rotateDirection])
   return (
-    <Tag
+    <button
       onMouseEnter={() => {
         setHovered(true)
       }}
       onMouseLeave={() => setHovered(false)}
       className={cn(
-        "relative flex h-min w-fit flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible bg-black/20 decoration-clone transition duration-500 hover:bg-black/10 dark:bg-white/20",
+        "group relative flex content-center items-center justify-center rounded-2xl bg-black/20 decoration-clone p-0.75 transition duration-500 hover:bg-black/10 dark:bg-white/20",
         containerClassName
       )}
       {...props}
     >
       <div
         className={cn(
-          "z-10 w-auto rounded-[inherit] bg-black px-3 py-2 text-white",
+          "z-10 min-w-[150px] rounded-xl bg-black px-4 py-1.5 text-white",
           className
         )}
       >
@@ -97,6 +96,6 @@ export function HoverBorderGradient({
         }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
       />
-    </Tag>
+    </button>
   )
 }

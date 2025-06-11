@@ -30,7 +30,7 @@ function Footer() {
               target="_blank"
               className="font-medium"
             >
-              minh nguyen
+              Minh Nguyen
             </a>
           </p>
         </div>

@@ -1,12 +1,14 @@
 "use client"
 
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { BackgroundBeams } from "@/components/ui/background-beams"
 import { DockIcons } from "@/components/ui/dock-icons"
 import FluidCursor from "@/components/ui/fluid-cursor"
+import GithubButton from "@/components/ui/github-button"
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 import { getIconForLanguageExtension } from "@/components/icons"
 
@@ -34,22 +36,24 @@ export default function HomePage() {
           React, and TailwindCSS. Powered by ShadCN and fully compatible with
           Next.js.
         </p>
-        <div className="flex w-full items-center justify-center gap-2 py-3 **:data-[slot=button]:shadow-none">
+        <div className="flex w-full items-center justify-center gap-4 py-3 **:data-[slot=button]:shadow-none">
           <HoverBorderGradient
-            containerClassName="rounded-xl p-0.5 transition-all duration-200"
+            containerClassName="transition-all duration-200"
             as="button"
             className={cn(
-              "bg-shine bg-[length:200%_100%] tracking-wide",
+              "bg-shine-animation bg-[length:200%_100%] tracking-wide",
               "bg-[linear-gradient(110deg,#0a0a0a,45%,#27272A,55%,#0a0a0a)] text-neutral-100"
             )}
           >
             <Link
-              className="dark:text-fd-primary/80 transition-all duration-200"
+              className="flex content-center items-center justify-center gap-1 transition-all duration-200"
               href="/docs"
             >
-              Explore Components
+              Get Started
+              <ArrowRight className="size-5 transition-all group-hover:translate-x-0.5 group-hover:scale-105" />
             </Link>
           </HoverBorderGradient>
+          <GithubButton />
         </div>
 
         <DockIcons icons={icons} movementSpeed={3} />
