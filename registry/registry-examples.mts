@@ -81,4 +81,14 @@ export const examples: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "count-up-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/count-up-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
 ]

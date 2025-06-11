@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Index } from "@/__registry__"
 
+import { cn } from "@/lib/utils"
+
 import { ComponentPreviewTabs } from "./component-preview-tabs"
 import { ComponentSource } from "./component-source"
 
@@ -29,7 +31,7 @@ export function ComponentPreview({
 
   return (
     <ComponentPreviewTabs
-      className={className}
+      className={cn("", className)}
       // align={align}
       hideCode={hideCode}
       component={<Component key={name} />}

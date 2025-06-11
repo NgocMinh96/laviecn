@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "count-up-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "registry/examples/count-up-demo.tsx",
+      "content": "import CountUp from \"../components/count-up\"\r\n\r\nexport default function CountUpDemo() {\r\n  return (\r\n    <CountUp\r\n      from={0}\r\n      to={100}\r\n      separator=\",\"\r\n      direction=\"up\"\r\n      duration={1}\r\n      className=\"count-up-text\"\r\n    />\r\n  )\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

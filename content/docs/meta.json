@@ -9,6 +9,8 @@
     "components/password-input",
     "components/multiple-selector",
     "components/horizontal-scroll-menu",
+    "---Effects---",
+    "effects/count-up",
     "---Utils---",
     "utils/sotienthanhchu"
   ]

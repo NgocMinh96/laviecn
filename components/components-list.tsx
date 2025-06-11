@@ -17,6 +17,10 @@ export function ComponentsList() {
       ),
     },
     {
+      title: "Effects",
+      items: list.filter((item) => item.$id && item.$id.startsWith("effects/")),
+    },
+    {
       title: "Utils",
       items: list.filter((item) => item.$id && item.$id.startsWith("utils/")),
     },

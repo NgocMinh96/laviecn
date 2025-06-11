@@ -1,0 +1,73 @@
+---
+title: Count Up
+---
+
+## Demo
+
+<ComponentPreview name="count-up-demo" />
+
+## Installation
+
+### Shadcn CLI
+
+<ComponentInstall command="npx shadcn@latest add https://laviecn.vercel.app/r/count-up.json" />
+
+### Manual
+
+Copy and paste the following code into your project.
+
+<ComponentSource name="count-up" title="count-up.ts" />
+
+## Props
+
+### CountUpProps
+
+<TypeTable
+  type={{
+    onEnd: {
+      type: "function",
+      required: false,
+    },
+    onStart: {
+      type: "function",
+      required: false,
+    },
+    separator: {
+      type: "string",
+      required: false,
+    },
+    startWhen: {
+      type: "boolean",
+      required: false,
+      default: "true",
+    },
+    className: {
+      type: "string",
+      required: false,
+    },
+    duration: {
+      type: "number",
+      required: false,
+      default: 2,
+    },
+    delay: {
+      type: "number",
+      required: false,
+      default: "0",
+    },
+    direction: {
+      type: "string",
+      required: false,
+      default: "up",
+    },
+    from: {
+      type: "number",
+      required: false,
+      default: "0",
+    },
+    to: {
+      type: "number",
+      required: true,
+    },
+  }}
+/>

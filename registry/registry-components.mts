@@ -61,7 +61,12 @@ export const components: Registry["items"] = [
   {
     name: "json-table",
     type: "registry:component",
-    dependencies: ["@dnd-kit/core", "@dnd-kit/modifiers", "@dnd-kit/sortable", "lucide-react"],
+    dependencies: [
+      "@dnd-kit/core",
+      "@dnd-kit/modifiers",
+      "@dnd-kit/sortable",
+      "lucide-react",
+    ],
     registryDependencies: ["button", "input", "scroll-area", "table", "utils"],
     files: [
       {
@@ -103,6 +108,17 @@ export const components: Registry["items"] = [
       {
         path: "components/password-input.tsx",
         type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "count-up",
+    type: "registry:ui",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/count-up.tsx",
+        type: "registry:ui",
       },
     ],
   },
