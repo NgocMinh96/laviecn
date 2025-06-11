@@ -337,16 +337,19 @@
 
 @keyframes sparkle {
   0% {
-    opacity: 0.7;
-    transform: scale(0.9) rotate(0deg);
+    transform: scale(0.6) rotate(0deg);
+  }
+  25% {
+    transform: scale(1) rotate(120deg);
   }
   50% {
-    opacity: 1;
-    transform: scale(1) rotate(180deg);
+    transform: scale(0.8) rotate(240deg);
+  }
+  75% {
+    transform: scale(1) rotate(360deg);
   }
   100% {
-    opacity: 0.7;
-    transform: scale(0.9) rotate(360deg);
+    transform: scale(0.6) rotate(0deg);
   }
 }
 

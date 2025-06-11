@@ -133,23 +133,15 @@ export default function GithubButton() {
       rel="noopener noreferrer"
       className="group relative z-10 rounded-2xl bg-gradient-to-r from-blue-300/30 via-blue-500/30 via-40% to-purple-500/30 p-0.75 text-white transition-transform"
     >
-      <div className="relative flex min-w-[150px] items-center justify-center gap-1 rounded-xl bg-gradient-to-r from-blue-300 via-blue-500 via-40% to-purple-500 px-4 py-1.5 text-white">
-        <Github className="size-5" />
+      <div className="flex min-w-[150px] content-center items-center justify-center gap-1 rounded-xl bg-gradient-to-r from-blue-300 via-blue-500 via-40% to-purple-500 px-4 py-1.5 text-white">
+        Github
+        <Github className="size-4 scale-x-[-1] transform" />
         <Star
           style={{
             animationDelay: "1s",
-            animationDuration: "2.5s",
+            animationDuration: "5s",
           }}
-          className="sparkle-animation absolute top-3.5 left-5 size-2 fill-white"
-        />
-
-        <span>Github</span>
-        <Star
-          style={{
-            animationDelay: "1s",
-            animationDuration: "3s",
-          }}
-          className="sparkle-animation size-4 fill-white"
+          className="sparkle-animation absolute top-3.5 right-8.25 size-2.5 fill-white"
         />
       </div>
       {!!particleState && (
