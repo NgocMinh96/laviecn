@@ -140,7 +140,7 @@ export default function GithubButton() {
             animationDelay: "1s",
             animationDuration: "2.5s",
           }}
-          className="sparkle-animation absolute top-3.5 left-6 size-2 fill-white"
+          className="sparkle-animation absolute top-3.5 left-5 size-2 fill-white"
         />
 
         <span>Github</span>
