@@ -11,6 +11,7 @@
     "components/horizontal-scroll-menu",
     "---Effects---",
     "effects/count-up",
+    "effects/sliding-number",
     "---Utils---",
     "utils/sotienthanhchu"
   ]

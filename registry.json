@@ -154,6 +154,20 @@
       ]
     },
     {
+      "name": "sliding-number",
+      "type": "registry:ui",
+      "dependencies": [
+        "motion",
+        "react-use-measure"
+      ],
+      "files": [
+        {
+          "path": "registry/components/sliding-number.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "zone-select-demo",
       "type": "registry:example",
       "files": [
@@ -239,6 +253,16 @@
       "files": [
         {
           "path": "registry/examples/count-up-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sliding-number-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/sliding-number-demo.tsx",
           "type": "registry:example"
         }
       ]

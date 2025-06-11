@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "registry/examples/count-up-demo.tsx",
-      "content": "import CountUp from \"../components/count-up\"\r\n\r\nexport default function CountUpDemo() {\r\n  return (\r\n    <CountUp\r\n      from={0}\r\n      to={100}\r\n      separator=\",\"\r\n      direction=\"up\"\r\n      duration={1}\r\n      className=\"count-up-text\"\r\n    />\r\n  )\r\n}\r\n",
+      "content": "\"use client\"\n\nimport { ButtonRefresh } from \"@/components/component-button-refresh\"\n\nimport CountUp from \"../components/count-up\"\nimport useForceRerender from \"../hooks/use-force-rerender\"\n\nexport default function CountUpDemo() {\n  const [keyDefault, forceRerenderDefault] = useForceRerender() as [\n    number,\n    () => void,\n  ]\n\n  return (\n    <>\n      <CountUp\n        key={keyDefault}\n        from={0}\n        to={100}\n        separator=\"\"\n        duration={1}\n        className=\"text-6xl\"\n      />\n\n      <ButtonRefresh onClick={forceRerenderDefault} />\n    </>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

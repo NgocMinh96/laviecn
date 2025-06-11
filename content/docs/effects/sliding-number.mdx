@@ -1,0 +1,87 @@
+---
+title: Sliding Number
+---
+
+## Demo
+
+<ComponentPreview name="sliding-number-demo" />
+
+## Installation
+
+### Shadcn CLI
+
+<ComponentInstall command="npx shadcn@latest add https://laviecn.vercel.app/r/sliding-number.json" />
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies.
+
+    <ComponentInstall command="npm install motion react-use-measure" />
+
+  </Step>
+  <Step>
+    Copy and paste the following code into your project.
+
+    <ComponentSource name="sliding-number" title="sliding-number.tsx" />
+
+  </Step>
+  <Step>
+
+    Update the import paths to match your project setup.
+
+  </Step>
+</Steps>
+
+## Props
+
+### SlidingNumberRollerProps
+
+<TypeTable
+  type={{
+    transition: {
+      type: "SpringOptions",
+      default: "{ stiffness: 200, damping: 20, mass: 0.4 }",
+      required: false,
+    },
+    decimalPlaces: {
+      type: "number",
+      default: "0",
+      required: false,
+    },
+    decimalSeparator: {
+      type: "string",
+      default: ".",
+      required: false,
+    },
+    padStart: {
+      type: "boolean",
+      default: "false",
+      required: false,
+    },
+    inViewOnce: {
+      type: "boolean",
+      required: false,
+      default: "true",
+    },
+    inViewMargin: {
+      type: "string",
+      required: false,
+      default: "0px",
+    },
+    inView: {
+      type: "boolean",
+      default: "false",
+      required: false,
+    },
+    number: {
+      type: "number | string",
+      required: true,
+    },
+    className: {
+      type: "string",
+      required: false,
+    },
+  }}
+/>

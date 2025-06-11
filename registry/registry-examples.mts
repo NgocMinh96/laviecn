@@ -91,4 +91,14 @@ export const examples: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "sliding-number-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/sliding-number-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
 ]

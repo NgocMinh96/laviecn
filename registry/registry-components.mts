@@ -122,4 +122,15 @@ export const components: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "sliding-number",
+    type: "registry:ui",
+    dependencies: ["motion", "react-use-measure"],
+    files: [
+      {
+        path: "components/sliding-number.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
 ]
