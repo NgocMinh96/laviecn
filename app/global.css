@@ -256,7 +256,8 @@
   }
 
   #nd-docs-layout:has(.component-introduce) {
-    @apply bg-[radial-gradient(var(--sidebar-border)_1px,transparent_0)] bg-size-[40px_40px] pt-0!;
+    /* @apply bg-[radial-gradient(var(--sidebar-border)_1px,transparent_0)] bg-size-[40px_40px] pt-0!; */
+    /* @apply dark:bg-[radial-gradient(ellipse_at_bottom,_#262626_0%,_#000_100%)]; */
   }
 
   #nd-sidebar a.md\:py-1\.5,

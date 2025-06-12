@@ -7,7 +7,11 @@ import { baseOptions, linkItems } from "@/app/layout.config"
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <HomeLayout {...baseOptions} links={[...linkItems]}>
+    <HomeLayout
+      {...baseOptions}
+      links={[...linkItems]}
+      className="dark:bg-[radial-gradient(ellipse_at_bottom,_#1E1E1E_0%,_#000_100%)]"
+    >
       {children}
       <Footer />
     </HomeLayout>
