@@ -2,10 +2,10 @@
 
 import { ButtonRefresh } from "@/components/component-button-refresh"
 
-import CountUp from "../components/count-up"
+import CountingNumber from "../components/counting-number"
 import useForceRerender from "../hooks/use-force-rerender"
 
-export default function CountUpDemo() {
+export default function CountingNumberDemo() {
   const [keyDefault, forceRerenderDefault] = useForceRerender() as [
     number,
     () => void,
@@ -13,7 +13,7 @@ export default function CountUpDemo() {
 
   return (
     <>
-      <CountUp
+      <CountingNumber
         key={keyDefault}
         from={0}
         to={100}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "smooth-cursor-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "registry/examples/smooth-cursor-demo.tsx",
+      "content": "import { SmoothCursor } from \"../components/smooth-cursor\"\r\n\r\nexport default function SmoothCursorDemo() {\r\n  return (\r\n    <>\r\n      <span className=\"text-3xl\">Move your mouse around</span>\r\n      <SmoothCursor />\r\n    </>\r\n  )\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

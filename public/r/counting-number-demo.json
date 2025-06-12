@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "counting-number-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "registry/examples/counting-number-demo.tsx",
+      "content": "\"use client\"\n\nimport { ButtonRefresh } from \"@/components/component-button-refresh\"\n\nimport CountingNumber from \"../components/counting-number\"\nimport useForceRerender from \"../hooks/use-force-rerender\"\n\nexport default function CountingNumberDemo() {\n  const [keyDefault, forceRerenderDefault] = useForceRerender() as [\n    number,\n    () => void,\n  ]\n\n  return (\n    <>\n      <CountingNumber\n        key={keyDefault}\n        from={0}\n        to={100}\n        separator=\"\"\n        duration={1}\n        className=\"text-6xl\"\n      />\n\n      <ButtonRefresh onClick={forceRerenderDefault} />\n    </>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -10,8 +10,10 @@
     "components/multiple-selector",
     "components/horizontal-scroll-menu",
     "---Effects---",
-    "effects/count-up",
+    "effects/smooth-cursor",
     "effects/sliding-number",
+    "effects/counting-number",
+
     "---Utils---",
     "utils/sotienthanhchu"
   ]

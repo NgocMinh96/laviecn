@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "registry/examples/sliding-number-demo.tsx",
-      "content": "import { SlidingNumber } from \"../components/sliding-number\"\r\n\r\nexport default function SlidingNumberDemo() {\r\n  return (\r\n    <SlidingNumber\r\n      number={new Date().getFullYear()}\r\n      padStart\r\n      className=\"text-5xl\"\r\n    />\r\n  )\r\n}\r\n",
+      "content": "\"use client\"\n\nimport { ButtonRefresh } from \"@/components/component-button-refresh\"\n\nimport { SlidingNumber } from \"../components/sliding-number\"\nimport useForceRerender from \"../hooks/use-force-rerender\"\n\nexport default function SlidingNumberDemo() {\n  const [keyDefault, forceRerenderDefault] = useForceRerender() as [\n    number,\n    () => void,\n  ]\n\n  return (\n    <>\n      <SlidingNumber\n        key={keyDefault}\n        number={6789}\n        padStart\n        className=\"text-5xl\"\n      />\n      <ButtonRefresh onClick={forceRerenderDefault} />\n    </>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

@@ -141,14 +141,14 @@
       ]
     },
     {
-      "name": "count-up",
+      "name": "counting-number",
       "type": "registry:ui",
       "dependencies": [
         "motion"
       ],
       "files": [
         {
-          "path": "registry/components/count-up.tsx",
+          "path": "registry/components/counting-number.tsx",
           "type": "registry:ui"
         }
       ]
@@ -163,6 +163,16 @@
       "files": [
         {
           "path": "registry/components/sliding-number.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "smooth-cursor",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "registry/components/smooth-cursor.tsx",
           "type": "registry:ui"
         }
       ]
@@ -248,11 +258,11 @@
       ]
     },
     {
-      "name": "count-up-demo",
+      "name": "counting-number-demo",
       "type": "registry:example",
       "files": [
         {
-          "path": "registry/examples/count-up-demo.tsx",
+          "path": "registry/examples/counting-number-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -263,6 +273,16 @@
       "files": [
         {
           "path": "registry/examples/sliding-number-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "smooth-cursor-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/smooth-cursor-demo.tsx",
           "type": "registry:example"
         }
       ]

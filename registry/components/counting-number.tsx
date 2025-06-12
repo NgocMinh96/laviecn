@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import { useInView, useMotionValue, useSpring } from "motion/react"
 
-interface CountUpProps {
+interface CountingNumber {
   to: number
   from?: number
   direction?: "up" | "down"
@@ -16,7 +16,7 @@ interface CountUpProps {
   onEnd?: () => void
 }
 
-export default function CountUp({
+export default function CountingNumber({
   to,
   from = 0,
   direction = "up",
@@ -27,7 +27,7 @@ export default function CountUp({
   separator = "",
   onStart,
   onEnd,
-}: CountUpProps) {
+}: CountingNumber) {
   const ref = useRef<HTMLSpanElement>(null)
   const motionValue = useMotionValue(direction === "down" ? to : from)
 

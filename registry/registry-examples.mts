@@ -82,11 +82,11 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "count-up-demo",
+    name: "counting-number-demo",
     type: "registry:example",
     files: [
       {
-        path: "examples/count-up-demo.tsx",
+        path: "examples/counting-number-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -97,6 +97,16 @@ export const examples: Registry["items"] = [
     files: [
       {
         path: "examples/sliding-number-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "smooth-cursor-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/smooth-cursor-demo.tsx",
         type: "registry:example",
       },
     ],

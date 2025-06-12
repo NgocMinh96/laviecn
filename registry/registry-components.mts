@@ -112,12 +112,12 @@ export const components: Registry["items"] = [
     ],
   },
   {
-    name: "count-up",
+    name: "counting-number",
     type: "registry:ui",
     dependencies: ["motion"],
     files: [
       {
-        path: "components/count-up.tsx",
+        path: "components/counting-number.tsx",
         type: "registry:ui",
       },
     ],
@@ -129,6 +129,16 @@ export const components: Registry["items"] = [
     files: [
       {
         path: "components/sliding-number.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "smooth-cursor",
+    type: "registry:ui",
+    files: [
+      {
+        path: "components/smooth-cursor.tsx",
         type: "registry:ui",
       },
     ],
