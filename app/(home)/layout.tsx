@@ -3,6 +3,7 @@ import { HomeLayout } from "fumadocs-ui/layouts/home"
 
 import { fonts } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { SmoothCursor } from "@/components/ui/smooth-cursor"
 import { baseOptions, linkItems } from "@/app/layout.config"
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -14,6 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     >
       {children}
       <Footer />
+      <SmoothCursor />
     </HomeLayout>
   )
 }
