@@ -10,7 +10,7 @@ export function ButtonRefresh({ ...props }) {
       className="absolute top-5 right-5 hover:cursor-pointer"
       {...props}
     >
-      <RefreshCw />
+      <RefreshCw className="size-4" />
     </Button>
   )
 }
