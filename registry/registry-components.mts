@@ -107,7 +107,7 @@ export const components: Registry["items"] = [
     files: [
       {
         path: "components/password-input.tsx",
-        type: "registry:component",
+        type: "registry:ui",
       },
     ],
   },

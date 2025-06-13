@@ -4,6 +4,7 @@ import path from "path"
 import rimraf from "rimraf"
 import { registryItemSchema, type Registry } from "shadcn/registry"
 import { z } from "zod"
+
 import { components } from "../registry/registry-components.mts"
 import { examples } from "../registry/registry-examples.mts"
 import { hooks } from "../registry/registry-hooks.mts"
@@ -13,7 +14,7 @@ const DEPRECATED_ITEMS = ["toast"]
 
 const registry = {
   name: "laviecn",
-  homepage: "http://localhost:3000",
+  homepage: "http://laviecn.vercel.app",
   items: z.array(registryItemSchema).parse(
     [...components, ...examples, ...hooks, ...libs].filter((item) => {
       return !DEPRECATED_ITEMS.includes(item.name)
@@ -36,7 +37,9 @@ export const Index: Record<string, any> = {`
       continue
     }
 
-    const componentPath = item.files?.[0]?.path ? `@/registry/${item.files[0].path}` : ""
+    const componentPath = item.files?.[0]?.path
+      ? `@/registry/${item.files[0].path}`
+      : ""
 
     index += `
   "${item.name}": {

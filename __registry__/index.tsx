@@ -115,7 +115,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["button","input","utils"],
     files: [{
       path: "registry/components/password-input.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: ""
     }],
     component: React.lazy(async () => {

@@ -1,6 +1,6 @@
 {
   "name": "laviecn",
-  "homepage": "http://localhost:3000",
+  "homepage": "http://laviecn.vercel.app",
   "items": [
     {
       "name": "zone-select",
@@ -136,7 +136,7 @@
       "files": [
         {
           "path": "registry/components/password-input.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
