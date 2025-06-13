@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "registry/examples/smooth-cursor-demo.tsx",
-      "content": "import { SmoothCursor } from \"../components/smooth-cursor\"\r\n\r\nexport default function SmoothCursorDemo() {\r\n  return (\r\n    <>\r\n      <span className=\"text-3xl\">Move your mouse around</span>\r\n      <SmoothCursor />\r\n    </>\r\n  )\r\n}\r\n",
+      "content": "import { SmoothCursor } from \"../components/smooth-cursor\"\n\nexport default function SmoothCursorDemo() {\n  return (\n    <>\n      <span className=\"text-3xl\">Move your mouse around</span>\n      <SmoothCursor />\n    </>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

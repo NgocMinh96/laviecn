@@ -101,7 +101,7 @@ export const components: Registry["items"] = [
   },
   {
     name: "password-input",
-    type: "registry:component",
+    type: "registry:ui",
     dependencies: ["lucide-react"],
     registryDependencies: ["button", "input", "utils"],
     files: [

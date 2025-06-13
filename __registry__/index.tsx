@@ -111,7 +111,7 @@ export const Index: Record<string, any> = {
   "password-input": {
     name: "password-input",
     description: "",
-    type: "registry:component",
+    type: "registry:ui",
     registryDependencies: ["button","input","utils"],
     files: [{
       path: "registry/components/password-input.tsx",
