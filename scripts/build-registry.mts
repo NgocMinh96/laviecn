@@ -1,15 +1,15 @@
 import { exec } from "child_process"
 import { promises as fs } from "fs"
 import path from "path"
-import rimraf from "rimraf"
+import { rimraf } from "rimraf"
 import { registryItemSchema, type Registry } from "shadcn/registry"
 import { z } from "zod"
 
-import { blocks } from "../registry/registry-blocks.mjs"
-import { components } from "../registry/registry-components.mts"
-import { examples } from "../registry/registry-examples.mts"
-import { hooks } from "../registry/registry-hooks.mts"
-import { libs } from "../registry/registry-libs.mts"
+import { blocks } from "../registry/registry-blocks"
+import { components } from "../registry/registry-components"
+import { examples } from "../registry/registry-examples"
+import { hooks } from "../registry/registry-hooks"
+import { libs } from "../registry/registry-libs"
 
 const DEPRECATED_ITEMS = ["toast"]
 

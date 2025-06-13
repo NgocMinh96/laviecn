@@ -4,15 +4,14 @@
   "compilerOptions": {
     "target": "ES2017",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "isolatedModules": false,
     "allowImportingTsExtensions": true,
-    "noEmit": false
+    // "noEmit": false
   },
   "include": [
     "scripts/**/*.{ts,mts}",
-    "registry/**/*.{ts,mts}"
   ],
   "exclude": [
     "node_modules"
