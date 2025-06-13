@@ -36,4 +36,9 @@ export const linkItems: LinkItemType[] = [
     url: "/docs",
     active: "nested-url",
   },
+  {
+    text: "Blocks",
+    url: "/blocks",
+    active: "url",
+  },
 ]

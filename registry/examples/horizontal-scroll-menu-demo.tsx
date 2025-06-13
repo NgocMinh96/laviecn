@@ -1,33 +1,37 @@
 "use client"
 
+// import { useRouter } from "next/navigation"
 import { HorizontalScrollMenu } from "../components/horizontal-scroll-menu"
 
 const menuItems = [
-  { id: "all", name: "Tất cả" },
-  { id: "music", name: "Âm nhạc" },
-  { id: "playlists", name: "Danh sách kết hợp" },
-  { id: "news", name: "Tin tức" },
-  { id: "live", name: "Trực tiếp" },
-  { id: "rap", name: "Đọc rap" },
-  { id: "football", name: "Bóng đá" },
-  { id: "nature", name: "Thiên nhiên" },
-  { id: "recent", name: "Mới tải lên gần đây" },
-  { id: "watched", name: "Đã xem" },
-  { id: "suggestions", name: "Đề xuất mới" },
+  { id: "all", name: "All" },
+  { id: "music", name: "Music" },
+  { id: "playlists", name: "Playlists" },
+  { id: "news", name: "News" },
+  { id: "live", name: "Live" },
+  { id: "rap", name: "Rap" },
+  { id: "football", name: "Football" },
+  { id: "nature", name: "Nature" },
+  { id: "recent", name: "Recent" },
+  { id: "watched", name: "Watched" },
+  { id: "suggestions", name: "Suggestions" },
 ]
 
 export default function HorizontalScrollMenuDemo() {
+  // const routet = useRouter()
+
   return (
     <div className="flex w-full flex-col items-center gap-8">
       <HorizontalScrollMenu
         menu={menuItems}
         selected="music"
-        onFilterChange={(filter) => console.log("Selected:", filter)}
+        onFilterChange={(itemId) => console.log("Selected:", itemId)}
+        // onFilterChange={(itemId) => router.push(`/categories/${itemId}`)}
       />
       <HorizontalScrollMenu
         menu={menuItems}
         selected="music"
-        onFilterChange={(filter) => console.log("Selected:", filter)}
+        onFilterChange={(itemId) => console.log("Selected:", itemId)}
         showScrollButton
       />
     </div>
