@@ -277,6 +277,10 @@
     }
   }
 
+  figcaption {
+    @apply text-muted-foreground! text-sm! font-medium [&_svg]:size-4!;
+  }
+
   [data-line-numbers] {
     @apply grid min-w-full border-0 bg-transparent p-0 whitespace-pre;
     counter-reset: line;

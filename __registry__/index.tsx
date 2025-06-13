@@ -21,6 +21,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "zone-filter": {
@@ -38,6 +39,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "scroll-to-top": {
@@ -55,6 +57,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "json-table": {
@@ -72,6 +75,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "horizontal-scroll-menu": {
@@ -89,6 +93,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "multiple-selector": {
@@ -106,6 +111,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "password-input": {
@@ -123,6 +129,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "counting-number": {
@@ -140,6 +147,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "sliding-number": {
@@ -157,6 +165,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "smooth-cursor": {
@@ -174,6 +183,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "zone-select-demo": {
@@ -191,6 +201,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "zone-filter-demo": {
@@ -208,6 +219,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "scroll-to-top-demo": {
@@ -225,6 +237,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "sotienthanhchu-demo": {
@@ -242,6 +255,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "json-table-demo": {
@@ -259,6 +273,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "horizontal-scroll-menu-demo": {
@@ -276,6 +291,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "multiple-selector-demo": {
@@ -293,6 +309,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "password-input-demo": {
@@ -310,6 +327,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "counting-number-demo": {
@@ -327,6 +345,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "sliding-number-demo": {
@@ -344,6 +363,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "smooth-cursor-demo": {
@@ -361,6 +381,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "use-filter-zone": {
@@ -378,6 +399,7 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
     meta: undefined,
   },
   "sotienthanhchu": {
@@ -395,6 +417,29 @@ export const Index: Record<string, any> = {
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "login-01": {
+    name: "login-01",
+    description: "login-01",
+    type: "registry:block",
+    registryDependencies: ["button","card","input","label"],
+    files: [{
+      path: "registry/blocks/login-01/page.tsx",
+      type: "registry:page",
+      target: "app/login/page.tsx"
+    },{
+      path: "registry/blocks/login-01/login-form.tsx",
+      type: "registry:component",
+      target: "sections/auth/login-form.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/blocks/login-01/page.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: ["login"],
     meta: undefined,
   },
   }

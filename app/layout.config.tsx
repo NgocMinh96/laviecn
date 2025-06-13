@@ -38,7 +38,7 @@ export const linkItems: LinkItemType[] = [
   },
   {
     text: "Blocks",
-    url: "/blocks",
+    url: "/blocks/login",
     active: "url",
   },
 ]

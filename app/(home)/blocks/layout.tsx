@@ -1,11 +1,10 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import { HorizontalScrollMenu } from "@/registry/components/horizontal-scroll-menu"
 
 const menuItems = [
-  { id: "featured", name: "Featured" },
   { id: "login", name: "Login" },
   { id: "dashboard", name: "Dashboard" },
 ]
@@ -16,14 +15,19 @@ export default function BlocksLayout({
   children: React.ReactNode
 }) {
   const router = useRouter()
+  const pathname = usePathname()
+  const selectedId = pathname.split("/").pop() || "login"
 
   return (
     <>
-      <HorizontalScrollMenu
-        menu={menuItems}
-        selected="featured"
-        onFilterChange={(itemId) => router.push(`/blocks/${itemId}`)}
-      />
+      <div className="mt-12">
+        <HorizontalScrollMenu
+          menu={menuItems}
+          selected={selectedId}
+          onFilterChange={(itemId) => router.push(`/blocks/${itemId}`)}
+        />
+      </div>
+
       <div className="container-wrapper section-soft flex-1 md:py-12">
         <div className="container">{children}</div>
       </div>

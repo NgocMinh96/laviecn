@@ -5,6 +5,7 @@ import rimraf from "rimraf"
 import { registryItemSchema, type Registry } from "shadcn/registry"
 import { z } from "zod"
 
+import { blocks } from "../registry/registry-blocks.mjs"
 import { components } from "../registry/registry-components.mts"
 import { examples } from "../registry/registry-examples.mts"
 import { hooks } from "../registry/registry-hooks.mts"
@@ -16,9 +17,11 @@ const registry = {
   name: "laviecn",
   homepage: "http://laviecn.vercel.app",
   items: z.array(registryItemSchema).parse(
-    [...components, ...examples, ...hooks, ...libs].filter((item) => {
-      return !DEPRECATED_ITEMS.includes(item.name)
-    })
+    [...components, ...examples, ...hooks, ...libs, ...blocks].filter(
+      (item) => {
+        return !DEPRECATED_ITEMS.includes(item.name)
+      }
+    )
   ),
 } satisfies Registry
 
@@ -67,12 +70,15 @@ export const Index: Record<string, any> = {`
     })`
         : "null"
     },
+    categories: ${JSON.stringify(item.categories)},
     meta: ${JSON.stringify(item.meta)},
   },`
   }
 
   index += `
   }`
+
+  console.log(`#️⃣  ${Object.keys(registry.items).length} components found`)
 
   // Write style index.
   rimraf.sync(path.join(process.cwd(), "__registry__/index.tsx"))

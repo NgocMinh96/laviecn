@@ -123,7 +123,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
                 {typeof icon !== "string" ? icon : null}
               </div>
             ) : null}
-            <figcaption className="text-fd-muted-foreground flex-1 truncate">
+            <figcaption className="text-muted-foreground flex-1 truncate">
               {title}
             </figcaption>
             {allowCopy ? (

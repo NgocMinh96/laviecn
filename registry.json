@@ -307,6 +307,32 @@
           "target": "utils/sotienthanhchu.ts"
         }
       ]
+    },
+    {
+      "name": "login-01",
+      "type": "registry:block",
+      "description": "login-01",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/login-01/page.tsx",
+          "type": "registry:page",
+          "target": "app/login/page.tsx"
+        },
+        {
+          "path": "registry/blocks/login-01/login-form.tsx",
+          "type": "registry:component",
+          "target": "sections/auth/login-form.tsx"
+        }
+      ],
+      "categories": [
+        "login"
+      ]
     }
   ]
 }
