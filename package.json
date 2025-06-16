@@ -16,8 +16,8 @@
     "prettier": "prettier --check \"./**/*.{js,jsx,ts,tsx,mdx}\"",
     "prettier:fix": "prettier --write \"./**/*.{js,jsx,ts,tsx,mdx}\"",
     "rm:all": "rm -rf node_modules .next out dist build",
-    "migrate:radix": "npx shadcn@latest migrate radix",
-    "re:build": "npm run rm:all && npm install && npm run build"
+    "re:build": "npm run rm:all && npm install && npm run build",
+    "migrate:radix": "npx shadcn@latest migrate radix"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
