@@ -8,8 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-
-// import { ModeToggle } from "@/components/mode-toggle"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 import { NavItemsProps } from "../nav-config"
 
@@ -44,7 +43,7 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
             ))}
           </div>
           <div className="ml-auto flex flex-row items-center gap-1">
-            {/* <ModeToggle /> */}
+            <ThemeToggle style="2" />
           </div>
         </C_NavigationMenuContent>
       </NavigationMenuItem>

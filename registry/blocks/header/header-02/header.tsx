@@ -8,8 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
-
-// import { ModeToggle } from "@/components/mode-toggle"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 import { navItems } from "../nav-config"
 import MobileNavTrigger from "./mobile-nav-trigger"
@@ -47,7 +46,7 @@ export default function Header() {
         </div>
         {/* right side actions */}
         <div className="flex flex-shrink-0 flex-row items-center justify-end gap-1.5">
-          {/* <ModeToggle className="max-sm:hidden" /> */}
+          <ThemeToggle className="max-sm:hidden" />
           <Button className="h-8">
             <a href="/auth/login">Login</a>
           </Button>

@@ -14,8 +14,7 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar"
-
-// import { ModeToggle } from "@/components/mode-toggle"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 import { NavItemsProps } from "../nav-config"
 
@@ -67,7 +66,7 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
         </SidebarContent>
 
         <SidebarFooter className="ml-auto flex-row p-0">
-          {/* <ModeToggle /> */}
+          <ThemeToggle style="2" />
         </SidebarFooter>
       </SheetContent>
     </Sheet>

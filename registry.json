@@ -372,7 +372,8 @@
       "registryDependencies": [
         "button",
         "navigation-menu",
-        "utils"
+        "utils",
+        "https://laviecn.vercel.app/r/theme-toggle.json"
       ],
       "files": [
         {
@@ -409,7 +410,8 @@
         "navigation-menu",
         "sheet",
         "sidebar",
-        "utils"
+        "utils",
+        "https://laviecn.vercel.app/r/theme-toggle.json"
       ],
       "files": [
         {

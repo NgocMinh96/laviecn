@@ -25,7 +25,12 @@ export const blocks: Registry["items"] = [
     description: "header-01",
     type: "registry:block",
     dependencies: ["radix-ui"],
-    registryDependencies: ["button", "navigation-menu", "utils"],
+    registryDependencies: [
+      "button",
+      "navigation-menu",
+      "utils",
+      "https://laviecn.vercel.app/r/theme-toggle.json",
+    ],
     files: [
       {
         path: "blocks/header/header-01/layout.tsx",
@@ -60,6 +65,7 @@ export const blocks: Registry["items"] = [
       "sheet",
       "sidebar",
       "utils",
+      "https://laviecn.vercel.app/r/theme-toggle.json",
     ],
     files: [
       {
