@@ -1,26 +1,11 @@
 # laviecn
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+![hero](/public/assets/page-home.png)
 
-Run development server:
+## Components
 
-```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
-```
+Visit https://laviecn.vercel.app/docs to view the components.
 
-Open http://localhost:3000 with your browser to see the result.
+## Blocks
 
-## Learn More
-
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.vercel.app) - learn about Fumadocs
+Visit https://laviecn.vercel.app/blocks to view the blocks.
