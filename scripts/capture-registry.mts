@@ -4,7 +4,7 @@ import puppeteer from "puppeteer"
 
 import { getAllBlockIds } from "../lib/blocks"
 
-const REGISTRY_PATH = path.join(process.cwd(), "public/r")
+const REGISTRY_PATH = path.join(process.cwd(), "public/r/block-images")
 
 // ----------------------------------------------------------------------------
 // Capture screenshots.

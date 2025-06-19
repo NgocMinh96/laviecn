@@ -6,6 +6,7 @@ import { HorizontalScrollMenu } from "@/registry/components/horizontal-scroll-me
 
 const menuItems = [
   { id: "login", name: "Login" },
+  { id: "header", name: "Header" },
   { id: "dashboard", name: "Dashboard" },
 ]
 

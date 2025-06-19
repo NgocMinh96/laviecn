@@ -154,13 +154,13 @@ function BlockViewerToolbar() {
           </TabsTrigger>
         </TabsList>
       </Tabs>
-      <Separator orientation="vertical" className="mx-2 !h-4" />
+      {/* <Separator orientation="vertical" className="mx-2 !h-4" />
       <a
         href={`#${item.name}`}
         className="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-left"
       >
         {item.description?.replace(/\.$/, "")}
-      </a>
+      </a> */}
       <div className="ml-auto flex items-center gap-2">
         <div className="h-8 items-center gap-1.5 rounded-md border p-1 shadow-none">
           <ToggleGroup
@@ -219,11 +219,13 @@ function BlockViewerToolbar() {
           className="w-fit gap-1 px-2 shadow-none"
           size="sm"
           onClick={() => {
-            copyToClipboard(`npx shadcn@latest add ${item.name}`)
+            copyToClipboard(
+              `npx shadcn@latest add https://laviecn.vercel.app/r/${item.name}`
+            )
           }}
         >
           {isCopied ? <Check /> : <Terminal />}
-          <span>npx shadcn add {item.name}</span>
+          <span>{item.name}</span>
         </Button>
       </div>
     </div>
@@ -292,7 +294,7 @@ function BlockViewerMobile({ children }: { children: React.ReactNode }) {
       ) : (
         <div className="overflow-hidden rounded-xl border">
           <Image
-            src={`/r/${item.name}-light.png`}
+            src={`/r/block-images/${item.name}-light.png`}
             alt={item.name}
             data-block={item.name}
             width={1440}
@@ -300,7 +302,7 @@ function BlockViewerMobile({ children }: { children: React.ReactNode }) {
             className="object-cover dark:hidden"
           />
           <Image
-            src={`/r/${item.name}-dark.png`}
+            src={`/r/block-images/${item.name}-dark.png`}
             alt={item.name}
             data-block={item.name}
             width={1440}

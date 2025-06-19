@@ -442,4 +442,64 @@ export const Index: Record<string, any> = {
     categories: ["login"],
     meta: undefined,
   },
+  "header-01": {
+    name: "header-01",
+    description: "header-01",
+    type: "registry:block",
+    registryDependencies: ["button","navigation-menu","utils"],
+    files: [{
+      path: "registry/blocks/header/header-01/layout.tsx",
+      type: "registry:page",
+      target: "app/(home)/layout.tsx"
+    },{
+      path: "registry/blocks/header/header-01/header.tsx",
+      type: "registry:component",
+      target: "layouts/home/header/header-01/header.tsx"
+    },{
+      path: "registry/blocks/header/header-01/mobile-nav-trigger.tsx",
+      type: "registry:component",
+      target: "layouts/home/header/header-01/mobile-nav-trigger.tsx"
+    },{
+      path: "registry/blocks/header/nav-config.tsx",
+      type: "registry:component",
+      target: "layouts/home/header/nav-config.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/blocks/header/header-01/layout.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: ["header"],
+    meta: undefined,
+  },
+  "header-02": {
+    name: "header-02",
+    description: "header-02",
+    type: "registry:block",
+    registryDependencies: ["button","navigation-menu","sheet","sidebar","utils"],
+    files: [{
+      path: "registry/blocks/header/header-02/layout.tsx",
+      type: "registry:page",
+      target: "app/(home)/layout.tsx"
+    },{
+      path: "registry/blocks/header/header-02/header.tsx",
+      type: "registry:component",
+      target: "layouts/home/header/header-02/header.tsx"
+    },{
+      path: "registry/blocks/header/header-02/mobile-nav-trigger.tsx",
+      type: "registry:component",
+      target: "layouts/home/header/header-02/mobile-nav-trigger.tsx"
+    },{
+      path: "registry/blocks/header/nav-config.tsx",
+      type: "registry:component",
+      target: "layouts/home/header/nav-config.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/blocks/header/header-02/layout.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: ["header"],
+    meta: undefined,
+  },
   }
