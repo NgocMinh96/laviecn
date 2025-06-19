@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-toggle",
+  "type": "registry:component",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "button",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/components/theme-toggle.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cva } from \"class-variance-authority\"\nimport { Moon, Sun } from \"lucide-react\"\nimport { useTheme } from \"next-themes\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Button } from \"@/components/ui/button\"\n\ntype ThemeToggleProps = {\n  style?: \"1\" | \"2\"\n} & React.HTMLAttributes<HTMLButtonElement>\n\nexport function ThemeToggle({ style = \"1\", ...props }: ThemeToggleProps) {\n  const { theme, setTheme } = useTheme()\n\n  const toggleTheme = () => {\n    setTheme(theme === \"dark\" ? \"light\" : \"dark\")\n  }\n\n  const styles = {\n    \"1\": <Style_1 onClick={toggleTheme} {...props} />,\n    \"2\": <Style_2 onClick={toggleTheme} {...props} />,\n  }\n\n  return styles[style as \"1\" | \"2\"] || styles[\"1\"]\n}\n\n// ==== Style 1 ====\nfunction Style_1(props: React.HTMLAttributes<HTMLButtonElement>) {\n  return (\n    <Button variant=\"ghost\" size=\"icon\" {...props}>\n      <Sun className=\"scale-100 fill-current dark:scale-0\" />\n      <Moon className=\"absolute scale-0 fill-current dark:scale-100\" />\n    </Button>\n  )\n}\n\n// ==== Style 2 ====\n\nconst full = [[\"light\", Sun] as const, [\"dark\", Moon] as const]\n\nconst itemVariants = cva(\"size-7 rounded-full p-1.5 text-muted-foreground\", {\n  variants: {\n    active: {\n      true: \"bg-accent text-accent-foreground\",\n      false: \"text-muted-foreground\",\n    },\n  },\n})\n\nfunction Style_2(props: React.HTMLAttributes<HTMLButtonElement>) {\n  const { resolvedTheme } = useTheme()\n  const [mounted, setMounted] = React.useState(false)\n\n  React.useLayoutEffect(() => {\n    setMounted(true)\n  }, [])\n\n  const value = mounted ? resolvedTheme : null\n\n  return (\n    <button\n      {...props}\n      className={cn(\n        \"inline-flex items-center rounded-full border\",\n        props.className\n      )}\n    >\n      {full.map(([key, Icon]) => {\n        return (\n          <Icon\n            key={key}\n            fill=\"currentColor\"\n            className={cn(itemVariants({ active: value === key }))}\n          />\n        )\n      })}\n    </button>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

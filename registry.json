@@ -178,6 +178,24 @@
       ]
     },
     {
+      "name": "theme-toggle",
+      "type": "registry:component",
+      "dependencies": [
+        "lucide-react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "button",
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/components/theme-toggle.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "zone-select-demo",
       "type": "registry:example",
       "files": [
@@ -283,6 +301,16 @@
       "files": [
         {
           "path": "registry/examples/smooth-cursor-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "registry/examples/theme-toggle-demo.tsx",
           "type": "registry:example"
         }
       ]

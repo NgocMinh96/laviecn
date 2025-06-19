@@ -186,6 +186,24 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "theme-toggle": {
+    name: "theme-toggle",
+    description: "",
+    type: "registry:component",
+    registryDependencies: ["button","utils"],
+    files: [{
+      path: "registry/components/theme-toggle.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/components/theme-toggle.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "zone-select-demo": {
     name: "zone-select-demo",
     description: "",
@@ -378,6 +396,24 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/examples/smooth-cursor-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "theme-toggle-demo": {
+    name: "theme-toggle-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/examples/theme-toggle-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/examples/theme-toggle-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

@@ -1,0 +1,43 @@
+---
+title: Theme Toggle
+---
+
+## Demo
+
+<ComponentPreview name="theme-toggle-demo" />
+
+## Installation
+
+### Shadcn CLI
+
+<ComponentInstall command="npx shadcn@latest add https://laviecn.vercel.app/r/theme-toggle.json" />
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the following code into your project.
+
+    <ComponentSource name="theme-toggle" title="theme-toggle.tsx" />
+
+  </Step>
+  <Step>
+
+    Update the import paths to match your project setup.
+
+  </Step>
+</Steps>
+
+## Props
+
+### JsonTableProps
+
+<TypeTable
+  type={{
+    style: {
+      type: "string",
+      required: false,
+      default: "1",
+    },
+  }}
+/>

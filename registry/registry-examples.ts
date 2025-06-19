@@ -111,4 +111,14 @@ export const examples: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "theme-toggle-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/theme-toggle-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
 ]

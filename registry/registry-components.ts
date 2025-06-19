@@ -143,4 +143,16 @@ export const components: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "theme-toggle",
+    type: "registry:component",
+    dependencies: ["lucide-react", "class-variance-authority"],
+    registryDependencies: ["button", "utils"],
+    files: [
+      {
+        path: "components/theme-toggle.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ]

@@ -5,6 +5,7 @@
     "components/json-table",
     "components/zone-filter",
     "components/zone-select",
+    "components/theme-toggle",
     "components/scroll-to-top",
     "components/password-input",
     "components/multiple-selector",
