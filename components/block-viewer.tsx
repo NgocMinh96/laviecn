@@ -220,7 +220,7 @@ function BlockViewerToolbar() {
           size="sm"
           onClick={() => {
             copyToClipboard(
-              `npx shadcn@latest add https://laviecn.vercel.app/r/${item.name}`
+              `npx shadcn@latest add https://laviecn.vercel.app/r/${item.name}.json`
             )
           }}
         >
