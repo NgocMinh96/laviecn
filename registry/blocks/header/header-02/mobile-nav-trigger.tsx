@@ -32,7 +32,7 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
         data-sidebar="sidebar"
         data-slot="sidebar"
         data-mobile="true"
-        className="bg-sidebar text-sidebar-foreground fixed top-2 bottom-2 left-2 flex h-auto! w-(--sidebar-width) rounded-xl border p-4 outline-none"
+        className="bg-sidebar text-sidebar-foreground fixed top-2 bottom-2 left-2 flex h-auto! w-(--sidebar-width) rounded-xl border p-4 outline-none [&>button]:hidden"
         style={
           {
             "--sidebar-width": "16rem",
