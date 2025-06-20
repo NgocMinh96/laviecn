@@ -65,7 +65,7 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
           ))}
         </SidebarContent>
 
-        <SidebarFooter className="ml-auto flex-row p-0">
+        <SidebarFooter className="ml-auto flex-row items-center p-0">
           <ThemeToggle style="2" />
         </SidebarFooter>
       </SheetContent>
