@@ -42,7 +42,7 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
               </NavigationMenuLink>
             ))}
           </div>
-          <div className="ml-auto flex flex-row items-center gap-1">
+          <div className="ml-auto flex items-center">
             <ThemeToggle style="2" />
           </div>
         </C_NavigationMenuContent>
