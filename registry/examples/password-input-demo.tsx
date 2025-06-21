@@ -22,7 +22,6 @@ export default function PasswordInputDemo() {
           <FormControl>
             <PasswordInput
               id="password"
-              placeholder="••••••••"
               autoComplete="current-password"
               {...field}
             />
