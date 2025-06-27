@@ -459,7 +459,7 @@ export const Index: Record<string, any> = {
   "radix-colors": {
     name: "radix-colors",
     description: "radix-colors",
-    type: "registry:block",
+    type: "registry:style",
     registryDependencies: undefined,
     files: [{
       path: "registry/css/radix-colors.css",

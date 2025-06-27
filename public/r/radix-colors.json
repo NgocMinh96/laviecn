@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "radix-colors",
-  "type": "registry:block",
+  "type": "registry:style",
   "description": "radix-colors",
   "files": [
     {

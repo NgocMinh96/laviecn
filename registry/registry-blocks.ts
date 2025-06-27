@@ -4,7 +4,7 @@ export const blocks: Registry["items"] = [
   {
     name: "radix-colors",
     description: "radix-colors",
-    type: "registry:block",
+    type: "registry:style",
     files: [
       {
         path: "css/radix-colors.css",

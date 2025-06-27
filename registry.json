@@ -338,7 +338,7 @@
     },
     {
       "name": "radix-colors",
-      "type": "registry:block",
+      "type": "registry:style",
       "description": "radix-colors",
       "files": [
         {
