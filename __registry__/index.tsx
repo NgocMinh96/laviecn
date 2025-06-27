@@ -456,6 +456,24 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "radix-colors": {
+    name: "radix-colors",
+    description: "radix-colors",
+    type: "registry:block",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/css/radix-colors.css",
+      type: "registry:style",
+      target: "app/radix-colors.css"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/css/radix-colors.css")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "login-01": {
     name: "login-01",
     description: "login-01",

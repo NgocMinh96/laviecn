@@ -2,6 +2,18 @@ import { type Registry } from "shadcn/registry"
 
 export const blocks: Registry["items"] = [
   {
+    name: "radix-colors",
+    description: "radix-colors",
+    type: "registry:block",
+    files: [
+      {
+        path: "css/radix-colors.css",
+        target: "app/radix-colors.css",
+        type: "registry:style",
+      },
+    ],
+  },
+  {
     name: "login-01",
     description: "login-01",
     type: "registry:block",

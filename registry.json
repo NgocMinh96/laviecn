@@ -337,6 +337,18 @@
       ]
     },
     {
+      "name": "radix-colors",
+      "type": "registry:block",
+      "description": "radix-colors",
+      "files": [
+        {
+          "path": "registry/css/radix-colors.css",
+          "type": "registry:style",
+          "target": "app/radix-colors.css"
+        }
+      ]
+    },
+    {
       "name": "login-01",
       "type": "registry:block",
       "description": "login-01",
