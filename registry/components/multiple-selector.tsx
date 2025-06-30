@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useEffect } from "react"
 import { Command as CommandPrimitive, useCommandState } from "cmdk"
 import { XIcon } from "lucide-react"
 
@@ -94,7 +95,7 @@ export interface MultipleSelectorRef {
 export function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = React.useState<T>(value)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => setDebouncedValue(value), delay || 500)
 
     return () => {
@@ -250,7 +251,7 @@ const MultipleSelector = ({
     [handleUnselect, selected]
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       document.addEventListener("mousedown", handleClickOutside)
       document.addEventListener("touchend", handleClickOutside)
@@ -265,13 +266,13 @@ const MultipleSelector = ({
     }
   }, [open])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (value) {
       setSelected(value)
     }
   }, [value])
 
-  React.useEffect(() => {
+  useEffect(() => {
     /** If `onSearch` is provided, do not trigger options updated. */
     if (!arrayOptions || onSearch) {
       return
@@ -282,7 +283,7 @@ const MultipleSelector = ({
     }
   }, [arrayDefaultOptions, arrayOptions, groupBy, onSearch, options])
 
-  React.useEffect(() => {
+  useEffect(() => {
     /** sync search */
 
     const doSearchSync = () => {
@@ -306,7 +307,7 @@ const MultipleSelector = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus])
 
-  React.useEffect(() => {
+  useEffect(() => {
     /** async search */
 
     const doSearch = async () => {
@@ -421,7 +422,7 @@ const MultipleSelector = ({
         commandProps?.onKeyDown?.(e)
       }}
       className={cn(
-        "dark:bg-input/30 h-auto overflow-visible",
+        "dark:bg-input/30 h-auto overflow-visible bg-transparent shadow-xs",
         {
           "min-h-8": size === "sm",
           "min-h-9": size === "md",
@@ -523,7 +524,7 @@ const MultipleSelector = ({
                 : placeholder
             }
             className={cn(
-              "placeholder:text-muted-foreground flex-1 bg-transparent outline-hidden disabled:cursor-not-allowed",
+              "placeholder:text-muted-foreground flex-1 rounded-sm outline-hidden disabled:cursor-not-allowed",
               {
                 "w-full": hidePlaceholderWhenSelected,
                 "px-3 py-2": selected.length === 0,
