@@ -422,10 +422,10 @@ const MultipleSelector = ({
         commandProps?.onKeyDown?.(e)
       }}
       className={cn(
-        "dark:bg-input/30 h-auto overflow-visible bg-transparent shadow-xs",
+        "dark:bg-input/30 h-auto overflow-visible bg-transparent",
         {
-          "min-h-8": size === "sm",
-          "min-h-9": size === "md",
+          "h-8": size === "sm",
+          "h-9": size === "md",
         },
         commandProps?.className
       )}
@@ -438,7 +438,7 @@ const MultipleSelector = ({
     >
       <div
         className={cn(
-          "border-input has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 relative rounded-md border text-sm transition-[color,box-shadow] outline-none has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
+          "border-input has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 relative rounded-md border text-sm shadow-xs transition-[color,box-shadow] outline-none has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
           "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]",
           {
             "p-[3.08px]": selected.length !== 0,
