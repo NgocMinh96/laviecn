@@ -22,7 +22,7 @@ export default function Header() {
     <header className="sticky inset-x-0 top-0 z-40 w-full border-b shadow-sm backdrop-blur-lg transition-colors max-sm:fixed">
       <NavigationMenu viewport={false} className="block max-w-full flex-none">
         <NavigationMenuList>
-          <div className="container mx-auto flex h-14 items-center justify-between max-sm:space-x-3 max-sm:px-4">
+          <div className="container mx-auto flex h-14 items-center justify-between max-sm:space-x-3 px-4">
             <div className="flex flex-shrink-0 items-center max-sm:space-x-3">
               {/* mobile menu trigger */}
               <MobileNavTrigger navItems={navItems} />
