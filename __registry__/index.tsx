@@ -530,7 +530,7 @@ export const Index: Record<string, any> = {
     name: "header-02",
     description: "header-02",
     type: "registry:block",
-    registryDependencies: ["button","navigation-menu","sheet","sidebar","utils","https://laviecn.vercel.app/r/theme-toggle.json"],
+    registryDependencies: ["button","navigation-menu","drawer","utils","https://laviecn.vercel.app/r/theme-toggle.json"],
     files: [{
       path: "registry/blocks/header/header-02/layout.tsx",
       type: "registry:page",

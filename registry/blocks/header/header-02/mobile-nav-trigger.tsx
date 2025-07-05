@@ -1,58 +1,47 @@
-// import Link from "next/link"
+import Link from "next/link"
 import { Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import {
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-} from "@/components/ui/sidebar"
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { NavItemsProps } from "../nav-config"
 
 export default function MobileNavTrigger({ navItems }: NavItemsProps) {
   return (
-    <Sheet>
-      <SheetTrigger asChild>
+    <Drawer direction="left">
+      <DrawerTrigger asChild>
         <Button variant="ghost" size="icon" className="md:hidden">
           <Menu className="size-6" />
-          <span className="sr-only">Menu</span>
         </Button>
-      </SheetTrigger>
-      <SheetContent
-        side="left"
-        data-sidebar="sidebar"
-        data-slot="sidebar"
-        data-mobile="true"
-        className="bg-sidebar text-sidebar-foreground fixed top-2 bottom-2 left-2 flex h-auto! w-(--sidebar-width) rounded-xl border p-4 outline-none [&>button]:hidden"
-        style={
-          {
-            "--sidebar-width": "16rem",
-          } as React.CSSProperties
-        }
+      </DrawerTrigger>
+
+      <DrawerContent
+        data-vaul-custom-container
+        className="bg-sidebar !top-2 !bottom-2 !left-2 rounded-xl p-4 after:data-[vaul-drawer-direction=left]:w-0"
       >
-        <SheetHeader className="sr-only">
-          <SheetTitle>Sidebar</SheetTitle>
-        </SheetHeader>
+        <DrawerHeader className="flex flex-row px-0">
+          <DrawerTitle className="flex items-center gap-2">
+            <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
+              <span className="text-primary-foreground text-lg font-bold">
+                A
+              </span>
+            </div>
+            <span className="text-xl font-bold">Acme</span>
+          </DrawerTitle>
+        </DrawerHeader>
 
-        <SidebarHeader className="flex flex-row px-0">
-          <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
-            <span className="text-primary-foreground text-lg font-bold">A</span>
-          </div>
-          <span className="text-xl font-bold">Acme</span>
-        </SidebarHeader>
-
-        <SidebarContent>
+        <DrawerDescription className="flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden">
           {navItems.map((item, index) => (
-            <a
+            <Link
               key={index}
               href={item.path}
               className="hover:text-primary flex items-center space-x-3 py-2 text-sm font-medium transition-colors"
@@ -61,14 +50,14 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
                 {item.icon}
               </span>
               <span>{item.title}</span>
-            </a>
+            </Link>
           ))}
-        </SidebarContent>
+        </DrawerDescription>
 
-        <SidebarFooter className="ml-auto flex-row items-center p-0">
-          <ThemeToggle style="2" />
-        </SidebarFooter>
-      </SheetContent>
-    </Sheet>
+        <DrawerFooter className="ml-auto flex flex-row items-center gap-0 p-0">
+          <ThemeToggle />
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   )
 }

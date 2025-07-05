@@ -74,8 +74,7 @@ export const blocks: Registry["items"] = [
     registryDependencies: [
       "button",
       "navigation-menu",
-      "sheet",
-      "sidebar",
+      "drawer",
       "utils",
       "https://laviecn.vercel.app/r/theme-toggle.json",
     ],
