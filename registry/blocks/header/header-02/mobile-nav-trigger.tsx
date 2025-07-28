@@ -1,4 +1,4 @@
-import Link from "next/link"
+// import Link from "next/link"
 import { Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -41,7 +41,7 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
 
         <DrawerDescription className="flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden">
           {navItems.map((item, index) => (
-            <Link
+            <a
               key={index}
               href={item.path}
               className="hover:text-primary flex items-center space-x-3 py-2 text-sm font-medium transition-colors"
@@ -50,7 +50,7 @@ export default function MobileNavTrigger({ navItems }: NavItemsProps) {
                 {item.icon}
               </span>
               <span>{item.title}</span>
-            </Link>
+            </a>
           ))}
         </DrawerDescription>
 
