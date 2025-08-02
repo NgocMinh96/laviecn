@@ -21,8 +21,9 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
           placeholder="••••••••"
           type={showPassword ? "text" : "password"}
           className={cn(
-            "hide-password-toggle tracking-[0.3em]",
+            "hide-password-toggle",
             hasValue && !disabled ? "pr-18" : "pr-10",
+            !showPassword ? "tracking-[0.3em]" : "",
             className
           )}
           ref={ref}
